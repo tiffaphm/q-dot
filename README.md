@@ -21,7 +21,7 @@ q. - an exploration into full-stack web engineering and project management, base
 
 ## Usage
 
-- npm run server starts your server.
+- npm start starts your server.
 - npm run client starts webpack, which bundles your client files in client/src and watches for changes.
 
 ## Requirements
