@@ -1,6 +1,6 @@
 # Project Name
 
-> Pithy project description
+q. - an exploration into full-stack web engineering and project management, based on a restaurant's queue management system.
 
 ## Team
 
@@ -21,8 +21,8 @@
 
 ## Usage
 
-npm run server starts your server.
-npm run client starts webpack, which bundles your client files in client/src and watches for changes.
+- npm run server starts your server.
+- npm run client starts webpack, which bundles your client files in client/src and watches for changes.
 
 ## Requirements
 
