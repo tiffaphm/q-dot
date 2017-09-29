@@ -1,7 +1,7 @@
 import React from 'react';
 
-const App = () => (
+const CustomerApp = () => (
   <p>(>^.^)> Hello World from /!</p>
 );
 
-export default App;
+export default CustomerApp;
