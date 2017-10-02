@@ -1,8 +1,8 @@
 const Sequelize = require('sequelize');
 let db;
 
-if (DATABASE_URL) {
-  db = new Sequelize(DATABASE_URL);
+if (process.env.DATABASE_URL) {
+  db = new Sequelize(process.env.DATABASE_URL);
 } else {
   db = new Sequelize({
     database: 'qdot',
