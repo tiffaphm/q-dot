@@ -104,7 +104,6 @@ const addDummyData = () => {
   Customer.findOrCreate({where: {name: 'Johnny', mobile: '4567305746'}});
 };
 
-addDummyData();
 
 
 
@@ -115,5 +114,6 @@ module.exports = {
   Restaurant: Restaurant,
   dropAllTables: dropAllTables,
   findInfoForAllRestaurants: findInfoForAllRestaurants,
-  findInfoForOneRestaurant: findInfoForOneRestaurant
+  findInfoForOneRestaurant: findInfoForOneRestaurant,
+  addDummyData: addDummyData
 };
