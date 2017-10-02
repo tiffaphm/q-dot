@@ -21189,21 +21189,188 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(4);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _CustomerList = __webpack_require__(37);
+
+var _CustomerList2 = _interopRequireDefault(_CustomerList);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var ManagerApp = function (_React$Component) {
+  _inherits(ManagerApp, _React$Component);
+
+  function ManagerApp(props) {
+    _classCallCheck(this, ManagerApp);
+
+    var _this = _possibleConstructorReturn(this, (ManagerApp.__proto__ || Object.getPrototypeOf(ManagerApp)).call(this, props));
+
+    _this.state = {
+      customers: {},
+      restaurantInfo: {}
+    };
+    return _this;
+  }
+
+  _createClass(ManagerApp, [{
+    key: 'render',
+    value: function render() {
+      return _react2.default.createElement(
+        'div',
+        null,
+        _react2.default.createElement(
+          'div',
+          { 'class': 'jumbotron text-center' },
+          _react2.default.createElement(
+            'h1',
+            null,
+            'Restaurant Name Goes Here'
+          ),
+          _react2.default.createElement(
+            'p',
+            null,
+            'Manager Home Page'
+          ),
+          _react2.default.createElement(
+            'button',
+            { 'class': 'btn btn-default btn-lg' },
+            'Close Queue'
+          )
+        ),
+        _react2.default.createElement(
+          'div',
+          { 'class': 'container' },
+          _react2.default.createElement(
+            'div',
+            { 'class': 'row' },
+            _react2.default.createElement(
+              'div',
+              { 'class': 'col-md-6' },
+              _react2.default.createElement(
+                'h2',
+                null,
+                'Current People In Queue:'
+              ),
+              _react2.default.createElement(
+                'div',
+                { id: 'number-in-queue' },
+                '3'
+              )
+            ),
+            _react2.default.createElement(
+              'div',
+              { 'class': 'col-md-6' },
+              _react2.default.createElement(_CustomerList2.default, null)
+            )
+          )
+        )
+      );
+    }
+  }]);
+
+  return ManagerApp;
+}(_react2.default.Component);
+
+exports.default = ManagerApp;
+
+/***/ }),
+/* 37 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _react = __webpack_require__(4);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _CustomerListEntry = __webpack_require__(38);
+
+var _CustomerListEntry2 = _interopRequireDefault(_CustomerListEntry);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var CustomerList = function CustomerList(props) {
+
+  return _react2.default.createElement(
+    'div',
+    null,
+    _react2.default.createElement(
+      'h2',
+      null,
+      'Customer List Goes Here'
+    ),
+    _react2.default.createElement(_CustomerListEntry2.default, null),
+    _react2.default.createElement(_CustomerListEntry2.default, null),
+    _react2.default.createElement(_CustomerListEntry2.default, null)
+  );
+};
+
+exports.default = CustomerList;
+
+/***/ }),
+/* 38 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
 var _react = __webpack_require__(4);
 
 var _react2 = _interopRequireDefault(_react);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var ManagerApp = function ManagerApp() {
+var CustomerListEntry = function CustomerListEntry(props) {
+
   return _react2.default.createElement(
-    'p',
-    null,
-    '(>^.^)> Hello World from /!'
+    "div",
+    { "class": "row" },
+    _react2.default.createElement(
+      "div",
+      { "class": "col-md-7" },
+      _react2.default.createElement(
+        "h4",
+        null,
+        "Customer Goes Here"
+      ),
+      _react2.default.createElement(
+        "p",
+        null,
+        "info goes here"
+      )
+    ),
+    _react2.default.createElement(
+      "div",
+      { "class": "col-md-3" },
+      _react2.default.createElement(
+        "button",
+        { "class": "btn-danger btn-sm" },
+        "delete goes here"
+      )
+    )
   );
 };
 
-exports.default = ManagerApp;
+exports.default = CustomerListEntry;
 
 /***/ })
 /******/ ]);
