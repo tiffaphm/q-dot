@@ -1,5 +1,7 @@
 import React from 'react';
 import CustomerList from './CustomerList.jsx';
+import StatusSwitch from './StatusSwitch.jsx';
+import $ from 'jquery';
 
 class ManagerApp extends React.Component {
 
@@ -12,22 +14,30 @@ class ManagerApp extends React.Component {
     };
   }
 
+  switchStatus(open) {
+    
+  }
+
+  removeCustomer(customerId) {
+
+  }
+
   render() {
     return (
       <div>
-        <div class="jumbotron text-center">
+        <div className="jumbotron text-center">
           <h1>Restaurant Name Goes Here</h1>
           <p>Manager Home Page</p>
-          <button class="btn btn-default btn-lg">Close Queue</button>
+          <StatusSwitch switchStatus={this.switchStatus.bind(this)}/>
         </div>
-        <div class="container">
-          <div class="row">
-            <div class="col-md-6">
+        <div className="container">
+          <div className="row">
+            <div className="col-md-6">
               <h2>Current People In Queue:</h2>
               <div id="number-in-queue">3</div>
             </div>
-            <div class="col-md-6">
-              <CustomerList />
+            <div className="col-md-6">
+              <CustomerList customers={this.state.customers} removeCustomer={this.removeCustomer.bind(this)}/>
             </div>
           </div>
         </div>
