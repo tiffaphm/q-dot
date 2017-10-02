@@ -1,4 +1,5 @@
 const Sequelize = require('sequelize');
+
 let db;
 
 if (process.env.DATABASE_URL) {
@@ -12,7 +13,6 @@ if (process.env.DATABASE_URL) {
     port: 5000
   });
 }
-
 
 db.authenticate()
   .then(() => {
@@ -62,7 +62,7 @@ const Restaurant = db.define('restaurant', {
     unique: true,
     allowNull: false
   },
-  queue_count: Sequelize.INTEGER
+  'queue_count': Sequelize.INTEGER
 
 });
 
@@ -86,26 +86,25 @@ Restaurant.sync();
 
 const dropAllTables = () => {
   db.drop().then((result) => console.log('Deleted all tables', result))
-  .catch((err) => console.log('Failed to delete table', err));
+    .catch((err) => console.log('Failed to delete table', err));
 };
 
 
-const findInfoForOneRestaurant = () => {
-  //get info for one restaurant
+const findInfoForOneRestaurant = (restaurantId) => {
+  return Restaurant.findById(restaurantId);
 };
 
 const findInfoForAllRestaurants = () => {
-  //get information for all restaurants
 };
 
 const addDummyData = () => {
-  Restaurant.findOrCreate({where: {name: 'Tempest', phone: '1234567890', queue_count: 0}})
-  .then(result => console.log('added/found restaurant to database'))
-  .catch(err => console.log('error adding restaurant to database', err));
+  Restaurant.findOrCreate({where: {name: 'Tempest', phone: '1234567890', 'queue_count': 0}})
+    .then(result => console.log('added/found restaurant to database'))
+    .catch(err => console.log('error adding restaurant to database', err));
 
   Customer.findOrCreate({where: {name: 'Tiffany', mobile: '2345639762'}})
-  .then(result => console.log('added/found customer to database'))
-  .catch(err => console.log('error adding customer to database', err));
+    .then(result => console.log('added/found customer to database'))
+    .catch(err => console.log('error adding customer to database', err));
 
   Customer.findOrCreate({where: {name: 'Neha', mobile: '7869874567', email: 'nez@gmail.com'}});
   Customer.findOrCreate({where: {name: 'Eugene', mobile: '9750978967', email: 'euguene@gmail.com'}});
