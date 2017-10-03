@@ -63,7 +63,8 @@ const Restaurant = db.define('restaurant', {
     unique: true,
     allowNull: false
   },
-  'queue_count': Sequelize.INTEGER
+  'queue_count': Sequelize.INTEGER,
+  status: Sequelize.STRING
 
 });
 
@@ -82,8 +83,6 @@ Queue.belongsTo(Customer);
 //   .then(() => Queue.sync({force: true}))
 //   .catch(error => console.log('Error syncing data (force true)', error));
 
-
-
 Customer.sync()
   .then(() => Restaurant.sync())
   .then(() => Queue.sync())
@@ -94,7 +93,6 @@ const dropAllTables = () => {
   db.drop().then((result) => console.log('Deleted all tables', result))
     .catch((err) => console.log('Failed to delete table', err));
 };
-
 
 const findInfoForOneRestaurant = (restaurantId) => {
   return Restaurant.find({
