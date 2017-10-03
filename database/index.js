@@ -1,5 +1,5 @@
 const Sequelize = require('sequelize');
-
+const { ne } = Sequelize.Op;
 let db;
 
 if (process.env.DATABASE_URL) {
@@ -45,7 +45,8 @@ const Queue = db.define('queue', {
     primaryKey: true,
     autoIncrement: true
   },
-  position: Sequelize.INTEGER
+  position: Sequelize.INTEGER,
+  size: Sequelize.INTEGER
 });
 
 //Restaurant Schema
@@ -91,14 +92,23 @@ const dropAllTables = () => {
 
 
 const findInfoForOneRestaurant = (restaurantId) => {
-  return Restaurant.findById(restaurantId);
+  return Restaurant.find({
+    where: {
+      id: restaurantId
+    },
+    include: [Queue]
+  });
 };
 
 const findInfoForAllRestaurants = () => {
 };
 
 const addDummyData = () => {
-  Restaurant.findOrCreate({where: {name: 'Tempest', phone: '1234567890', 'queue_count': 0}})
+  Restaurant.findOrCreate({where: {name: 'Tempest', phone: '1234567890', image: '../images/blank.png', 'queue_count': 0}})
+    .then(result => console.log('added/found restaurant to database'))
+    .catch(err => console.log('error adding restaurant to database', err));
+
+  Restaurant.findOrCreate({where: {name: 'Subway', phone: '1234567990', image: '../images/blank.png', 'queue_count': 0}})
     .then(result => console.log('added/found restaurant to database'))
     .catch(err => console.log('error adding restaurant to database', err));
 
@@ -109,6 +119,11 @@ const addDummyData = () => {
   Customer.findOrCreate({where: {name: 'Neha', mobile: '7869874567', email: 'nez@gmail.com'}});
   Customer.findOrCreate({where: {name: 'Eugene', mobile: '9750978967', email: 'euguene@gmail.com'}});
   Customer.findOrCreate({where: {name: 'Johnny', mobile: '4567305746'}});
+
+  Queue.findOrCreate({where: {customerId: 1, restaurantId: 1, position: 1, size: 1}});
+  Queue.findOrCreate({where: {customerId: 2, restaurantId: 2, position: 1, size: 1}});
+  Queue.findOrCreate({where: {customerId: 3, restaurantId: 1, position: 2, size: 4}});
+  Queue.findOrCreate({where: {customerId: 4, restaurantId: 2, position: 2, size: 4}});
 };
 
 module.exports = {

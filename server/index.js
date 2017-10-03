@@ -17,15 +17,13 @@ app.get('/', (req, res) => {
 });
 
 app.get('/restaurants/:restaurantid', (req, res) => {
-  db.findInfoForOneRestaurant(req.params.restaurantid).then(results => {
-    res.send(results);
-  });
+  db.findInfoForOneRestaurant(req.params.restaurantid)
+    .then(results => res.send(results));
 });
 
-app.post('/restaurants', (req, res) => {
-  db.addInfoForOneRestaurant().then(results => {
-    res.send(results);
-  });
+app.post('/dummydata', (req, res) => {
+  db.addDummyData();
+  res.sendStatus(200);
 });
 
 app.listen(port, () => {
