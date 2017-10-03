@@ -26,6 +26,7 @@ coverage
 node_modules/
 bower_components/
 
+client/dist/js/
 customerApp-bundle.js
 managerApp-bundle.js
 queueinfo-bundle.js
