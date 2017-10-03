@@ -18,13 +18,20 @@ app.get('/', (req, res) => {
 
 app.get('/restaurants/:restaurantid', (req, res) => {
   db.findInfoForOneRestaurant(req.params.restaurantid)
-    .then(results => res.send(results));
+    .then(results => res.send(results))
+    .catch(error => {
+      console.log('error getting info for one restaurants', error);
+      res.send('failed for one restaurant');
+    });  
 });
 
 app.get('/restaurants', (req, res) => {
   db.findInfoForAllRestaurants()
     .then(restaurants => res.send(restaurants))
-    .catch(error => console.log('error getting info for all restaurants', err));  
+    .catch(error => {
+      console.log('error getting info for all restaurants', error);
+      res.send('failed for info on all restaurants');
+    });  
 });
 
 app.post('/dummydata', (req, res) => {
