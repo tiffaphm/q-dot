@@ -77,13 +77,13 @@ Queue.belongsTo(Customer);
 
 
 //Uncomment and use this if dropping tables
-// Customer.sync({force: true});
 // Queue.sync({force: true});
+// Customer.sync({force: true});
 // Restaurant.sync({force: true});
 
 Customer.sync();
-Queue.sync();
 Restaurant.sync();
+Queue.sync();
 
 
 const dropAllTables = () => {
