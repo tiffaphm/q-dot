@@ -1,11 +1,18 @@
 const Sequelize = require('sequelize');
-const db = new Sequelize({
-  database: 'qdot',
-  username: 'postgres',
-  password: 'qdot',
-  dialect: 'postgres',
-  port: 5000
-});
+let db;
+
+if (process.env.DATABASE_URL) {
+  db = new Sequelize(process.env.DATABASE_URL);
+} else {
+  db = new Sequelize({
+    database: 'qdot',
+    username: 'postgres',
+    password: 'qdot',
+    dialect: 'postgres',
+    port: 5000
+  });
+}
+
 
 db.authenticate()
   .then(() => {
