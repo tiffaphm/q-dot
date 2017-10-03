@@ -5,7 +5,7 @@
 Schema includes 3 tables shown below:
 
 |Restaurants                                      |
-|-------------------------------------------------|
+|--------------|----------------------------------|
 |field name    |field type                        |
 |--------------|----------------------------------|
 |id            |integer, auto increasing          |
@@ -27,7 +27,7 @@ Schema includes 3 tables shown below:
 
 
 |Queues                                           |
-|-------------------------------------------------|
+|--------------|----------------------------------|
 |field name    |field type                        |
 |--------------|----------------------------------|
 |id            |integer, auto increasing          |
@@ -47,7 +47,7 @@ Schema includes 3 tables shown below:
 
 
 |Customers                                        |
-|-------------------------------------------------|
+|--------------|----------------------------------|
 |field name    |field type                        |
 |--------------|----------------------------------|
 |id            |integer, auto increasing          |
