@@ -4,64 +4,43 @@
 
 Schema includes 3 tables shown below:
 
-|Restaurants                                      |
-|-------------------------------------------------|
+**Restaurants Table**
+
 |field name    |field type                        |
 |--------------|----------------------------------|
 |id            |integer, auto increasing          |
-|--------------|----------------------------------|
 |image         |string, url link                  |
-|--------------|----------------------------------|
 |name          |string, restaurant name           |
-|--------------|----------------------------------|
 |phone         |string, restaurant number         |
-|--------------|----------------------------------|
 |queue_count   |integer, current queue count      |
-|--------------|----------------------------------|
 |status        |string, current queue status      |
-|--------------|----------------------------------|
 |createdAt     |string, restaurant creation date  |
-|--------------|----------------------------------|
 |updatedAt     |string, restaurant updated date   |
-|--------------|----------------------------------|
 
 
-|Queues                                           |
-|-------------------------------------------------|
+**Queues Table**
+
 |field name    |field type                        |
 |--------------|----------------------------------|
 |id            |integer, auto increasing          |
-|--------------|----------------------------------|
 |position      |integer, queue position           |
-|--------------|----------------------------------|
 |size          |integer, customer group size      |
-|--------------|----------------------------------|
 |restaurantId  |integer, restaurant id            |
-|--------------|----------------------------------|
 |customerId    |integer, customer id              |
-|--------------|----------------------------------|
 |createdAt     |string, queue creation date       |
-|--------------|----------------------------------|
 |updatedAt     |string, queue updated date        |
-|--------------|----------------------------------|
 
 
-|Customers                                        |
-|-------------------------------------------------|
+**Customers Table**
+
 |field name    |field type                        |
 |--------------|----------------------------------|
 |id            |integer, auto increasing          |
-|--------------|----------------------------------|
 |name          |string, restaurant name           |
-|--------------|----------------------------------|
 |mobile        |string, customer mobile number    |
-|--------------|----------------------------------|
 |email         |string, customer email address    |
-|--------------|----------------------------------|
 |createdAt     |string, customer creation date    |
-|--------------|----------------------------------|
 |updatedAt     |string, customer updated date     |
-|--------------|----------------------------------|
 
 
 ### /restaurants
