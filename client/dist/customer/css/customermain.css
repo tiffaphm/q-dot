@@ -3,6 +3,7 @@
  * Copyright 2014-2017 Materialize
  * MIT License (https://raw.githubusercontent.com/Dogfalo/materialize/master/LICENSE)
  */
+
 .materialize-red {
   background-color: #e51c23 !important;
 }
@@ -2817,11 +2818,12 @@ ul.staggered-list li {
   }
 }
 
-@media only screen and (max-width: 992px) {
+/*uncommenting this will result in an unresponsive nav bar*/
+/*@media only screen and (max-width: 992px) {
   .hide-on-med-and-down {
     display: none !important;
   }
-}
+}*/
 
 @media only screen and (min-width: 601px) {
   .hide-on-med-and-up {
@@ -9412,14 +9414,18 @@ THESE ARE CHANGES THAT ARE UNRELATED TO MATERIAL CSS
 
 */
 
+.customer-nav-bar {
+  width: 100%;
+}
+
 .customer-group-buttons {
   position: relative;
-  left: 40%;
+  display: table;
+  margin: 0 auto;
 }
 
 .customer-group-buttons .btn-large {
   display: inline-block;
-  position: relative;
   width: 140px;
   text-align: center;
   padding: 0 20px 0 20px;
@@ -9429,4 +9435,15 @@ THESE ARE CHANGES THAT ARE UNRELATED TO MATERIAL CSS
 .customer-group-buttons .btn-large i.left {
   margin-left: 15px;
   margin-right: 0px;
+}
+
+nav {
+  background-color: #fff;
+}
+
+nav li a {
+  color: #202020;
+  font-size: 25px;
+  font-weight: bold;
+  padding-left: 25px;
 }
