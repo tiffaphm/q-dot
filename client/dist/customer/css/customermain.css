@@ -2588,6 +2588,12 @@ a {
   -webkit-box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.2);
           box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.2);
 }
+
+.z-depth-1, .card {
+  -webkit-box-shadow: 0 1px 2px 0px rgba(0, 0, 0, 0.12), 0 1px 3px 0 rgba(0, 0, 0, 0.12) !important;
+          box-shadow: 0 1px 2px 0px rgba(0, 0, 0, 0.12), 0 1px 3px 0 rgba(0, 0, 0, 0.12) !important;
+}
+
 .z-depth-1, nav {
   -webkit-box-shadow: 0 1px 3px 0px rgba(0, 0, 0, 0.1) !important;
           box-shadow: 0 1px 3px 0px rgba(0, 0, 0, 0.1) !important;
@@ -4766,7 +4772,7 @@ small {
 }
 
 .card.small {
-  height: 300px;
+  height: 225px;
 }
 
 .card.medium {
@@ -9423,10 +9429,25 @@ THESE ARE CHANGES THAT ARE UNRELATED TO MATERIAL CSS
   width: 100%;
 }
 
-.customer-group-buttons {
+
+@media only screen and (min-width: 600px) {
+  .customer-group-buttons, .select-restaurant-title {
+    position: relative;
+    display: table;
+    margin: 0 auto;
+  }
+}
+
+.customer-group-buttons, .select-restaurant-title {
   position: relative;
   display: table;
   margin: 0 auto;
+  margin-left: 30px;
+  margin-top: 25px;
+}
+
+.select-restaurant-title {
+  margin-bottom: -20px;
 }
 
 .customer-group-buttons .btn-large {
@@ -9443,6 +9464,7 @@ THESE ARE CHANGES THAT ARE UNRELATED TO MATERIAL CSS
 }
 
 h4 {
+  font-family: Roboto, Helvetica Neue, sans-serif !important;
   color: #202020;
   font-size: 26px !important;
   line-height: 32px !important;
@@ -9459,7 +9481,7 @@ nav {
 }
 
 nav li a {
-  color: #202020;
+  color: #414141;
   font-size: 25px;
   font-weight: bold;
   padding-left: 25px;
@@ -9481,4 +9503,77 @@ nav li a {
   .card {
     width: 50%;
   }
+}
+
+.card .card-title, .card .card-title p, .card .card-title .card-title-text {
+  font-family: Roboto, Helvetica Neue, sans-serif !important;
+  color: #414141;
+  font-size: 24px;
+  line-height: 28px;
+  letter-spacing: -0.4px;
+  padding-top: 0px;
+  padding-bottom: 0px;
+  font-weight: 700;
+  max-height: 38px;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden !important;
+  margin-left: 10px;
+  margin-top: 4px;
+  margin-bottom: 0px !important;
+  display: inline-block;
+}
+
+.card-title .card-title-text:hover {
+  color: #009688;
+}
+
+.card-title .status .status-circle {
+  display:inline-block;
+  background: #4FD135;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  margin-right: 2px;
+}
+
+.card-title p.status {
+  font-family: Roboto, Helvetica Neue, sans-serif !important;
+  font-size: 11px !important;
+  text-transform: uppercase !important;
+  line-height: 16px !important;
+  letter-spacing: 0.2px !important;
+  padding-top: 0px !important;
+  padding-bottom: 2px !important;
+  text-overflow: ellipsis !important;
+  overflow: hidden !important;
+  white-space: nowrap !important;
+  display: inline-block;
+  margin-left: 10px;
+}
+
+
+.card-content {
+  font-family: Roboto, Helvetica Neue, sans-serif !important;
+  color: #414141;
+  font-size: 19px !important;
+  line-height: 24px !important;
+  letter-spacing: 0.2px !important;
+  padding-top: 0px !important;
+  padding-bottom: 0px !important;
+  font-weight: 300;
+  max-height: 38px;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden !important;
+  margin-left: -3px;
+  margin-top: -2px;
+}
+
+.card-content:first-child {
+  display: inline-block;
 }
