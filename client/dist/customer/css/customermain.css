@@ -2625,15 +2625,15 @@ a {
 }
 
 .hoverable {
-  -webkit-transition: -webkit-box-shadow .25s;
-  transition: -webkit-box-shadow .25s;
-  transition: box-shadow .25s;
-  transition: box-shadow .25s, -webkit-box-shadow .25s;
+  -webkit-transition: -webkit-box-shadow .25s !important;
+  transition: -webkit-box-shadow .25s !important;
+  transition: box-shadow .25s !important;
+  transition: box-shadow .25s, -webkit-box-shadow .25s !important;
 }
 
 .hoverable:hover {
-  -webkit-box-shadow: 0 8px 17px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-          box-shadow: 0 8px 17px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  -webkit-box-shadow: 0 8px 17px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19) !important;
+          box-shadow: 0 8px 17px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19) !important;
 }
 
 .divider {
@@ -9431,14 +9431,14 @@ THESE ARE CHANGES THAT ARE UNRELATED TO MATERIAL CSS
 
 
 @media only screen and (min-width: 600px) {
-  .customer-group-buttons, .select-restaurant-title {
+  .customer-group-buttons, .select-restaurant-container {
     position: relative;
     display: table;
     margin: 0 auto;
   }
 }
 
-.customer-group-buttons, .select-restaurant-title {
+.customer-group-buttons, .select-restaurant-container {
   position: relative;
   display: table;
   margin: 0 auto;
@@ -9446,7 +9446,7 @@ THESE ARE CHANGES THAT ARE UNRELATED TO MATERIAL CSS
   margin-top: 25px;
 }
 
-.select-restaurant-title {
+.select-restaurant-container {
   margin-bottom: -20px;
 }
 
@@ -9532,7 +9532,6 @@ nav li a {
 
 .card-title .status .status-circle {
   display:inline-block;
-  background: #4FD135;
   width: 10px;
   height: 10px;
   border-radius: 50%;
