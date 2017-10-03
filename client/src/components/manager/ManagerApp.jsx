@@ -14,6 +14,18 @@ class ManagerApp extends React.Component {
     };
   }
 
+  componentDidMount() {
+    $.ajax({
+      url: 'https://q-dot-staging.herokuapp.com/restaurants?restaurantId=1',
+      success: (data) => {
+        console.log(data);
+      },
+      error: (err) => {
+        console.log(err);
+      }
+    });
+  }
+
   switchStatus(open) {
     
   }
