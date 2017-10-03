@@ -88,7 +88,14 @@ Customer.sync()
   .then(() => Queue.sync())
   .catch(error => console.log('error syncing data', error));
 
-  
+// const phoneNumberFormatter = (number) => {
+//   return `(${number.slice(0, 3)}) ${number.slice(3, 6)}-${number.slice(6, 10)}`;
+// };
+
+const nameFormatter = (name) => {
+  return name.slice(0, 1).toUpperCase() + name.slice(1).toLowerCase();
+};
+
 const dropAllTables = () => {
   db.drop().then((result) => console.log('Deleted all tables', result))
     .catch((err) => console.log('Failed to delete table', err));
@@ -107,6 +114,50 @@ const findInfoForAllRestaurants = () => {
   return Restaurant.findAll();
 };
 
+const addToCustomers = (params) => {
+  return Customer.findOne({where: {mobile: params.mobile}})
+    .then(customer => {
+      if (customer === null) {
+        const customer = {
+          name: nameFormatter(params.name),
+          mobile: params.mobile
+        };
+
+        if (params.email) {
+          customer.email = params.email;  
+        }
+
+        return Customer.create(customer);
+      } else {
+        return customer;
+      }
+    });
+};
+
+const addToQueue = (params) => {
+
+  const queueInfo = {
+    size: params.size,
+  };
+
+  return addToCustomers(params)
+    .then(customer => {
+      queueInfo.customerId = customer.dataValues.id;
+      return findInfoForOneRestaurant(params.restaurantId);
+    })
+    .then(restaurant => {
+      if (restaurant.status === 'Open') {
+        queueInfo.position = restaurant.queue_count + 1;
+        queueInfo.restaurantId = restaurant.id;
+        return Restaurant.upsert({'queue_count': queueInfo.position, phone: restaurant.phone});
+      } else {
+        return restaurant.status;
+      }
+    })
+    .then(result => {
+      return result === 'Closed' ? result : Queue.create(queueInfo);
+    });
+};
 
 module.exports = {
   db: db,
@@ -116,4 +167,8 @@ module.exports = {
   dropAllTables: dropAllTables,
   findInfoForAllRestaurants: findInfoForAllRestaurants,
   findInfoForOneRestaurant: findInfoForOneRestaurant,
+  addToCustomers: addToCustomers,
+  addToQueue: addToQueue,
+  // phoneNumberFormatter: phoneNumberFormatter,
+  nameFormatter: nameFormatter
 };
