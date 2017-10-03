@@ -43,7 +43,7 @@ Schema includes 3 tables shown below:
 |updatedAt     |string, customer updated date     |
 
 
-### /restaurants
+## /restaurants
 
 GET request to '/restaurants' returns a list of all the restaurants in the database. The list contains restaurant objects with the restaurant's id, name, phone, image and current queue count. There is a timestamp for when the restaurant was created in the database and a timestamp for the last time it was updated.
 
@@ -157,7 +157,7 @@ request.post('https://q-dot.herokuapp.com/queues', requestData);
 }
 
 ```
-### /dummydata
+## /dummydata
 
 POST request to '/dummydata' adds dummy data to the database if it does not already exist. 
 
