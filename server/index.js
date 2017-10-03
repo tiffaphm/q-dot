@@ -11,6 +11,11 @@ const dummyData = require('../database/dummydata.js');
 
 app.use(express.static(path.resolve(__dirname, '../client/dist')));
 
+app.use((req, res, next) => {
+  res.set('Access-Control-Allow-Origin', '*');
+  next();
+});
+
 app.get('/', (req, res) => {
   res.send('Hello World!');
 });
