@@ -9437,6 +9437,18 @@ THESE ARE CHANGES THAT ARE UNRELATED TO MATERIAL CSS
   margin-right: 0px;
 }
 
+h4 {
+  color: #202020;
+  font-size: 26px !important;
+  line-height: 32px !important;
+  letter-spacing: -0.6px !important;
+  font-weight: 700 !important;
+  margin-bottom: 0px;
+  padding-top: 0px !important;
+  padding-bottom: 0px !important;
+  /*margin-left: 35% !important;*/
+}
+
 nav {
   background-color: #fff;
 }
@@ -9447,3 +9459,4 @@ nav li a {
   font-weight: bold;
   padding-left: 25px;
 }
+
