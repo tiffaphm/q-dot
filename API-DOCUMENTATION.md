@@ -4,7 +4,7 @@
 
 Schema includes 3 tables shown below:
 
-Restaurants Table
+**Restaurants Table**
 
 |field name    |field type                        |
 |--------------|----------------------------------|
@@ -18,7 +18,7 @@ Restaurants Table
 |updatedAt     |string, restaurant updated date   |
 
 
-Queues Table
+**Queues Table**
 
 |field name    |field type                        |
 |--------------|----------------------------------|
@@ -31,7 +31,7 @@ Queues Table
 |updatedAt     |string, queue updated date        |
 
 
-Customers Table
+**Customers Table**
 
 |field name    |field type                        |
 |--------------|----------------------------------|
