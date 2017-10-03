@@ -11,9 +11,9 @@ const CustomerList = (props) => {
     <div>
       <h2>Customer List Goes Here</h2>
       <div className="panel panel-default">
-        <CustomerListEntry />
-        <CustomerListEntry />
-        <CustomerListEntry />
+        <CustomerListEntry index="0"/>
+        <CustomerListEntry index="1"/>
+        <CustomerListEntry index="2"/>
       </div>
     </div>
   );

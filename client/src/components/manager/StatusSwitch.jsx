@@ -11,7 +11,7 @@ const StatusSwitch = (props) => {
           <div className="modal-content">
             <div className="modal-header">
               <button type="button" className="close" data-dismiss="modal">&times;</button>
-              <h4 className="modal-title">Warning</h4>
+              <h2 className="modal-title">Warning</h2>
             </div>
             <div className="modal-body">
               <p>Warning Goes Here</p>
