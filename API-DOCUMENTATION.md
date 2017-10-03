@@ -77,9 +77,9 @@ request.get('https://q-dot.herokuapp.com/restaurants');
 ]
 
 ```
-### /restaurants/[restaurantid]
+### /restaurants?restaurantId=[restaurantId]
 
-GET request to '/restaurants/[restaurantid]' returns information of a selected restaurant in the database, including the restaurant's id, image, name, phone, current queue count, and current queue information.
+GET request to '/restaurants?restaurantId=[restaurantId]' returns information of a selected restaurant in the database, including the restaurant's id, image, name, phone, current queue count, and current queue information.
 
 Current queue information includes the position and the size of the group.
 
@@ -87,7 +87,7 @@ Accepts the restaurant id as part of the query string.
 
 Example:
 ```
-request.get('https://q-dot.herokuapp.com/restaurants/1');
+request.get('https://q-dot.herokuapp.com/restaurants?restaurantId=1');
 
 //response:
 
