@@ -8,6 +8,24 @@ class GroupSizeButtons extends React.Component {
     }
   }
 
+  soloSelected() {
+    // handle click event for group number: solo
+  }
+
+  twoSelected() {
+    // handle click event for group number: two
+  }
+
+  threeToFourSelected() {
+    // handle click event for group number: three-four
+  }
+
+  fivePlusSelected() {
+    // handle click event for group number: five
+  }
+
+  }
+
   render() {
     return (
       <div className="row-center">
