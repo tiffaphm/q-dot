@@ -16,6 +16,9 @@ class CustomerApp extends React.Component {
       <div className="customer-home">
         <CustomerNav />
         <GroupSizeButtons />
+        <div className="select-restaurant-title">
+          <h4>Select a restaurant</h4>
+        </div>
         <RestaurantCard />
       </div>
     )

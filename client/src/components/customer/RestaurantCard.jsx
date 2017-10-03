@@ -15,13 +15,13 @@ class RestaurantCard extends React.Component {
           <div className="card small">
             <div className="card-image">
               <img src="../images/tempestbar.jpg"/>
-              <span className="card-title">restaurant name</span>
+            </div>
+            <div className="card-title">
+              <p className="card-title-text">Tempest Bar</p>
+              <p className="status"><span className="status-circle"/>OPEN</p>
             </div>
             <div className="card-content">
-              <p>restaurant information</p>
-            </div>
-            <div className="card-action">
-              <a href="#">This is a link</a>
+              <p className="queue-number">people in queue: 10</p>
             </div>
           </div>
         </div>
@@ -31,3 +31,20 @@ class RestaurantCard extends React.Component {
 };
 
 export default RestaurantCard;
+
+
+// font-weight: 700 !important;
+//     font-family: Circular,-apple-system,BlinkMacSystemFont,Roboto,Helvetica Neue,sans-serif !important;
+//     font-size: 11px !important;
+//     line-height: 16px !important;
+//     letter-spacing: 0.2px !important;
+//     padding-top: 0px !important;
+//     padding-bottom: 0px !important;
+//     color: #484848 !important;
+//     text-overflow: ellipsis !important;
+//     overflow: hidden !important;
+//     white-space: nowrap !important;
+//     text-transform: uppercase !important;
+//     margin-top: 12px !important;
+//     margin-bottom: 2px !important;
+// }
