@@ -75,6 +75,7 @@ Queue.belongsTo(Restaurant);
 Customer.hasOne(Queue);
 Queue.belongsTo(Customer);
 
+
 //Uncomment and use this if dropping tables
 // Customer.sync({force: true});
 // Queue.sync({force: true});
@@ -101,29 +102,30 @@ const findInfoForOneRestaurant = (restaurantId) => {
 };
 
 const findInfoForAllRestaurants = () => {
+  return Restaurant.findAll();
 };
 
 const addDummyData = () => {
-  Restaurant.findOrCreate({where: {name: 'Tempest', phone: '1234567890', image: '../images/blank.png', 'queue_count': 0}})
-    .then(result => console.log('added/found restaurant to database'))
-    .catch(err => console.log('error adding restaurant to database', err));
 
-  Restaurant.findOrCreate({where: {name: 'Subway', phone: '1234567990', image: '../images/blank.png', 'queue_count': 0}})
-    .then(result => console.log('added/found restaurant to database'))
-    .catch(err => console.log('error adding restaurant to database', err));
+  Restaurant.findOrCreate({where: {name: 'Tempest', phone: '1234567890', image: '../images/blank.png', 'queue_count': 0}})
+    .then(result => console.log('added/found restaurant in database'))
+    .catch(err => console.log('error with restaurant table in database', err));
+
+  Restaurant.findOrCreate({where: {name: 'Subway', phone: '1234567990', image: '../images/blank.png', 'queue_count': 0}});
 
   Customer.findOrCreate({where: {name: 'Tiffany', mobile: '2345639762'}})
     .then(result => console.log('added/found customer to database'))
     .catch(err => console.log('error adding customer to database', err));
 
-  Customer.findOrCreate({where: {name: 'Neha', mobile: '7869874567', email: 'nez@gmail.com'}});
-  Customer.findOrCreate({where: {name: 'Eugene', mobile: '9750978967', email: 'euguene@gmail.com'}});
+  Customer.findOrCreate({where: {name: 'Neha', mobile: '7869874567'}});
+  Customer.findOrCreate({where: {name: 'Eugene', mobile: '9750978967'}});
   Customer.findOrCreate({where: {name: 'Johnny', mobile: '4567305746'}});
 
   Queue.findOrCreate({where: {customerId: 1, restaurantId: 1, position: 1, size: 1}});
   Queue.findOrCreate({where: {customerId: 2, restaurantId: 2, position: 1, size: 1}});
   Queue.findOrCreate({where: {customerId: 3, restaurantId: 1, position: 2, size: 4}});
   Queue.findOrCreate({where: {customerId: 4, restaurantId: 2, position: 2, size: 4}});
+
 };
 
 module.exports = {

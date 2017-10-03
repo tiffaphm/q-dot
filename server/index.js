@@ -21,6 +21,12 @@ app.get('/restaurants/:restaurantid', (req, res) => {
     .then(results => res.send(results));
 });
 
+app.get('/restaurants', (req, res) => {
+  db.findInfoForAllRestaurants()
+    .then(restaurants => res.send(restaurants))
+    .catch(error => console.log('error getting info for all restaurants', err));  
+});
+
 app.post('/dummydata', (req, res) => {
   db.addDummyData();
   res.sendStatus(200);
