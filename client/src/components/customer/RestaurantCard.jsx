@@ -10,18 +10,17 @@ class RestaurantCard extends React.Component {
 
   render() {
     return (
-      <div class="row">
-        <div class="col s12 m7">
-          <div class="card">
-            <div class="card-image">
-              <img src="images/sample-1.jpg"/>
-              <span class="card-title">Card Title</span>
+      <div className="restaurant-container row-center">
+        <div className="col s12 m7">
+          <div className="card small">
+            <div className="card-image">
+              <img src="../images/tempestbar.jpg"/>
+              <span className="card-title">restaurant name</span>
             </div>
-            <div class="card-content">
-              <p>I am a very simple card. I am good at containing small bits of information.
-              I am convenient because I require little markup to use effectively.</p>
+            <div className="card-content">
+              <p>restaurant information</p>
             </div>
-            <div class="card-action">
+            <div className="card-action">
               <a href="#">This is a link</a>
             </div>
           </div>

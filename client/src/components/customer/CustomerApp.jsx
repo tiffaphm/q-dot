@@ -1,6 +1,7 @@
 import React from 'react';
 import CustomerNav from './CustomerNav.jsx';
 import GroupSizeButtons from './GroupSizeButtons.jsx';
+import RestaurantCard from './RestaurantCard.jsx';
 
 class CustomerApp extends React.Component {
   constructor(props) {
@@ -15,6 +16,7 @@ class CustomerApp extends React.Component {
       <div className="customer-home">
         <CustomerNav />
         <GroupSizeButtons />
+        <RestaurantCard />
       </div>
     )
   }
