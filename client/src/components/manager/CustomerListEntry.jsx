@@ -4,7 +4,7 @@ const CustomerListEntry = (props) => {
   
 
   return (
-    <div className="row">
+    <div className="row panel-body">
       <div className="col-md-7">
         <h4>Customer Goes Here</h4>
         <p>info goes here</p>
