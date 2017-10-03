@@ -3,7 +3,8 @@ const path = require('path');
 const app = express();
 const port = process.env.PORT || 1337;
 const db = require('../database/index.js');
-const addDummyData = require('../database/dummydata.js');
+// const Promise = require('bluebird');
+const dummyData = require('../database/dummydata.js');
 
 // Uncomment funciton below for dropping all tables from database
 //However it does not work with tables that have relationships
@@ -35,9 +36,14 @@ app.get('/restaurants', (req, res) => {
 });
 
 app.post('/dummydata', (req, res) => {
-  addDummyData()
-    .then(() => res.sendStatus(200))
-    .catch((error) => {
+  dummyData.addRestaurants()
+    .then(result => dummyData.addCustomers())
+    .then(result => dummyData.addToQueue())
+    .then(result => {
+      console.log('ADDDDEEEEEEEEEEEEDDDDDDDDDD', result);
+      res.sendStatus(200);
+    })
+    .catch(error => {
       console.log('error posting dummydata', error);
       res.send('could not add dummydata');
     });
