@@ -4,8 +4,8 @@
 
 Schema includes 3 tables shown below:
 
-|Restaurants   |                                  |
-|--------------|----------------------------------|
+Restaurants Table
+
 |field name    |field type                        |
 |--------------|----------------------------------|
 |id            |integer, auto increasing          |
@@ -18,8 +18,8 @@ Schema includes 3 tables shown below:
 |updatedAt     |string, restaurant updated date   |
 
 
-|Queues        |                                  |
-|--------------|----------------------------------|
+Queues Table
+
 |field name    |field type                        |
 |--------------|----------------------------------|
 |id            |integer, auto increasing          |
@@ -31,8 +31,8 @@ Schema includes 3 tables shown below:
 |updatedAt     |string, queue updated date        |
 
 
-|Customers     |                                  |
-|--------------|----------------------------------|
+Customers Table
+
 |field name    |field type                        |
 |--------------|----------------------------------|
 |id            |integer, auto increasing          |
