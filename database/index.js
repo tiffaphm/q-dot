@@ -114,8 +114,8 @@ const addDummyData = () => {
   Restaurant.findOrCreate({where: {name: 'Subway', phone: '1234567990', image: '../images/blank.png', 'queue_count': 0}});
 
   Customer.findOrCreate({where: {name: 'Tiffany', mobile: '2345639762'}})
-    .then(result => console.log('added/found customer in database'))
-    .catch(err => console.log('error with customer table in database', err));
+    .then(result => console.log('added/found customer to database'))
+    .catch(err => console.log('error adding customer to database', err));
 
   Customer.findOrCreate({where: {name: 'Neha', mobile: '7869874567'}});
   Customer.findOrCreate({where: {name: 'Eugene', mobile: '9750978967'}});
