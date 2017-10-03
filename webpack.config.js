@@ -31,9 +31,15 @@ const config = {
           limit: 10000
         }
       }
-    ]
-  }
-
+    ],
+  },
+  plugins: [
+    new webpack.ProvidePlugin({
+      $: 'jquery',
+      jQuery: 'jquery',
+      bootstrap: 'bootstrap'
+    })
+  ]
 };
 
 module.exports = config;

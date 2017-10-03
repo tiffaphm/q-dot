@@ -10,9 +10,11 @@ const CustomerList = (props) => {
   return (
     <div>
       <h2>Customer List Goes Here</h2>
-      <CustomerListEntry />
-      <CustomerListEntry />
-      <CustomerListEntry />
+      <div className="panel panel-default">
+        <CustomerListEntry />
+        <CustomerListEntry />
+        <CustomerListEntry />
+      </div>
     </div>
   );
 };
