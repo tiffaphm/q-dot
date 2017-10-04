@@ -230,12 +230,12 @@ The response is a string stating the status of the change.
 Example:
 
 ```
-request.put('https://q-dot.herokuapp.com/queues?queueId=[queueId]');
+request.put('https://q-dot.herokuapp.com/queues?queueId=1');
 
 //response
 
 Successful Response:
-200 - Removed queueId:[queueId] from queue;
+200 - Removed queueId:1 from queue;
 
 Failed Response:
 400 - 'Bad Request' (if the parameters are incorrect)
