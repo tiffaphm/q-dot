@@ -95,7 +95,7 @@ request.get('https://q-dot.herokuapp.com/restaurants');
 
 GET request to '/restaurants?restaurantId=[restaurantId]' returns information of a selected restaurant in the database, including the restaurant's id, image, name, phone, current queue count, and current queue information.
 
-Current queue information includes the position and the size of the group.
+Current queue information includes the position, size of the group, and customer information.
 
 Accepts the restaurant id as part of the query string.
 
@@ -113,26 +113,42 @@ request.get('https://q-dot.herokuapp.com/restaurants?restaurantId=1');
     "phone": "(123) 456-7890",
     "queue_count": 0,
     "status": "Open",
-    "createdAt": "2017-10-03T18:26:01.859Z",
-    "updatedAt": "2017-10-03T18:26:01.859Z",
+    "createdAt": "2017-10-03T19:01:10.644Z",
+    "updatedAt": "2017-10-03T19:01:10.644Z",
     "queues": [
         {
             "id": 1,
             "position": 1,
             "size": 1,
-            "createdAt": "2017-10-03T18:26:02.193Z",
-            "updatedAt": "2017-10-03T18:26:02.193Z",
+            "createdAt": "2017-10-03T19:01:10.743Z",
+            "updatedAt": "2017-10-03T19:01:10.743Z",
             "restaurantId": 1,
-            "customerId": 1
+            "customerId": 1,
+            "customer": {
+                "id": 1,
+                "name": "Tiffany",
+                "mobile": "(234) 563-9762",
+                "email": null,
+                "createdAt": "2017-10-03T19:01:10.702Z",
+                "updatedAt": "2017-10-03T19:01:10.702Z"
+            }
         },
         {
             "id": 3,
             "position": 2,
             "size": 4,
-            "createdAt": "2017-10-03T18:26:02.240Z",
-            "updatedAt": "2017-10-03T18:26:02.240Z",
+            "createdAt": "2017-10-03T19:01:10.764Z",
+            "updatedAt": "2017-10-03T19:01:10.764Z",
             "restaurantId": 1,
-            "customerId": 3
+            "customerId": 3,
+            "customer": {
+                "id": 3,
+                "name": "Eugene",
+                "mobile": "(975) 097-8967",
+                "email": "eugene@gmail.com",
+                "createdAt": "2017-10-03T19:01:10.724Z",
+                "updatedAt": "2017-10-03T19:01:10.724Z"
+            }
         }
     ]
 }
