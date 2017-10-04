@@ -124,6 +124,26 @@ request.get('https://q-dot.herokuapp.com/restaurants?restaurantId=1');
 
 ```
 
+### /restaurants?restaurantId=[restaurantId]&status=[status]
+
+PATCH request to /restaurants will update the status of the restaurant that indicates if it is accepting more customers to add to queue. It should always be either 'Open' or 'Closed'.
+
+Example:
+
+```
+request.patch('https://q-dot.herokuapp.com/restaurants?restaurantId=1&status="Open"');
+
+//response
+
+Successful Request:
+200 - "Status for restaurant with id [restaurantId] is now [status]"
+
+Failed Request:
+400 - 'Bad Request' (if the parameters are incorrect)
+418 - 'Update for restaurant status failed' (Unknown error)
+
+
+
 
 ## /queues
 
@@ -147,7 +167,10 @@ request.post('https://q-dot.herokuapp.com/queues', requestData);
 
 //response
 
-{
+Successful Response:
+
+
+200 - {
     "name": "John",
     "mobile": "1234550284",
     "email": "test@gmail.com",
@@ -155,6 +178,13 @@ request.post('https://q-dot.herokuapp.com/queues', requestData);
     "size": 2,
     "position": 3
 }
+
+200 - 'Restaurant has closed the queue' (if restaurant closed the queue in the interim time)
+
+
+Failed Response:
+400 - 'Bad Request' (if the parameters are incorrect)
+418 - 'Request Failed' (Unknown error)
 
 ```
 ## /dummydata
@@ -170,13 +200,14 @@ Dummy data includes:
 
 [
     {name: 'Tempest', phone: '(123) 456-7890', image: '../images/blank.png', 'queue_count': 0, status: 'Open'},
-    {name: 'Subway', phone: '(123) 456-7990', image: '../images/blank.png', 'queue_count': 0, status: 'Open'}
+    {name: 'Subway', phone: '(123) 456-7990', image: '../images/blank.png', 'queue_count': 0, status: 'Open'},
+    {name: 'Chipotle', phone: '(132) 456-7990', image: '../images/blank.png', 'queue_count': 1, status: 'Closed'}
 ]
 
 4 Customers:
 
 [
-    {name: 'Tiffany', mobile: '(234) 563-9762'},
+    {name: 'tiffany', mobile: '2345639762'},
     {name: 'Neha', mobile: '(786) 987-4567', email: 'nez@gmail.com'}, 
     {name: 'Eugene', mobile: '(975) 097-8967', email: 'eugene@gmail.com'}, 
     {name: 'Johnny', mobile: '(456) 730-5746'}
