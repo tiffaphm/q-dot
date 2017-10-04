@@ -108,7 +108,13 @@ const findInfoForOneRestaurant = (restaurantId) => {
     },
     include: [{
       model: Queue,
-      include: [Customer]
+      where: {
+        position: {
+          [ne]: null
+        }
+      },
+      include: [Customer],
+      required: false
     }]
   });
 };
@@ -149,7 +155,8 @@ const addToQueue = (params) => {
 
   return addToCustomers(params)
     .then(customer => {
-      queueInfo.customerId = customer.dataValues.id;
+      queueInfo.customerId = customer.id;
+      queueInfo.name = customer.name;
       return findInfoForOneRestaurant(params.restaurantId);
     })
     .then(restaurant => {
@@ -187,11 +194,10 @@ const getQueueInfo = (restaurantId, customerId, customerPosition) => {
   });
 };
 
-const removeFromQueue = (customer) => {
+const removeFromQueue = (queueId) => {
   return Queue.update({position: null}, {
     where: {
-      customerId: customer.customerId, 
-      restaurantId: customer.restaurantId
+      id: queueId
     }
   });
 };

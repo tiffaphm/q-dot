@@ -56,13 +56,12 @@ app.post('/dummydata', (req, res) => {
 });
 
 app.post('/queues', (req, res) => {
-
   if (!req.body.name || !req.body.mobile || !req.body.restaurantId
       || !req.body.size) {
     res.status(400).send('Bad Request');
   } else {
     const result = {
-      name: req.body.name,
+      name: db.nameFormatter(req.body.name),
       mobile: req.body.mobile
     };
 
@@ -75,24 +74,23 @@ app.post('/queues', (req, res) => {
         if (response === 'Closed') {
           res.send('Restaurant has closed the queue');
         } else {
-          result.queueId = response.dataValues.id;
-          result.size = response.dataValues.size;
-          result.position = response.dataValues.position;
+          result.queueId = response.id;
+          result.size = response.size;
+          result.position = response.position;
           res.send(result);
         }
       })
       .catch(error => res.status(418).send('Request Failed'));
   }
-  
 });
 
 app.patch('/restaurants', (req, res) => {
-  if (req.query.status && (req.query.status !== 'Open' || req.query.status !== 'Closed')) {
-    res.status(400).send('Bad Request');
-  } else {
+  if (req.query.status && (req.query.status === 'Open' || req.query.status === 'Closed')) {
     db.updateRestaurantStatus(req.query)
       .then(result => res.send(`Status for restaurant with id ${req.query.restaurantId} is now ${req.query.status}`))
       .catch(err => res.status(418).send('Update for restaurant status failed'));
+  } else {
+    res.status(400).send('Bad Request');
   }
 });
 
@@ -124,15 +122,15 @@ app.get('/queues', (req, res) => {
 
 
 app.put('/queues', (req, res) => {
-  if (!req.body.customerId || !req.body.restaurantId) {
+  if (!req.query.queueId) {
     res.status(400).send('Bad Request');
   } else {
-    db.removeFromQueue(req.body)
+    db.removeFromQueue(req.query.queueId)
       .then(result => {
-        res.send(`Removed ${req.body.name} from queue`);
+        res.send(`Removed queueId:${req.query.queueId} from queue`);
       }).catch(err => {
         console.log('error deleting position in queue', err);
-        res.status(418).send('Failed to change position - Unknown Error');
+        res.status(418).send('Failed to remove from queue - Unknown Error');
       });
   }
 });
