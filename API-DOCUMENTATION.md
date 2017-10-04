@@ -217,7 +217,7 @@ Accepts the customer id as part of the query string.
 Example:
 
 ```
-request.get('https://q-dot.herokuapp.com/queues?customerId=1');
+request.get('https://q-dot.herokuapp.com/queues?customerId=3');
 
 //response
 
@@ -247,12 +247,19 @@ Successful Request:
     "groups_in_front_details": [
         {
             "id": 1,
+            //returns an unique integer, represents the queue id
             "position": 1,
+            //returns an integer, represents the queue number given to this customer
             "size": 1,
+            //returns an integer, represents the group size of the customer's reservation
             "createdAt": "2017-10-03T19:01:10.743Z",
+            //returns a string, represents the date that the queue was created in the database
             "updatedAt": "2017-10-03T19:01:10.743Z",
+            //returns a string, represents the date that the queue was updated in the database
             "restaurantId": 1,
+            //returns an integer, represents the id of the restaurant
             "customerId": 1
+            //returns an integer, represents the id of the customer in the queue
         }
     ]
     //returns an array, represents details of all the customers in front of this customer
