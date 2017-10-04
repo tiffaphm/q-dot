@@ -112,12 +112,12 @@ app.get('/queues', (req, res) => {
         results['groups_in_front_count'] = partialResults.count;
         results['groups_in_front_details'] = partialResults.rows;
         res.send(results);
+      })
+      .catch(err => {
+        res.status(418).send('Unknown Error - Check customerId');
       });
-    /*db.getQueueInfo(req.query.restaurantId, req.query.customerId)
-      .then(results => res.send(results))
-      .catch(err => res.status(200).send(err));*/
   } else {
-    res.sendStatus(400);
+    res.status(400).send('Bad request');
   }
 });
 
