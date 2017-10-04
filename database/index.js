@@ -114,6 +114,10 @@ const findInfoForAllRestaurants = () => {
   return Restaurant.findAll();
 };
 
+const updateRestaurantStatus = (info) => {
+  return Restaurant.update({status: info.status}, {where: {id: info.restaurantId}});
+};
+
 const addToCustomers = (params) => {
   return Customer.findOne({where: {mobile: params.mobile}})
     .then(customer => {
@@ -170,5 +174,6 @@ module.exports = {
   addToCustomers: addToCustomers,
   addToQueue: addToQueue,
   // phoneNumberFormatter: phoneNumberFormatter,
-  nameFormatter: nameFormatter
+  nameFormatter: nameFormatter,
+  updateRestaurantStatus: updateRestaurantStatus
 };

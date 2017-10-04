@@ -46,7 +46,7 @@ app.post('/dummydata', (req, res) => {
     .then(() => dummyData.addCustomers())
     .then(() => dummyData.addToQueue())
     .then(() => {
-      console.log('Added dummy data to database');
+      // console.log('Added dummy data to database');
       res.sendStatus(200);
     })
     .catch(error => {
@@ -56,30 +56,44 @@ app.post('/dummydata', (req, res) => {
 });
 
 app.post('/queues', (req, res) => {
-  const result = {
-    name: req.body.name,
-    mobile: req.body.mobile
-  };
 
-  if (req.body.email) {
-    result.email = req.body.email;
+  if (!req.body.name || !req.body.mobile || !req.body.restaurantId
+      || !req.body.size) {
+    res.status(400).send('Bad Request');
+  } else {
+    const result = {
+      name: req.body.name,
+      mobile: req.body.mobile
+    };
+
+    if (req.body.email) {
+      result.email = req.body.email;
+    }
+  
+    db.addToQueue(req.body)
+      .then(response => {
+        if (response === 'Closed') {
+          res.send('Restaurant has closed the queue');
+        } else {
+          result.queueId = response.dataValues.id;
+          result.size = response.dataValues.size;
+          result.position = response.dataValues.position;
+          res.send(result);
+        }
+      })
+      .catch(error => res.status(418).send('Request Failed'));
   }
   
-  db.addToQueue(req.body)
-    .then(response => {
-      if (response === 'Closed') {
-        res.send('Restaurant has closed the queue');
-      } else {
-        result.queueId = response.dataValues.id;
-        result.size = response.dataValues.size;
-        result.position = response.dataValues.position;
-        res.send(result);
-      }
-    })
-    .catch(error => {
-      console.log('error adding to queue', error);
-      res.send('FAILED');
-    });
+});
+
+app.patch('/restaurants', (req, res) => {
+  if (req.query.status && (req.query.status !== 'Open' || req.query.status !== 'Closed')) {
+    res.status(400).send('Bad Request');
+  } else {
+    db.updateRestaurantStatus(req.query)
+      .then(result => res.send(`Status for restaurant with id ${req.query.restaurantId} is now ${req.query.status}`))
+      .catch(err => res.status(418).send('Update for restaurant status failed'));
+  }
 });
 
 app.listen(port, () => {
