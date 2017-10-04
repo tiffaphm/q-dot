@@ -224,27 +224,22 @@ request.get('https://q-dot.herokuapp.com/queues?customerId=3');
 Successful Request:
 
 {
-    "customer": {
-        "id": 3,
-        //returns an unique integer, represents customer in database
-        "name": "Eugene",
-        //returns a string, represents name of customer
-        "mobile": "(975) 097-8967",
-        //returns a string, represents mobile number of customer
-        "email": "eugene@gmail.com",
-        //returns a string, represents email address of customer
-        "createdAt": "2017-10-03T19:01:10.724Z",
-        //returns a date string, represents date that customer info was created in database
-        "updatedAt": "2017-10-03T19:01:10.724Z"
-        //returns a date string, represents date that customer info was update in database
-    },
-    "position": 2,
-    //returns an integer, represents the queue number that was given to the customer 
+    "name": "Eugene",
+    //returns a string, represents name of customer
+    "mobile": "(975) 097-8967",
+    //returns a string, represents mobile number of customer
+    "email": "eugene@gmail.com",
+    //returns a string, represents email address of customer
+    "queueId": 3,
+    //returns an unique integer, represents queue id
     "size": 4,
     //returns an integer, represents the group size of the customer's reservation
-    "groups_in_front_count": 1,
+    "position": 2,
+    //returns an integer, represents the queue number that was given to the customer 
+    "queueInFrontCount": 1,
     //returns an integer, represents the number of customers in front of this customer
-    "groups_in_front_details": [
+    "queueInFrontList": [
+    //returns an array, represents details of all the customers in front of this customer
         {
             "id": 1,
             //returns an unique integer, represents the queue id
@@ -262,7 +257,6 @@ Successful Request:
             //returns an integer, represents the id of the customer in the queue
         }
     ]
-    //returns an array, represents details of all the customers in front of this customer
 }
 
 Failed Request:
