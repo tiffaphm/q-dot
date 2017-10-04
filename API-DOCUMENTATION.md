@@ -217,7 +217,7 @@ Accepts the customer id as part of the query string.
 Example:
 
 ```
-request.get('https://q-dot.herokuapp.com//queues?customerId=1');
+request.get('https://q-dot.herokuapp.com/queues?customerId=1');
 
 //response
 
