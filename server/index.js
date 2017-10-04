@@ -98,19 +98,20 @@ app.patch('/restaurants', (req, res) => {
 
 app.get('/queues', (req, res) => {
   if (req.query.customerId) {
-    var results = {
-      customer: {}
-    };
+    var results = {};
     db.getCustomerInfo(req.query.customerId)
       .then(partialResults => {
-        results.customer = partialResults.customer;
-        results.position = partialResults.position;
+        results.name = partialResults.customer.name;
+        results.mobile = partialResults.customer.mobile;
+        results.email = partialResults.customer.email;
+        results.queueId = partialResults.id;
         results.size = partialResults.size;
+        results.position = partialResults.position;
         return db.getQueueInfo(partialResults.restaurantId, partialResults.customerId, partialResults.position);
       })
       .then(partialResults => {
-        results['groups_in_front_count'] = partialResults.count;
-        results['groups_in_front_details'] = partialResults.rows;
+        results.queueInFrontCount = partialResults.count;
+        results.queueInFrontList = partialResults.rows;
         res.send(results);
       })
       .catch(err => {
