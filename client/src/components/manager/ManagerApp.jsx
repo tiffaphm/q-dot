@@ -19,6 +19,11 @@ class ManagerApp extends React.Component {
       url: 'https://q-dot-staging.herokuapp.com/restaurants?restaurantId=1',
       success: (data) => {
         console.log(data);
+        this.setState(
+          { 
+            restaurantInfo: data,
+            customers: data.queues
+          });
       },
       error: (err) => {
         console.log(err);
@@ -37,16 +42,15 @@ class ManagerApp extends React.Component {
   render() {
     return (
       <div>
-        <div className="jumbotron text-center">
-          <h1>Restaurant Name Goes Here</h1>
-          <p>Manager Home Page</p>
-          <StatusSwitch switchStatus={this.switchStatus.bind(this)}/>
+        <div className="jumbotron text-center jumbotron-billboard">
+          <h1>{this.state.restaurantInfo.name || 'Restaurant Name'}</h1>
+          <StatusSwitch status={this.state.restaurantInfo.status} switchStatus={this.switchStatus.bind(this)}/>
         </div>
         <div className="container">
           <div className="row">
             <div className="col-md-6">
               <h2>Current People In Queue:</h2>
-              <div id="number-in-queue">3</div>
+              <div id="number-in-queue">{this.state.restaurantInfo.queues ? this.state.restaurantInfo.queues.length : '?'}</div>
             </div>
             <div className="col-md-6">
               <CustomerList customers={this.state.customers} removeCustomer={this.removeCustomer.bind(this)}/>
