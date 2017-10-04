@@ -122,6 +122,21 @@ app.get('/queues', (req, res) => {
   }
 });
 
+
+app.put('/queues', (req, res) => {
+  if (!req.body.customerId || !req.body.restaurantId) {
+    res.status(400).send('Bad Request');
+  } else {
+    db.removeFromQueue(req.body)
+      .then(result => {
+        res.send(`Removed ${req.body.name} from queue`);
+      }).catch(err => {
+        console.log('error deleting position in queue', err);
+        res.status(418).send('Failed to change position - Unknown Error');
+      });
+  }
+});
+
 app.listen(port, () => {
   console.log(`(>^.^)> Server now listening on ${port}!`);
 });
