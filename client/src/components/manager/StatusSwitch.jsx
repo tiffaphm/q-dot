@@ -3,9 +3,9 @@ import React from 'react';
 const StatusSwitch = (props) => {
   
   return (
-    <div>
-      <h3>{props.status === 'Open' ? 'Open for Queue' : 'Close for Queue'}</h3>
-      <button type="button" className="btn btn-primary" data-toggle="modal" data-target="#close-queue-warning">Close Queue</button>
+    <div className="nav navbar-nav">
+      <a className="active">Status: {props.status === 'Open' ? 'Open' : 'Close'} for Queue</a>
+      <button type="button" className="btn btn-primary navbar-btn" data-toggle="modal" data-target="#close-queue-warning">{props.status === 'Open' ? 'Close' : 'Open'} Queue</button>
 
       <div id="close-queue-warning" className="modal fade" role="dialog">
         <div className="modal-dialog">
@@ -15,7 +15,7 @@ const StatusSwitch = (props) => {
               <h2 className="modal-title">Warning</h2>
             </div>
             <div className="modal-body">
-              <p><b>{props.status === 'Closed' ? 'Open' : 'Close'}</b> for Queue?</p>
+              <p><b>{props.status === 'Open' ? 'Close' : 'Open'}</b> for Queue?</p>
             </div>
             <div className="modal-footer">
               <button className="btn btn-primary" onClick={() => props.switchStatus(props.restaurantInfo.status)}>Conform Operation</button>

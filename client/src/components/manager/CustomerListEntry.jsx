@@ -6,8 +6,8 @@ const CustomerListEntry = (props) => {
   return (
     <div className="row panel-body">
       <div className="col-md-9">
-        <h4>Customer Goes Here</h4>
-        <p>Group Size: {props.customer.size}</p>
+        <h4>{props.queue.customer.name}</h4>
+        <p>Group Size: {props.queue.size}</p>
       </div>
       <div className="col-md-3">
         {props.index === 0 
@@ -25,8 +25,8 @@ const CustomerListEntry = (props) => {
                 <p>Warning Goes Here</p>
               </div>
               <div className="modal-footer">
-                <button className="btn btn-warning" onClick={() => props.removeCustomer(props.customer.id)}>Customer Not Shown Up</button>
-                <button className="btn btn-success" onClick={() => props.removeCustomer(props.customer.id)}>Customer Here</button>
+                <button className="btn btn-warning" onClick={() => props.removeCustomer(props.queue.id)}>Customer Not Shown Up</button>
+                <button className="btn btn-success" onClick={() => props.removeCustomer(props.queue.id)}>Customer Here</button>
                 <button type="button" className="btn btn-default" data-dismiss="modal">Close</button>
               </div>
             </div>
