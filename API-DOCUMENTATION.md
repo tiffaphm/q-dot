@@ -142,8 +142,7 @@ Failed Request:
 400 - 'Bad Request' (if the parameters are incorrect)
 418 - 'Update for restaurant status failed' (Unknown error)
 
-
-
+```
 
 ## /queues
 
