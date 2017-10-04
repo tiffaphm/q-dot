@@ -4,33 +4,41 @@ const app = express();
 const port = process.env.PORT || 1337;
 const db = require('../database/index.js');
 const dummyData = require('../database/dummydata.js');
+const bodyParser = require('body-parser');
+
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({extended: true}));
 
 // Uncomment funciton below for dropping all tables from database
-//However it does not work with tables that have relationships
 // db.dropAllTables();
 
 app.use(express.static(path.resolve(__dirname, '../client/dist')));
+
+app.use((req, res, next) => {
+  res.set('Access-Control-Allow-Origin', '*');
+  next();
+});
 
 app.get('/', (req, res) => {
   res.send('Hello World!');
 });
 
-app.get('/restaurants/:restaurantid', (req, res) => {
-  db.findInfoForOneRestaurant(req.params.restaurantid)
-    .then(results => res.send(results))
-    .catch(error => {
-      console.log('error getting info for one restaurants', error);
-      res.send('failed for one restaurant');
-    });  
-});
-
 app.get('/restaurants', (req, res) => {
-  db.findInfoForAllRestaurants()
-    .then(restaurants => res.send(restaurants))
-    .catch(error => {
-      console.log('error getting info for all restaurants', error);
-      res.send('failed for info on all restaurants');
-    });  
+  if (req.query.restaurantId) {
+    db.findInfoForOneRestaurant(req.query.restaurantId)
+      .then(results => res.send(results))
+      .catch(error => {
+        console.log('error getting info for one restaurants', error);
+        res.send('failed for one restaurant');
+      });  
+  } else {
+    db.findInfoForAllRestaurants()
+      .then(restaurants => res.send(restaurants))
+      .catch(error => {
+        console.log('error getting info for all restaurants', error);
+        res.send('failed for info on all restaurants');
+      });  
+  }
 });
 
 app.post('/dummydata', (req, res) => {
@@ -44,6 +52,33 @@ app.post('/dummydata', (req, res) => {
     .catch(error => {
       console.log('error posting dummydata', error);
       res.send('could not add dummydata');
+    });
+});
+
+app.post('/queues', (req, res) => {
+  const result = {
+    name: req.body.name,
+    mobile: req.body.mobile
+  };
+
+  if (req.body.email) {
+    result.email = req.body.email;
+  }
+  
+  db.addToQueue(req.body)
+    .then(response => {
+      if (response === 'Closed') {
+        res.send('Restaurant has closed the queue');
+      } else {
+        result.queueId = response.dataValues.id;
+        result.size = response.dataValues.size;
+        result.position = response.dataValues.position;
+        res.send(result);
+      }
+    })
+    .catch(error => {
+      console.log('error adding to queue', error);
+      res.send('FAILED');
     });
 });
 

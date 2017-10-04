@@ -43,7 +43,7 @@ Schema includes 3 tables shown below:
 |updatedAt     |string, customer updated date     |
 
 
-### /restaurants
+## /restaurants
 
 GET request to '/restaurants' returns a list of all the restaurants in the database. The list contains restaurant objects with the restaurant's id, name, phone, image and current queue count. There is a timestamp for when the restaurant was created in the database and a timestamp for the last time it was updated.
 
@@ -77,9 +77,9 @@ request.get('https://q-dot.herokuapp.com/restaurants');
 ]
 
 ```
-### /restaurants/[restaurantid]
+### /restaurants?restaurantId=[restaurantId]
 
-GET request to '/restaurants/[restaurantid]' returns information of a selected restaurant in the database, including the restaurant's id, image, name, phone, current queue count, and current queue information.
+GET request to '/restaurants?restaurantId=[restaurantId]' returns information of a selected restaurant in the database, including the restaurant's id, image, name, phone, current queue count, and current queue information.
 
 Current queue information includes the position and the size of the group.
 
@@ -87,7 +87,7 @@ Accepts the restaurant id as part of the query string.
 
 Example:
 ```
-request.get('https://q-dot.herokuapp.com/restaurants/1');
+request.get('https://q-dot.herokuapp.com/restaurants?restaurantId=1');
 
 //response:
 
@@ -124,7 +124,40 @@ request.get('https://q-dot.herokuapp.com/restaurants/1');
 
 ```
 
-### /dummydata
+
+## /queues
+
+POST request to '/queues' will add a customer to the queue of a restaurant. Expected data in request is a JSON object including the name, mobile, email (optional), size and restaurantId. 
+
+If the restaurant is open, the response is an object that includes the customer name, mobile, email (if provided), size, position and queueId. If the restaurant is closed, the response will be a string 'Restaurant has closed the queue.'
+
+Example:
+
+```
+
+requestData = {
+    "name": "John", 
+    "mobile": "1234550284",
+    "email": "test@gmail.com",
+    "size": 2,
+    "restaurantId": 4 
+}
+
+request.post('https://q-dot.herokuapp.com/queues', requestData);
+
+//response
+
+{
+    "name": "John",
+    "mobile": "1234550284",
+    "email": "test@gmail.com",
+    "queueId": 6,
+    "size": 2,
+    "position": 3
+}
+
+```
+## /dummydata
 
 POST request to '/dummydata' adds dummy data to the database if it does not already exist. 
 
