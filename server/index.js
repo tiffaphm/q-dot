@@ -26,9 +26,7 @@ app.get('/', (req, res) => {
 app.get('/restaurants', (req, res) => {
   if (req.query.restaurantId) {
     db.findInfoForOneRestaurant(req.query.restaurantId)
-      .then(results => {
-        res.send(results);
-      })
+      .then(results => res.send(results))
       .catch(error => {
         console.log('error getting info for one restaurants', error);
         res.send('failed for one restaurant');
