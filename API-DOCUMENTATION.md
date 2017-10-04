@@ -45,6 +45,8 @@ Schema includes 3 tables shown below:
 
 ## /restaurants
 
+**Return a list of all the restaurants in the database**
+
 GET request to '/restaurants' returns a list of all the restaurants in the database. The list contains restaurant objects with the restaurant's id, name, phone, image and current queue count. There is a timestamp for when the restaurant was created in the database and a timestamp for the last time it was updated.
 
 Example:
@@ -56,14 +58,22 @@ request.get('https://q-dot.herokuapp.com/restaurants');
 
 [
     {
-        "id": 1,
-        "image": "../images/blank.png",
-        "name": "Tempest",
-        "phone": "(123) 456-7890",
-        "queue_count": 0,
-        "status": "Open",
+        "id": 1,                          
+        //returns an unique integer
+        "image": "../images/blank.png",   
+        //returns a string, url for the restaurant image
+        "name": "Tempest",                
+        //returns a string, name of restaurant
+        "phone": "(123) 456-7890",        
+        //returns a string, phone number of restaurant
+        "queue_count": 0,                 
+        //returns an integer, current number of people in queue
+        "status": "Open",                 
+        //returns a string, either "Open" or "Close", reflecting 
         "createdAt": "2017-10-03T18:26:01.859Z",
+        //returns a string, showing date of when restaurant info was created in db
         "updatedAt": "2017-10-03T18:26:01.859Z"
+        //returns a string, showing date of when restaurant info was updated in db
     },
     {
         "id": 2,
@@ -80,6 +90,8 @@ request.get('https://q-dot.herokuapp.com/restaurants');
 ```
 
 ### /restaurants?restaurantId=[restaurantId]
+
+**Returns information of a selected restaurant in database, including detailed queue information**
 
 GET request to '/restaurants?restaurantId=[restaurantId]' returns information of a selected restaurant in the database, including the restaurant's id, image, name, phone, current queue count, and current queue information.
 
@@ -129,6 +141,8 @@ request.get('https://q-dot.herokuapp.com/restaurants?restaurantId=1');
 
 ### /restaurants?restaurantId=[restaurantId]&status=[status]
 
+**To update status of the restaurant's queue**
+
 PATCH request to /restaurants will update the status of the restaurant that indicates if it is accepting more customers to add to queue. It should always be either 'Open' or 'Closed'.
 
 Example:
@@ -148,6 +162,8 @@ Failed Request:
 ```
 
 ## /queues
+
+**To add customer to a queue of a restaurant**
 
 POST request to '/queues' will add a customer to the queue of a restaurant. Expected data in request is a JSON object including the name, mobile, email (optional), size and restaurantId. 
 
@@ -190,7 +206,74 @@ Failed Response:
 
 ```
 
+### /queues?customerId=[customerId]
+
+**Returns detailed queue information of a selected customer in database, including customer information**
+
+GET request to '/queues?customerId=[customerId]' will return detailed queue information of a selected customer, including his/her information.
+
+Accepts the customer id as part of the query string.
+
+Example:
+
+```
+request.get('https://q-dot.herokuapp.com/queues?customerId=3');
+
+//response
+
+Successful Request:
+
+{
+    "customer": {
+        "id": 3,
+        //returns an unique integer, represents customer in database
+        "name": "Eugene",
+        //returns a string, represents name of customer
+        "mobile": "(975) 097-8967",
+        //returns a string, represents mobile number of customer
+        "email": "eugene@gmail.com",
+        //returns a string, represents email address of customer
+        "createdAt": "2017-10-03T19:01:10.724Z",
+        //returns a date string, represents date that customer info was created in database
+        "updatedAt": "2017-10-03T19:01:10.724Z"
+        //returns a date string, represents date that customer info was update in database
+    },
+    "position": 2,
+    //returns an integer, represents the queue number that was given to the customer 
+    "size": 4,
+    //returns an integer, represents the group size of the customer's reservation
+    "groups_in_front_count": 1,
+    //returns an integer, represents the number of customers in front of this customer
+    "groups_in_front_details": [
+        {
+            "id": 1,
+            //returns an unique integer, represents the queue id
+            "position": 1,
+            //returns an integer, represents the queue number given to this customer
+            "size": 1,
+            //returns an integer, represents the group size of the customer's reservation
+            "createdAt": "2017-10-03T19:01:10.743Z",
+            //returns a string, represents the date that the queue was created in the database
+            "updatedAt": "2017-10-03T19:01:10.743Z",
+            //returns a string, represents the date that the queue was updated in the database
+            "restaurantId": 1,
+            //returns an integer, represents the id of the restaurant
+            "customerId": 1
+            //returns an integer, represents the id of the customer in the queue
+        }
+    ]
+    //returns an array, represents details of all the customers in front of this customer
+}
+
+Failed Request:
+400 - 'Bad Request' (if the parameters are incorrect)
+418 - 'Unknown Error - Check customerId' (Unknown error)
+
+```
+
 ## /dummydata
+
+**To insert dummy data into database**
 
 POST request to '/dummydata' adds dummy data to the database if it does not already exist. 
 
@@ -199,13 +282,15 @@ Does not accept any arguments as part of query string or body.
 Dummy data includes:
 
 ```
-2 Restaurants:
+request.post('https://q-dot.herokuapp.com/dummydata');
+
+3 Restaurants:
 
 [
-    {name: 'Tempest', phone: '(123) 456-7890', image: '../images/blank.png', 'queue_count': 0, status: 'Open'},
-    {name: 'Subway', phone: '(123) 456-7990', image: '../images/blank.png', 'queue_count': 0, status: 
+    {name: 'Tempest', phone: '(123) 456-7890', image: '../images/tempest.png', 'queue_count': 0, status: 'Open'},
+    {name: 'Subway', phone: '(123) 456-7990', image: '../images/subway.png', 'queue_count': 0, status: 
     'Open'},
-    {name: 'Chipotle', phone: '(132) 456-7990', image: '../images/blank.png', 'queue_count': 1, status: 'Closed'}
+    {name: 'Chipotle', phone: '(132) 456-7990', image: '../images/chipotle.png', 'queue_count': 1, status: 'Closed'}
 ]
 
 4 Customers:

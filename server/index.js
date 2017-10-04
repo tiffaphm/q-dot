@@ -96,6 +96,31 @@ app.patch('/restaurants', (req, res) => {
   }
 });
 
+app.get('/queues', (req, res) => {
+  if (req.query.customerId) {
+    var results = {
+      customer: {}
+    };
+    db.getCustomerInfo(req.query.customerId)
+      .then(partialResults => {
+        results.customer = partialResults.customer;
+        results.position = partialResults.position;
+        results.size = partialResults.size;
+        return db.getQueueInfo(partialResults.restaurantId, partialResults.customerId, partialResults.position);
+      })
+      .then(partialResults => {
+        results['groups_in_front_count'] = partialResults.count;
+        results['groups_in_front_details'] = partialResults.rows;
+        res.send(results);
+      })
+      .catch(err => {
+        res.status(418).send('Unknown Error - Check customerId');
+      });
+  } else {
+    res.status(400).send('Bad request');
+  }
+});
+
 app.listen(port, () => {
   console.log(`(>^.^)> Server now listening on ${port}!`);
 });
