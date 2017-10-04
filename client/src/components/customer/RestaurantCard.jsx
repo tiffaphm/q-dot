@@ -33,7 +33,7 @@ class RestaurantCard extends React.Component {
               <p className="status"><span className="status-circle" style={statusCircle}/>{this.state.restaurantStatus}</p>
             </div>
             <div className="card-content">
-              <p className="queue-number">current groups: {this.props.restaurant.queue_count}</p>
+              <p className="queue-number">groups in queue: {this.props.restaurant.queue_count}</p>
             </div>
           </div>
         </div>
