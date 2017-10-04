@@ -1,5 +1,5 @@
 const Sequelize = require('sequelize');
-const { ne } = Sequelize.Op;
+const { ne, lt } = Sequelize.Op;
 let db;
 
 if (process.env.DATABASE_URL) {
@@ -163,6 +163,27 @@ const addToQueue = (params) => {
     });
 };
 
+const getCustomerInfo = (customerId) =>{
+  return Queue.findOne({
+    where: {
+      customerId: customerId
+    },
+    include: [Customer]
+  });
+};
+
+const getQueueInfo = (restaurantId, customerId, customerPosition) => {
+  return Queue.findAndCountAll({
+    where: {
+      restaurantId: restaurantId,
+      position: {
+        [ne]: null,
+        [lt]: customerPosition
+      }
+    }
+  });
+};
+
 module.exports = {
   db: db,
   Customer: Customer,
@@ -175,5 +196,7 @@ module.exports = {
   addToQueue: addToQueue,
   // phoneNumberFormatter: phoneNumberFormatter,
   nameFormatter: nameFormatter,
-  updateRestaurantStatus: updateRestaurantStatus
+  updateRestaurantStatus: updateRestaurantStatus,
+  getQueueInfo: getQueueInfo,
+  getCustomerInfo: getCustomerInfo
 };
