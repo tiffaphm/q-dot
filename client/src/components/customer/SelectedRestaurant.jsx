@@ -24,7 +24,7 @@ class SelectedRestaurant extends React.Component {
       <div className="selected-restaurant">
         <RestaurantLogoBanner style={restaurantImg} />
         <RestaurantInformation restaurant={this.props.currentRestaurant}/>
-        {this.state.infoSubmitted === false ? <CustomerInfoForm /> : <CustomerQueueInfo />}
+        {this.state.infoSubmitted === false ? <CustomerInfoForm currentRestaurantId={this.props.currentRestaurant.id} /> : <CustomerQueueInfo />}
       </div>
     )
   }

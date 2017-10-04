@@ -9621,7 +9621,7 @@ nav li a {
   display: relative !important;
 }
 
-.restaurant-info-container {
+.restaurant-info-container, .customer-info-input-container {
   width: 80%;
   margin: 0 auto !important;
   padding-top: 32px !important;
