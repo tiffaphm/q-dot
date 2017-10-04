@@ -9568,7 +9568,6 @@ nav li a {
   margin-left: 10px;
 }
 
-
 .card-content {
   font-family: Roboto, Helvetica Neue, sans-serif !important;
   color: #6d6d6d;
@@ -9590,4 +9589,23 @@ nav li a {
 
 .card-content:first-child {
   display: inline-block;
+}
+
+.restaurant-banner-container {
+  overflow: hidden !important;
+  height: 250px !important;
+  border-top-style: 1px solid;
+}
+
+.restaurant-img-banner {
+  background-size: cover !important;
+  background-position: center !important;
+  position: relative !important;
+  height: 254px !important;
+  width: 102% !important;
+  right: 4px;
+  bottom: 0;
+  top: -2px !important;
+  overflow: hidden !important;
+  border: 0;
 }

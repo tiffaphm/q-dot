@@ -1,7 +1,11 @@
 import React from 'react';
 
 const RestaurantLogoBanner = (props) => (
-  <h2>NAME OF RESTAURANT</h2>
+  <div>
+    <div className="restaurant-banner-container">
+      <div className="restaurant-img-banner" style={props.style} />
+    </div>
+  </div>
 );
 
 export default RestaurantLogoBanner;

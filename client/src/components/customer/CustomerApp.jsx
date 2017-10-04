@@ -13,6 +13,7 @@ class CustomerApp extends React.Component {
     this.state = {
       selectRestaurant: false,
       currentGroupSize: 0,
+      currentRestaurant: {},
       restaurantList: []
     }
   }
@@ -62,7 +63,6 @@ class CustomerApp extends React.Component {
   render() {
     const defaultHomeRender = 
       <div>
-        <CustomerNav />
         <GroupSizeButtons setGroupSize={this.setGroupSize}/>
         <div className="select-restaurant-container">
           <h4>Select a restaurant</h4>
@@ -74,10 +74,11 @@ class CustomerApp extends React.Component {
 
     // this is a very hacky way of rendering a different page. will refactor to use react router later.
     let currentRender;
-    this.state.selectRestaurant === false ? currentRender = defaultHomeRender : currentRender = <SelectedRestaurant />
+    this.state.selectRestaurant === false ? currentRender = defaultHomeRender : currentRender = <SelectedRestaurant currentRestaurant={this.state.currentRestaurant}/>
 
     return (
       <div className="customer-home">
+        <CustomerNav />
         {currentRender}
       </div>
     )
