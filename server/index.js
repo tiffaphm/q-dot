@@ -87,12 +87,12 @@ app.post('/queues', (req, res) => {
 });
 
 app.patch('/restaurants', (req, res) => {
-  if (req.query.status && (req.query.status !== 'Open' || req.query.status !== 'Closed')) {
-    res.status(400).send('Bad Request');
-  } else {
+  if (req.query.status && (req.query.status === 'Open' || req.query.status === 'Closed')) {
     db.updateRestaurantStatus(req.query)
       .then(result => res.send(`Status for restaurant with id ${req.query.restaurantId} is now ${req.query.status}`))
       .catch(err => res.status(418).send('Update for restaurant status failed'));
+  } else {
+    res.status(400).send('Bad Request');
   }
 });
 
