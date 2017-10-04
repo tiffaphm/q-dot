@@ -4751,7 +4751,7 @@ small {
 }
 
 .card.small .card-image, .card.medium .card-image, .card.large .card-image {
-  max-height: 60%;
+  max-height: 65%;
   overflow: hidden;
 }
 
@@ -4856,6 +4856,21 @@ small {
   top: 0;
   bottom: 0;
   width: 100%;
+  vertical-align: bottom;
+}
+
+@media only screen and (min-width: 1031px) {
+  .card .card-image img {
+    display: block;
+    border-radius: 2px 2px 0 0;
+    position: relative;
+    left: 0;
+    right: 0;
+    top: -75px;
+    bottom: 0;
+    width: 100%;
+    vertical-align: bottom;
+  }
 }
 
 .card .card-image .card-title {
@@ -9430,7 +9445,7 @@ THESE ARE CHANGES THAT ARE UNRELATED TO MATERIAL CSS
 }
 
 
-@media only screen and (min-width: 600px) {
+@media only screen and (min-width: 601px) {
   .customer-group-buttons, .select-restaurant-container {
     position: relative;
     display: table;
@@ -9489,7 +9504,7 @@ nav li a {
 
 .restaurant-container {
   position: relative;
-  padding-top: 50px !important;
+  padding-top: 20px !important;
   display: table !important;
   margin: 0 auto !important;
 }
@@ -9499,7 +9514,7 @@ nav li a {
   margin: 0 auto !important;
 }
 
-@media only screen and (min-width: 600px) {
+@media only screen and (min-width: 601px) {
   .card {
     width: 50%;
   }
@@ -9556,8 +9571,8 @@ nav li a {
 
 .card-content {
   font-family: Roboto, Helvetica Neue, sans-serif !important;
-  color: #414141;
-  font-size: 19px !important;
+  color: #6d6d6d;
+  font-size: 16px !important;
   line-height: 24px !important;
   letter-spacing: 0.2px !important;
   padding-top: 0px !important;
@@ -9570,7 +9585,7 @@ nav li a {
   -webkit-box-orient: vertical;
   overflow: hidden !important;
   margin-left: -3px;
-  margin-top: -2px;
+  margin-top: -5px;
 }
 
 .card-content:first-child {
