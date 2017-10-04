@@ -189,7 +189,7 @@ Example:
 
 ```
 
-requestData = {
+requestBody = {
     "name": "John", 
     "mobile": "1234550284",
     "email": "test@gmail.com",
@@ -197,7 +197,7 @@ requestData = {
     "restaurantId": 4 
 }
 
-request.post('https://q-dot.herokuapp.com/queues', requestData);
+request.post('https://q-dot.herokuapp.com/queues', requestBody);
 
 //response
 
@@ -221,7 +221,38 @@ Failed Response:
 418 - 'Request Failed' (Unknown error)
 
 ```
+**To remove customer from a queue of a restaurant**
 
+PUT request to '/queues' will remove a customer from the queue of a restaurant. The expected data is a JSON object with customer's name, customerId, restaurantId and position.
+
+The response is a string stating the status of the change.
+
+Example:
+
+```
+requestBody = {
+    "name": "John", 
+    //name is a string
+    "customerId": "2",
+    //customer id is a number
+    "restaurantId": 4,
+    //restaurant id is a number
+    "position": 5,
+    //position is a number
+}
+
+request.put('https://q-dot.herokuapp.com/queues', requestBody);
+
+//response
+
+Successful Response:
+200 - Removed [customer name] from queue;
+
+Failed Response:
+400 - 'Bad Request' (if the parameters are incorrect)
+418 - ''Failed to change position - Unknown Error'
+
+```
 ### /queues?customerId=[customerId]
 
 **Returns detailed queue information of a selected customer in database, including customer information**
