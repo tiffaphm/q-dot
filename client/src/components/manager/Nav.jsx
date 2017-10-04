@@ -9,7 +9,7 @@ const Nav = (props) => {
           <a className="navbar-brand" href="#">q.</a>
         </div>
         <ul className="nav navbar-nav">
-          <li className="active"><a href="#">Home</a></li>
+          <li className="active"><a href="#">Manager Home Page</a></li>
         </ul>
         <ul className="nav navbar-nav navbar-right">
           <StatusSwitch status={props.status} switchStatus={props.switchStatus.bind(this)}/>

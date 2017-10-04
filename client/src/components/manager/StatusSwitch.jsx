@@ -15,10 +15,10 @@ const StatusSwitch = (props) => {
               <h2 className="modal-title">Warning</h2>
             </div>
             <div className="modal-body">
-              <p><b>{props.status === 'Open' ? 'Close' : 'Open'}</b> for Queue?</p>
+              <p className="warning-content"><b>{props.status === 'Open' ? 'Close' : 'Open'}</b> for Queue?</p>
             </div>
             <div className="modal-footer">
-              <button className="btn btn-primary" onClick={() => props.switchStatus(props.restaurantInfo.status)}>Conform Operation</button>
+              <button className="btn btn-primary" onClick={props.switchStatus.bind(this)} data-dismiss="modal">Conform Operation</button>
               <button type="button" className="btn btn-default" data-dismiss="modal">Cancel</button>
             </div>
           </div>

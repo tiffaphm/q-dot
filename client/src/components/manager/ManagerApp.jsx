@@ -16,6 +16,38 @@ class ManagerApp extends React.Component {
   }
 
   componentDidMount() {
+    this.reloadData();
+  }
+
+  switchStatus() {
+    $.ajax({
+      url: 'https://q-dot-staging.herokuapp.com/restaurants?restaurantId=1&status=' + this.state.restaurantInfo.status === 'Open' ? 'Closed' : 'Open',
+      method: 'PATCH',
+      success: (data) => {
+        console.log(data);
+        this.reloadData();
+      },
+      error: (err) => {
+        console.log(err);
+      }
+    });
+  }
+
+  removeCustomer(queueId) {
+    $.ajax({
+      url: 'https://q-dot.herokuapp.com/queues?queueId=' + queueId,
+      method: 'PUT',
+      success: (data) => {
+        console.log(data);
+        this.reloadData();
+      },
+      error: (err) => {
+        console.log(err);
+      }
+    });
+  }
+
+  reloadData() {
     $.ajax({
       url: 'https://q-dot-staging.herokuapp.com/restaurants?restaurantId=1',
       success: (data) => {
@@ -25,19 +57,13 @@ class ManagerApp extends React.Component {
             restaurantInfo: data,
             queues: data.queues
           });
+        let imageURL = `url(https://q-dot-staging.herokuapp.com/${data.image})`;
+        $('.jumbotron-billboard').css('background', imageURL);
       },
       error: (err) => {
         console.log(err);
       }
     });
-  }
-
-  switchStatus(open) {
-    
-  }
-
-  removeCustomer(customerId) {
-
   }
 
   render() {

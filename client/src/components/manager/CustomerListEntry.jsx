@@ -11,7 +11,7 @@ const CustomerListEntry = (props) => {
       </div>
       <div className="col-md-3">
         {props.index === 0 
-          ? <button className="btn-danger btn-sm" data-toggle="modal" data-target="#remove-warning">delete goes here</button>
+          ? <button className="btn-primary btn-sm" data-toggle="modal" data-target="#remove-warning">delete goes here</button>
           : []
         }
         <div id="remove-warning" className="modal fade" role="dialog">
