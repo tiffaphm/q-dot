@@ -124,15 +124,15 @@ app.get('/queues', (req, res) => {
 
 
 app.put('/queues', (req, res) => {
-  if (!req.body.customerId || !req.body.restaurantId) {
+  if (!req.query.queueId) {
     res.status(400).send('Bad Request');
   } else {
-    db.removeFromQueue(req.body)
+    db.removeFromQueue(req.query.queueId)
       .then(result => {
-        res.send(`Removed ${req.body.name} from queue`);
+        res.send(`Removed queueId:${req.query.queueId} from queue`);
       }).catch(err => {
         console.log('error deleting position in queue', err);
-        res.status(418).send('Failed to change position - Unknown Error');
+        res.status(418).send('Failed to remove from queue - Unknown Error');
       });
   }
 });

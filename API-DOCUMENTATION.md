@@ -223,30 +223,19 @@ Failed Response:
 ```
 **To remove customer from a queue of a restaurant**
 
-PUT request to '/queues' will remove a customer from the queue of a restaurant. The expected data is a JSON object with customer's name, customerId, restaurantId and position.
+PUT request to '/queues?queueId=[queueId' will remove a customer from the queue of a restaurant.
 
 The response is a string stating the status of the change.
 
 Example:
 
 ```
-requestBody = {
-    "name": "John", 
-    //name is a string
-    "customerId": "2",
-    //customer id is a number
-    "restaurantId": 4,
-    //restaurant id is a number
-    "position": 5,
-    //position is a number
-}
-
-request.put('https://q-dot.herokuapp.com/queues', requestBody);
+request.put('https://q-dot.herokuapp.com/queues?queueId=1');
 
 //response
 
 Successful Response:
-200 - Removed [customer name] from queue;
+200 - Removed queueId:1 from queue;
 
 Failed Response:
 400 - 'Bad Request' (if the parameters are incorrect)
