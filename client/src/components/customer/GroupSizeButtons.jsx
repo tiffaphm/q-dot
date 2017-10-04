@@ -4,24 +4,40 @@ class GroupSizeButtons extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-
+      currentGroupSize: 0
     }
   }
 
   soloSelected() {
-    // handle click event for group number: solo
+    this.setState({
+      currentGroupSize: 1
+    })
+
+    this.props.setGroupSize(this.state.currentGroupSize);
   }
 
   twoSelected() {
-    // handle click event for group number: two
+    this.setState({
+      currentGroupSize: 2
+    })
+
+    this.props.setGroupSize(this.state.currentGroupSize);
   }
 
   threeToFourSelected() {
-    // handle click event for group number: three-four
+    this.setState({
+      currentGroupSize: 4
+    })
+
+    this.props.setGroupSize(this.state.currentGroupSize);
   }
 
   fivePlusSelected() {
-    // handle click event for group number: five
+    this.setState({
+      currentGroupSize: 5
+    })
+
+    this.props.setGroupSize(this.state.currentGroupSize);
   }
 
   render() {

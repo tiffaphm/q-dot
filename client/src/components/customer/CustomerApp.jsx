@@ -3,36 +3,77 @@ import CustomerNav from './CustomerNav.jsx';
 import GroupSizeButtons from './GroupSizeButtons.jsx';
 import RestaurantCard from './RestaurantCard.jsx';
 import SelectedRestaurant from './SelectedRestaurant.jsx';
+import $ from 'jquery';
 
 class CustomerApp extends React.Component {
   constructor(props) {
     super(props);
-    this.selectRestaurantClick = this.selectRestaurantClick.bind(this);
+    this.selectRestaurant = this.selectRestaurant.bind(this);
+    this.setGroupSize = this.setGroupSize.bind(this);
     this.state = {
-      selectRestaurant: false
+      selectRestaurant: false,
+      currentGroupSize: 0,
+      restaurantList: []
     }
   }
 
-  selectRestaurantClick() {
-    this.setState({
-      selectRestaurant: true
+  componentDidMount() {
+    this.getRestaurantList();
+  }
+
+  selectRestaurant(id) {
+    // this.setState({
+    //   selectRestaurant: true
+    // })
+
+    $.ajax({
+      method: 'GET',
+      url: `https://q-dot-staging.herokuapp.com/restaurants?restaurantId=${id}`,
+      success: (data) => {
+        console.log('successfully grabbed current restaurant data', data);
+        this.setState({ currentRestaurant: data, selectRestaurant: true });
+      },
+      failure: (error) => {
+        console.log('failed to grab current restaurant data', error);
+      }
     })
   }
 
+  setGroupSize(size) {
+    this.setState({
+      currentGroupSize: size
+    })
+  }
+
+  getRestaurantList() {
+    $.ajax({
+      method: 'GET',
+      url: 'https://q-dot-staging.herokuapp.com/restaurants',
+      success: (data) => {
+        console.log('successfully grabbed restaurant data', data);
+        this.setState({ restaurantList: data });
+      },
+      failure: (error) => {
+        console.log('failed to grab restaurant data', error);
+      }
+    })
+  }
 
   render() {
     const defaultHomeRender = 
       <div>
         <CustomerNav />
-        <GroupSizeButtons />
+        <GroupSizeButtons setGroupSize={this.setGroupSize}/>
         <div className="select-restaurant-container">
           <h4>Select a restaurant</h4>
-          <RestaurantCard selectRestaurantClick={this.selectRestaurantClick} />
+          {this.state.restaurantList.map((item, index) => 
+            <RestaurantCard restaurant={item} key={index} selectRestaurant={this.selectRestaurant} />
+          )}
         </div>
       </div>
 
-    let currentRender;
     // this is a very hacky way of rendering a different page. will refactor to use react router later.
+    let currentRender;
     this.state.selectRestaurant === false ? currentRender = defaultHomeRender : currentRender = <SelectedRestaurant />
 
     return (

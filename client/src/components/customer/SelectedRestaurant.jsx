@@ -1,5 +1,5 @@
 import React from 'react';
-// import RestaurantLogo from './RestaurantLogo.jsx';
+import RestaurantLogoBanner from './RestaurantLogoBanner.jsx';
 import CustomerInfoForm from './CustomerInfoForm.jsx';
 import CustomerQueueInfo from './CustomerQueueInfo.jsx';
 
@@ -8,13 +8,13 @@ class SelectedRestaurant extends React.Component {
     super(props);
     this.state = {
       infoSubmitted: false,
-      selectRestaurant: false
     }
   }
 
   render() {
     return (
       <div className="selected-restaurant">
+        <RestaurantLogoBanner />
         {this.state.infoSubmitted === false ? <CustomerInfoForm /> : <CustomerQueueInfo />}
       </div>
     )
