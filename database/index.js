@@ -106,7 +106,10 @@ const findInfoForOneRestaurant = (restaurantId) => {
     where: {
       id: restaurantId
     },
-    include: [Queue]
+    include: [{
+      model: Queue,
+      include: [Customer]
+    }]
   });
 };
 
