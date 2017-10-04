@@ -48,6 +48,7 @@ Schema includes 3 tables shown below:
 GET request to '/restaurants' returns a list of all the restaurants in the database. The list contains restaurant objects with the restaurant's id, name, phone, image and current queue count. There is a timestamp for when the restaurant was created in the database and a timestamp for the last time it was updated.
 
 Example:
+
 ```
 request.get('https://q-dot.herokuapp.com/restaurants');
 
@@ -77,6 +78,7 @@ request.get('https://q-dot.herokuapp.com/restaurants');
 ]
 
 ```
+
 ### /restaurants?restaurantId=[restaurantId]
 
 GET request to '/restaurants?restaurantId=[restaurantId]' returns information of a selected restaurant in the database, including the restaurant's id, image, name, phone, current queue count, and current queue information.
@@ -86,6 +88,7 @@ Current queue information includes the position and the size of the group.
 Accepts the restaurant id as part of the query string.
 
 Example:
+
 ```
 request.get('https://q-dot.herokuapp.com/restaurants?restaurantId=1');
 
@@ -131,7 +134,7 @@ PATCH request to /restaurants will update the status of the restaurant that indi
 Example:
 
 ```
-request.patch('https://q-dot.herokuapp.com/restaurants?restaurantId=1&status="Open"');
+request.patch('https://q-dot.herokuapp.com/restaurants?restaurantId=1&status=Open');
 
 //response
 
@@ -186,6 +189,7 @@ Failed Response:
 418 - 'Request Failed' (Unknown error)
 
 ```
+
 ## /dummydata
 
 POST request to '/dummydata' adds dummy data to the database if it does not already exist. 
@@ -199,7 +203,8 @@ Dummy data includes:
 
 [
     {name: 'Tempest', phone: '(123) 456-7890', image: '../images/blank.png', 'queue_count': 0, status: 'Open'},
-    {name: 'Subway', phone: '(123) 456-7990', image: '../images/blank.png', 'queue_count': 0, status: 'Open'},
+    {name: 'Subway', phone: '(123) 456-7990', image: '../images/blank.png', 'queue_count': 0, status: 
+    'Open'},
     {name: 'Chipotle', phone: '(132) 456-7990', image: '../images/blank.png', 'queue_count': 1, status: 'Closed'}
 ]
 
