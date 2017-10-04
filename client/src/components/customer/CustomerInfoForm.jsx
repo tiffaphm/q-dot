@@ -1,7 +1,7 @@
 import React from 'react';
 
 const CustomerInfoForm = () => (
-  <p>Customer info</p>
+  <div></div>
 );
 
 export default CustomerInfoForm;

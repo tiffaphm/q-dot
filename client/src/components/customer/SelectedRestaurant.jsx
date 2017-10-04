@@ -2,6 +2,7 @@ import React from 'react';
 import RestaurantLogoBanner from './RestaurantLogoBanner.jsx';
 import CustomerInfoForm from './CustomerInfoForm.jsx';
 import CustomerQueueInfo from './CustomerQueueInfo.jsx';
+import RestaurantInformation from './RestaurantInformation.jsx';
 
 class SelectedRestaurant extends React.Component {
   constructor(props) {
@@ -22,6 +23,7 @@ class SelectedRestaurant extends React.Component {
     return (
       <div className="selected-restaurant">
         <RestaurantLogoBanner style={restaurantImg} />
+        <RestaurantInformation restaurant={this.props.currentRestaurant}/>
         {this.state.infoSubmitted === false ? <CustomerInfoForm /> : <CustomerQueueInfo />}
       </div>
     )

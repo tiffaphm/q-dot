@@ -9545,12 +9545,12 @@ nav li a {
   color: #009688;
 }
 
-.card-title .status .status-circle {
+.status-circle {
   display:inline-block;
-  width: 10px;
-  height: 10px;
+  width: 9px;
+  height: 9px;
   border-radius: 50%;
-  margin-right: 2px;
+  margin-right: 3px;
 }
 
 .card-title p.status {
@@ -9609,3 +9609,67 @@ nav li a {
   overflow: hidden !important;
   border: 0;
 }
+
+@media (min-width: 601px) {
+  .restaurant-info-container {
+    width: 690px;
+    margin: 0 auto !important;
+  }
+}
+
+.selected-restaurant {
+  display: relative !important;
+}
+
+.restaurant-info-container {
+  width: 80%;
+  margin: 0 auto !important;
+  padding-top: 32px !important;
+}
+
+.restaurant-info {
+  font-family: Roboto, Helvetica Neue, sans-serif !important;
+  border-bottom: 1px solid #dbdbdb;
+  color: #414141;
+  word-wrap: break-word;
+}
+
+.restaurant-info .restaurant-name {
+  font-size: 34px !important;
+  font-weight: 700 !important;
+  line-height: 38px !important;
+  letter-spacing: -0.6px !important;
+  margin: 0px !important;
+  padding-top: 6px;
+  padding-bottom: 12px;
+}
+
+.restaurant-queue-info {
+  text-align: justify !important;
+  display: flex !important;
+}
+
+.restaurant-queue-info .restaurant-queue-count {
+  display: inline-block;
+  color: #6d6d6d;
+  font-size: 16px !important;
+  line-height: 24px !important;
+  font-weight: 300;
+  margin: 0px;
+  letter-spacing: 0.3px !important;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  flex-grow: 1 !important;
+}
+
+.restaurant-queue-info .restaurant-queue-status {
+  display: inline-block;
+  vertical-align: middle;
+  color: #6d6d6d;
+  text-transform: uppercase !important;
+  font-size: 12px;
+  line-height: 18px;
+  margin: 0px;
+  padding-top: 10px;
+}
+
