@@ -188,8 +188,12 @@ const getQueueInfo = (restaurantId, customerId, customerPosition) => {
 };
 
 const removeFromQueue = (customer) => {
-  //remove customer from queue
-  return Queue.update({position: null}, {where: {customerId: customer.customerId, restaurantId: customer.restaurantId}});
+  return Queue.update({position: null}, {
+    where: {
+      customerId: customer.customerId, 
+      restaurantId: customer.restaurantId
+    }
+  });
 };
 
 module.exports = {
