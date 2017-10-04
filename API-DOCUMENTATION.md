@@ -230,6 +230,7 @@ The response is a string stating the status of the change.
 Example:
 
 ```
+
 request.put('https://q-dot.herokuapp.com/queues?queueId=1');
 
 //response

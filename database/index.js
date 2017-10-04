@@ -155,7 +155,8 @@ const addToQueue = (params) => {
 
   return addToCustomers(params)
     .then(customer => {
-      queueInfo.customerId = customer.dataValues.id;
+      queueInfo.customerId = customer.id;
+      queueInfo.name = customer.name;
       return findInfoForOneRestaurant(params.restaurantId);
     })
     .then(restaurant => {

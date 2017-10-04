@@ -56,13 +56,12 @@ app.post('/dummydata', (req, res) => {
 });
 
 app.post('/queues', (req, res) => {
-
   if (!req.body.name || !req.body.mobile || !req.body.restaurantId
       || !req.body.size) {
     res.status(400).send('Bad Request');
   } else {
     const result = {
-      name: req.body.name,
+      name: db.nameFormatter(req.body.name),
       mobile: req.body.mobile
     };
 
@@ -75,15 +74,14 @@ app.post('/queues', (req, res) => {
         if (response === 'Closed') {
           res.send('Restaurant has closed the queue');
         } else {
-          result.queueId = response.dataValues.id;
-          result.size = response.dataValues.size;
-          result.position = response.dataValues.position;
+          result.queueId = response.id;
+          result.size = response.size;
+          result.position = response.position;
           res.send(result);
         }
       })
       .catch(error => res.status(418).send('Request Failed'));
   }
-  
 });
 
 app.patch('/restaurants', (req, res) => {
