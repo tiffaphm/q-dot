@@ -71,11 +71,11 @@ app.post('/queues', (req, res) => {
         if (req.body.email) {
           result.email = req.body.email;
         }
-        result.queueId = response.id;
+        result.queueId = response.queueId;
         result.size = response.size;
         result.position = response.position;
-        result.queueCount = response.queueCount;
-        result.queueList = response.queueList;
+        result.queueInFrontCount = response.queueCount;
+        result.queueInFrontList = response.queueList;
         res.send(result);
       })
       .catch(err => {
