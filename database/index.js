@@ -147,11 +147,25 @@ const addToCustomers = (params) => {
     });
 };
 
+const getQueueInfo = (restaurantId, customerId, customerPosition) => {
+  return Queue.findAndCountAll({
+    where: {
+      restaurantId: restaurantId,
+      position: {
+        [ne]: null,
+        [lt]: customerPosition
+      }
+    }
+  });
+};
+
 const addToQueue = (params) => {
 
   const queueInfo = {
     size: params.size,
   };
+
+  const response = {};
 
   return addToCustomers(params)
     .then(customer => {
@@ -165,11 +179,22 @@ const addToQueue = (params) => {
         queueInfo.restaurantId = restaurant.id;
         return Restaurant.upsert({'queue_count': queueInfo.position, phone: restaurant.phone});
       } else {
-        return restaurant.status;
+        throw new Error('Restaurant has closed the queue');
       }
     })
     .then(result => {
-      return result === 'Closed' ? result : Queue.create(queueInfo);
+      return Queue.create(queueInfo);
+    })
+    .then(result => {
+      response.queueId = result.id;
+      response.size = result.size;
+      response.position = result.position;
+      return getQueueInfo(result.restaurantId, result.customerId, queueInfo.position);
+    })
+    .then(result => {
+      response.queueList = result.rows;
+      response.queueCount = result.count;
+      return response;
     });
 };
 
@@ -179,18 +204,6 @@ const getCustomerInfo = (customerId) =>{
       customerId: customerId
     },
     include: [Customer]
-  });
-};
-
-const getQueueInfo = (restaurantId, customerId, customerPosition) => {
-  return Queue.findAndCountAll({
-    where: {
-      restaurantId: restaurantId,
-      position: {
-        [ne]: null,
-        [lt]: customerPosition
-      }
-    }
   });
 };
 
