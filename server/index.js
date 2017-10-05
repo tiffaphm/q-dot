@@ -71,7 +71,7 @@ app.post('/queues', (req, res) => {
         if (req.body.email) {
           result.email = req.body.email;
         }
-        result.queueId = response.id;
+        result.queueId = response.queueId;
         result.size = response.size;
         result.position = response.position;
         result.queueInFrontCount = response.queueCount;
