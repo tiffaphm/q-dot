@@ -3,14 +3,25 @@
   text-align: center;
 }
 
+.warning-content {
+  font-size: 30px;
+  text-align: center;
+}
+
 .navbar-btn {
   margin-left: 15px;
 }
 
 .navbar {
-  margin-bottom: 0px;
+  margin-bottom: 0;
 }
 
 .jumbotron {
-  margin-top: 0px;
+  margin-top: 0;
+  height: 300px;
+}
+
+#grand-title {
+  font-size: 90px;
+  color: white;
 }
