@@ -4857,6 +4857,7 @@ small {
   bottom: 0;
   width: 100%;
   vertical-align: bottom;
+  overflow: hidden;
 }
 
 @media only screen and (min-width: 1031px) {
@@ -4870,6 +4871,7 @@ small {
     bottom: 0;
     width: 100%;
     vertical-align: bottom;
+    overflow: hidden;
   }
 }
 
@@ -9455,27 +9457,24 @@ nav li a {
   width: 100%;
 }
 
-@media only screen and (min-width: 601px) {
-  .customer-group-buttons, .select-restaurant-container {
+@media only screen and (min-width: 501px) {
+  .customer-group-buttons-container, .select-restaurant-container {
     position: relative;
     display: table;
-    margin: 0 auto;
+    margin: 0 auto !important;
   }
 }
 
-.customer-group-buttons, .select-restaurant-container {
-  position: relative;
-  display: table;
-  margin: 0 auto;
-  margin-left: 30px;
-  margin-top: 25px;
-}
-
-.select-restaurant-container {
+.customer-group-buttons-container, .select-restaurant-container {
+  position: relative !important;
+  display: table !important;
+  margin: 0 auto !important;
+  margin-top: 25px !important;
   margin-bottom: -20px;
+  width: 100%;
 }
 
-.customer-group-buttons .btn-large {
+.customer-group-buttons-container .btn-large {
   display: inline-block;
   width: 140px;
   text-align: center;
@@ -9483,29 +9482,76 @@ nav li a {
   margin: 10px 5px;
 }
 
-.customer-group-buttons .btn-large i.left {
+.customer-group-buttons-container .btn-large i.left {
   margin-left: 15px;
   margin-right: 0px;
 }
 
-h4 {
-  font-family: Roboto, Helvetica Neue, sans-serif !important;
-  color: #202020;
-  font-size: 26px !important;
-  line-height: 32px !important;
-  letter-spacing: -0.6px !important;
-  font-weight: 700 !important;
-  margin-bottom: 0px;
-  padding-top: 0px !important;
-  padding-bottom: 0px !important;
-  /*margin-left: 35% !important;*/
+@media only screen and (min-width: 501px) {
+  .customer-group-buttons {
+    position: relative !important;
+    padding-top: 10px !important;
+    display: table !important;
+    margin: 0 auto !important;
+  }
+
+  h4 {
+    font-family: Roboto, Helvetica Neue, sans-serif !important;
+    color: #202020;
+    font-size: 26px !important;
+    line-height: 32px !important;
+    letter-spacing: -0.6px !important;
+    font-weight: 700 !important;
+    margin-bottom: 0px !important;
+    padding-top: 0px !important;
+    padding-bottom: 0px !important;
+    margin-left: 20% !important;
+  }
 }
+
+@media only screen and (min-width: 301px) {
+  .customer-group-buttons {
+    position: relative;
+    padding-top: 10px;
+    display: table;
+    margin-left: 20%;
+  }
+}
+
+.customer-group-buttons {
+  position: relative;
+  padding-top: 10px;
+  display: table;
+  margin-left: 15%;
+}
+
+h4 {
+  font-family: Roboto, Helvetica Neue, sans-serif;
+  color: #202020;
+  font-size: 26px;
+  line-height: 32px;
+  letter-spacing: -0.6px;
+  font-weight: 700;
+  margin-bottom: 0px;
+  padding-top: 0px;
+  padding-bottom: 0px;
+  margin-left: 5%;
+}
+
+/*INDIVIDUAL RESTAURANT CARD STYLES*/
 
 .restaurant-container {
   position: relative;
   padding-top: 20px !important;
   display: table !important;
   margin: 0 auto !important;
+  width: 100% !important;
+}
+
+@media only screen and (min-width: 601px) {
+  .card {
+    width: 50% !important;
+  }
 }
 
 .card {
@@ -9513,11 +9559,11 @@ h4 {
   margin: 0 auto !important;
 }
 
-@media only screen and (min-width: 601px) {
-  .card {
-    width: 50%;
-  }
+.card-image {
+  width: 100%;
+  margin: 0 auto !important;
 }
+
 
 .card .card-title, .card .card-title p, .card .card-title .card-title-text {
   font-family: Roboto, Helvetica Neue, sans-serif !important;
@@ -9589,6 +9635,8 @@ h4 {
 .card-content:first-child {
   display: inline-block;
 }
+
+/*SELECTED RESTAURANT PAGE STYLE*/
 
 .restaurant-banner-container {
   overflow: hidden !important;
@@ -9671,4 +9719,3 @@ h4 {
   margin: 0px;
   padding-top: 10px;
 }
-

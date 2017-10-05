@@ -22,7 +22,7 @@ class RestaurantCard extends React.Component {
     this.props.restaurant.image === '../images/blank.png' ? image = '../images/randomrestaurant.jpg' : image = this.props.restaurant.image;
 
     return (
-      <div className="restaurant-container row-center">
+      <div className="restaurant-container">
         <div className="col s12 m7">
           <div className="card small hoverable" onClick={() => this.props.selectRestaurant(this.props.restaurant.id)}>
             <div className="card-image">
