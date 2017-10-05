@@ -77,7 +77,7 @@ class ManagerApp extends React.Component {
         <div className="container">
           <div className="row">
             <div className="col-md-6">
-              <h2>Current People In Queue:</h2>
+              <h2>Total groups in queue</h2>
               <div id="number-in-queue">{this.state.restaurantInfo.queues ? this.state.restaurantInfo.queues.length : '0'}</div>
             </div>
             <div className="col-md-6">
