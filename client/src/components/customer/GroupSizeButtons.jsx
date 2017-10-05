@@ -42,14 +42,14 @@ class GroupSizeButtons extends React.Component {
 
   render() {
     return (
-      <div className="row-center">
-        <div className="customer-group-buttons">
+      <div className="customer-group-buttons-container">
         <h4>Select your group size</h4>
-          <a className="waves-effect waves-light btn-large"><i className="material-icons left">person</i>solo</a>
-          <a className="waves-effect waves-light btn-large"><i className="material-icons left">people</i>2</a>
-          <a className="waves-effect waves-light btn-large"><i className="material-icons left">people</i>3 - 4</a>
-          <a className="waves-effect waves-light btn-large"><i className="material-icons left">person_add</i>5 +</a>
-        </div>
+          <div className="customer-group-buttons">
+            <a className="waves-effect waves-light btn-large"><i className="material-icons left">person</i>solo</a>
+            <a className="waves-effect waves-light btn-large"><i className="material-icons left">people</i>2</a>
+            <a className="waves-effect waves-light btn-large"><i className="material-icons left">people</i>3 - 4</a>
+            <a className="waves-effect waves-light btn-large"><i className="material-icons left">person_add</i>5 +</a>
+          </div>
       </div>
     )
   }

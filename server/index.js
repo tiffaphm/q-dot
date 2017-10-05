@@ -22,7 +22,7 @@ app.use((req, res, next) => {
 });
 
 app.get('/', (req, res) => {
-  res.send('Hello World!');
+  res.redirect('/customer');
 });
 
 app.get('/restaurants', (req, res) => {
@@ -62,27 +62,29 @@ app.post('/queues', (req, res) => {
       || !req.body.size) {
     res.status(400).send('Bad Request');
   } else {
-    const result = {
-      name: db.nameFormatter(req.body.name),
-      mobile: req.body.mobile
-    };
-
-    if (req.body.email) {
-      result.email = req.body.email;
-    }
-  
     db.addToQueue(req.body)
       .then(response => {
-        if (response === 'Closed') {
-          res.send('Restaurant has closed the queue');
-        } else {
-          result.queueId = response.id;
-          result.size = response.size;
-          result.position = response.position;
-          res.send(result);
+        const result = {
+          name: db.nameFormatter(req.body.name),
+          mobile: req.body.mobile
+        };
+        if (req.body.email) {
+          result.email = req.body.email;
         }
+        result.queueId = response.id;
+        result.size = response.size;
+        result.position = response.position;
+        result.queueCount = response.queueCount;
+        result.queueList = response.queueList;
+        res.send(result);
       })
-      .catch(error => res.status(418).send('Request Failed'));
+      .catch(err => {
+        if (err.message.includes('closed')) {
+          res.send(err.message);
+        } else {
+          res.status(418).send('Request Failed');
+        }
+      });
   }
 });
 

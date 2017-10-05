@@ -7,9 +7,20 @@ import RestaurantInformation from './RestaurantInformation.jsx';
 class SelectedRestaurant extends React.Component {
   constructor(props) {
     super(props);
+    this.customerInfoSubmitted = this.customerInfoSubmitted.bind(this);
     this.state = {
-      infoSubmitted: false
+      infoSubmitted: false,
+      queueId: 0,
+      queuePosition: 0
     }
+  }
+
+  customerInfoSubmitted(id, position) {
+    this.setState({
+      infoSubmitted: true,
+      queueId: id,
+      queuePosition: position
+    })
   }
 
   render() {
@@ -24,7 +35,7 @@ class SelectedRestaurant extends React.Component {
       <div className="selected-restaurant">
         <RestaurantLogoBanner style={restaurantImg} />
         <RestaurantInformation restaurant={this.props.currentRestaurant}/>
-        {this.state.infoSubmitted === false ? <CustomerInfoForm currentRestaurantId={this.props.currentRestaurant.id} /> : <CustomerQueueInfo />}
+        {this.state.infoSubmitted === false ? <CustomerInfoForm currentRestaurantId={this.props.currentRestaurant.id} customerInfoSubmitted={this.customerInfoSubmitted} groupSize={this.props.groupSize}/> : <CustomerQueueInfo />}
       </div>
     )
   }
