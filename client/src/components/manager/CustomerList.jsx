@@ -9,7 +9,7 @@ const CustomerList = (props) => {
 
   return (
     <div>
-      <h2>Customer List Goes Here</h2>
+      <h2>Customers in Queue</h2>
       <div className="panel panel-default">
         {entries}
       </div>
