@@ -79,7 +79,7 @@ app.post('/queues', (req, res) => {
         res.send(result);
       })
       .catch(err => {
-        if (err.message === 'Restaurant has closed the queue') {
+        if (err.message.includes('closed')) {
           res.send(err.message);
         } else {
           res.status(418).send('Request Failed');
