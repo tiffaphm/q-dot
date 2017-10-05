@@ -191,10 +191,15 @@ Example:
 
 requestBody = {
     "name": "John", 
+    //name should be a string
     "mobile": "1234550284",
+    //mobile should be a string
     "email": "test@gmail.com",
+    //email should be a string
     "size": 2,
+    //size should be a number
     "restaurantId": 4 
+    //restaurantId should be a number
 }
 
 request.post('https://q-dot.herokuapp.com/queues', requestBody);
@@ -206,11 +211,46 @@ Successful Response:
 
 200 - {
     "name": "John",
+    //name will be a string
     "mobile": "1234550284",
+    //mobile will be a string
     "email": "test@gmail.com",
-    "queueId": 6,
+    //email will be a string
     "size": 2,
-    "position": 3
+    //size will be a number
+    "position": 4,
+    //position will be a number
+    "queueInFrontCount": 3,
+    //queueInFrontCount will be a number
+    "queueInFrontList": [
+        {
+            "id": 2,
+            "position": 1,
+            "size": 1,
+            "createdAt": "2017-10-04T22:46:20.345Z",
+            "updatedAt": "2017-10-04T22:46:20.345Z",
+            "restaurantId": 2,
+            "customerId": 2
+        },
+        {
+            "id": 4,
+            "position": 2,
+            "size": 4,
+            "createdAt": "2017-10-04T22:46:20.361Z",
+            "updatedAt": "2017-10-04T22:46:20.361Z",
+            "restaurantId": 2,
+            "customerId": 4
+        },
+        {
+            "id": 5,
+            "position": 3,
+            "size": 2,
+            "createdAt": "2017-10-05T05:01:36.260Z",
+            "updatedAt": "2017-10-05T05:01:36.260Z",
+            "restaurantId": 2,
+            "customerId": 5
+        },
+    ]
 }
 
 200 - 'Restaurant has closed the queue' (if restaurant closed the queue in the interim time)
