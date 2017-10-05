@@ -74,8 +74,8 @@ app.post('/queues', (req, res) => {
         result.queueId = response.id;
         result.size = response.size;
         result.position = response.position;
-        result.queueCount = response.queueCount;
-        result.queueList = response.queueList;
+        result.queueInFrontCount = response.queueCount;
+        result.queueInFrontList = response.queueList;
         res.send(result);
       })
       .catch(err => {
