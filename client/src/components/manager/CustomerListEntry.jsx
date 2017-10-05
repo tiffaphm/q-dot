@@ -25,8 +25,8 @@ const CustomerListEntry = (props) => {
                 <p>Warning Goes Here</p>
               </div>
               <div className="modal-footer">
-                <button className="btn btn-warning" onClick={() => props.removeCustomer(props.queue.id)}>Customer Not Shown Up</button>
-                <button className="btn btn-success" onClick={() => props.removeCustomer(props.queue.id)}>Customer Here</button>
+                <button className="btn btn-warning" data-dismiss="modal" onClick={() => props.removeCustomer(props.queue.id)}>Customer Not Shown Up</button>
+                <button className="btn btn-success" data-dismiss="modal" onClick={() => props.removeCustomer(props.queue.id)}>Customer Here</button>
                 <button type="button" className="btn btn-default" data-dismiss="modal">Close</button>
               </div>
             </div>

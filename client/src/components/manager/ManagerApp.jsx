@@ -21,7 +21,7 @@ class ManagerApp extends React.Component {
 
   switchStatus() {
     $.ajax({
-      url: 'https://q-dot-staging.herokuapp.com/restaurants?restaurantId=1&status=' + this.state.restaurantInfo.status === 'Open' ? 'Closed' : 'Open',
+      url: 'https://q-dot-staging.herokuapp.com/restaurants?restaurantId=1&status=' + (this.state.restaurantInfo.status === 'Open' ? 'Closed' : 'Open'),
       method: 'PATCH',
       success: (data) => {
         console.log(data);
@@ -34,8 +34,9 @@ class ManagerApp extends React.Component {
   }
 
   removeCustomer(queueId) {
+    console.log(queueId);
     $.ajax({
-      url: 'https://q-dot.herokuapp.com/queues?queueId=' + queueId,
+      url: 'https://q-dot-staging.herokuapp.com/queues?queueId=' + queueId,
       method: 'PUT',
       success: (data) => {
         console.log(data);
@@ -71,7 +72,7 @@ class ManagerApp extends React.Component {
       <div>
         <Nav status={this.state.restaurantInfo.status} switchStatus={this.switchStatus.bind(this)}/>
         <div className="jumbotron text-center jumbotron-billboard">
-          <h1>{this.state.restaurantInfo.name || 'Restaurant Name'}</h1>
+          <h1 id="grand-title">{this.state.restaurantInfo.name || 'Restaurant Name'}</h1>
         </div>
         <div className="container">
           <div className="row">
