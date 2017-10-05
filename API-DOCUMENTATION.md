@@ -216,7 +216,7 @@ Successful Response:
     //mobile will be a string
     "email": "test@gmail.com",
     //email will be a string
-    "queueId": 15,
+    "queueId": 6,
     //queueId will be a number
     "size": 2,
     //size will be a number
