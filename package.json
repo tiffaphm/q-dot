@@ -9,8 +9,7 @@
   },
   "scripts": {
     "start": "nodemon --inspect server/index.js",
-    "client": "webpack --watch --progress",
-    "test": "mocha --reporter nyan"
+    "client": "webpack --watch --progress"
   },
   "dependencies": {
     "babel-cli": "^6.7.5",
