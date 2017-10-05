@@ -4,7 +4,7 @@ const StatusSwitch = (props) => {
   
   return (
     <div className="nav navbar-nav">
-      <a className="active">Status: {props.status === 'Open' ? 'Open' : 'Close'} Queue</a>
+      <a className="active">Status: {props.status === 'Open' ? 'Open' : 'Close'}</a>
       <button type="button" className="btn btn-primary navbar-btn" data-toggle="modal" data-target="#close-queue-warning">{props.status === 'Open' ? 'Close' : 'Open'} Queue</button>
 
       <div id="close-queue-warning" className="modal fade" role="dialog">
