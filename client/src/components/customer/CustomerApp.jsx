@@ -74,7 +74,7 @@ class CustomerApp extends React.Component {
 
     // this is a very hacky way of rendering a different page. will refactor to use react router later.
     let currentRender;
-    this.state.selectRestaurant === false ? currentRender = defaultHomeRender : currentRender = <SelectedRestaurant currentRestaurant={this.state.currentRestaurant}/>
+    this.state.selectRestaurant === false ? currentRender = defaultHomeRender : currentRender = <SelectedRestaurant currentRestaurant={this.state.currentRestaurant} groupSize={this.state.currentGroupSize}/>
 
     return (
       <div className="customer-home">
