@@ -24,6 +24,5 @@ const addRestaurants = () => {
 
 module.exports = {
   addRestaurants: addRestaurants,
-  addCustomers: addCustomers,
   addToQueue: addToQueue
 }; 
