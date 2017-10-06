@@ -1,5 +1,5 @@
 #number-in-queue {
-  font-size: 150px;
+  font-size: 100px;
   text-align: center;
 }
 
@@ -24,4 +24,8 @@
 #grand-title {
   font-size: 90px;
   color: white;
+}
+
+h2 {
+  text-align: center;
 }
