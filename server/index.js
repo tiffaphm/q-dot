@@ -47,7 +47,6 @@ app.post('/dummydata', (req, res) => {
     .then(() => db.Customer.sync({force: true}))
     .then(() => db.Queue.sync({force: true}))
     .then(() => dummyData.addRestaurants())
-    .then(() => dummyData.addCustomers())
     .then(() => dummyData.addToQueue())
     .then(() => {
       res.sendStatus(200);
@@ -65,6 +64,7 @@ app.post('/queues', (req, res) => {
   } else {
     db.addToQueue(req.body)
       .then(response => {
+        console.log('here with response after addng to queue', response);
         const result = {
           name: db.nameFormatter(req.body.name),
           mobile: req.body.mobile
@@ -83,7 +83,10 @@ app.post('/queues', (req, res) => {
       .catch(err => {
         if (err.message.includes('closed')) {
           res.send(err.message);
+        } else if (err.message.includes('added')) {
+          res.send(err.message);
         } else {
+          console.log('error during post for queue', err);
           res.status(418).send('Request Failed');
         }
       });
@@ -111,7 +114,6 @@ app.get('/queues', (req, res) => {
         results.queueId = partialResults.id;
         results.size = partialResults.size;
         results.position = partialResults.position;
-        results.position = partialResults.position;
         results.wait = partialResults.wait;
         return db.getQueueInfo(partialResults.restaurantId, partialResults.customerId, partialResults.position);
       })
@@ -134,11 +136,14 @@ app.put('/queues', (req, res) => {
     res.status(400).send('Bad Request');
   } else {
     db.removeFromQueue(req.query.queueId)
-      .then(result => {
-        res.send(`Removed queueId:${req.query.queueId} from queue`);
-      }).catch(err => {
-        console.log('error deleting position in queue', err);
-        res.status(418).send('Failed to remove from queue - Unknown Error');
+      .then(result => res.send(result))
+      .catch(err => {
+        if (err.message.includes('removed')) {
+          res.send(err.message);
+        } else {
+          console.log('error when removing from queue', err);
+          res.status(418).send('Request Failed');
+        }
       });
   }
 });
