@@ -3,6 +3,7 @@ import RestaurantLogoBanner from './RestaurantLogoBanner.jsx';
 import CustomerInfoForm from './CustomerInfoForm.jsx';
 import CustomerQueueInfo from './CustomerQueueInfo.jsx';
 import RestaurantInformation from './RestaurantInformation.jsx';
+import io from 'socket.io-client';
 
 class SelectedRestaurant extends React.Component {
   constructor(props) {
@@ -13,6 +14,7 @@ class SelectedRestaurant extends React.Component {
       queueId: 0,
       queuePosition: 0
     };
+    this.socket = io();
   }
 
   customerInfoSubmitted(id, position) {
@@ -21,6 +23,7 @@ class SelectedRestaurant extends React.Component {
       queueId: id,
       queuePosition: position
     });
+    this.socket.emit('customer report', this.state.queueId);
   }
 
   render() {

@@ -3,6 +3,7 @@ import CustomerList from './CustomerList.jsx';
 import StatusSwitch from './StatusSwitch.jsx';
 import Nav from './Nav.jsx';
 import $ from 'jquery';
+import io from 'socket.io-client';
 
 class ManagerApp extends React.Component {
 
@@ -13,6 +14,8 @@ class ManagerApp extends React.Component {
       queues: undefined,
       restaurantInfo: {}
     };
+
+    this.socket = io();
   }
 
   componentDidMount() {
@@ -58,6 +61,7 @@ class ManagerApp extends React.Component {
             restaurantInfo: data,
             queues: data.queues
           });
+        this.socket.emit('manager report', this.state.restaurantInfo.id);
         let imageURL = `url(/${data.image})`;
         $('.jumbotron-billboard').css('background', imageURL);
       },
