@@ -16,12 +16,11 @@ class SelectedRestaurant extends React.Component {
   }
 
   customerInfoSubmitted(id, position) {
-    // this.setState({
-    //   infoSubmitted: true,
-    //   queueId: id,
-    //   queuePosition: position
-    // })
-    console.log('SelectedRestaurant customerInfoSubmitted', id, position, this.props.groupSize)
+    this.setState({
+      infoSubmitted: true,
+      queueId: id,
+      queuePosition: position
+    })
   }
 
   render() {
