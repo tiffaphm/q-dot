@@ -8,10 +8,6 @@ const bodyParser = require('body-parser');
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
-
-// Uncomment funciton below for dropping all tables from database
-// db.dropAllTables();
-
 app.use(express.static(path.resolve(__dirname, '../client/dist')));
 
 // app.use((req, res, next) => {
@@ -44,11 +40,16 @@ app.get('/restaurants', (req, res) => {
 });
 
 app.post('/dummydata', (req, res) => {
-  dummyData.addRestaurants()
+  db.Queue.drop()
+    .then(() => db.Customer.drop())
+    .then(() => db.Restaurant.drop())
+    .then(() => db.Restaurant.sync({force: true}))
+    .then(() => db.Customer.sync({force: true}))
+    .then(() => db.Queue.sync({force: true}))
+    .then(() => dummyData.addRestaurants())
     .then(() => dummyData.addCustomers())
-    // .then(() => dummyData.addToQueue())
+    .then(() => dummyData.addToQueue())
     .then(() => {
-      // console.log('Added dummy data to database');
       res.sendStatus(200);
     })
     .catch(error => {
