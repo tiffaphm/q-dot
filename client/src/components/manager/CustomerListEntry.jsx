@@ -10,7 +10,7 @@ const CustomerListEntry = (props) => {
         <p>Contact: {props.queue.customer.mobile}</p>
         {props.queue.customer.email ? <p>Email: {props.queue.customer.email}</p> : null}
         <p>Group Size: {props.queue.size}</p>
-        <p>Wait Time: {props.queue.wait}</p>
+        <p>Wait Time: {props.queue.wait} mins</p>
       </div>
       <div className="col-md-3">
         {props.index === 0 
