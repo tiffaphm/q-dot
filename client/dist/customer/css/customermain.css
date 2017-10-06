@@ -9596,7 +9596,7 @@ h4 {
 }
 
 .status-circle {
-  display:inline-block;
+  display: inline-block;
   width: 9px;
   height: 9px;
   border-radius: 50%;
@@ -9621,7 +9621,7 @@ h4 {
 .card-content {
   font-family: Roboto, Helvetica Neue, sans-serif !important;
   color: #6d6d6d;
-  font-size: 16px !important;
+  font-size: 14px !important;
   line-height: 24px !important;
   letter-spacing: 0.2px !important;
   padding-top: 0px !important;
@@ -9701,7 +9701,7 @@ h4 {
   display: flex !important;
 }
 
-.restaurant-queue-info .restaurant-queue-count, .restaurant-wait-time {
+.restaurant-queue-info .restaurant-queue-count {
   display: inline-block;
   color: #6d6d6d;
   font-size: 16px !important;
@@ -9723,6 +9723,17 @@ h4 {
   line-height: 18px;
   margin: 0px;
   padding-top: 10px;
+}
+
+.restaurant-wait-time {
+  display: inline-block;
+  color: #6d6d6d;
+  font-size: 14px !important;
+}
+
+
+.restaurant-wait-time i {
+  margin-left: 4px !important;
 }
 
 .wait-time {
