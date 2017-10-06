@@ -211,7 +211,7 @@ const addToQueue = (params) => {
     });
 };
 
-const getCustomerInfo = (customerId) =>{
+const getCustomerInfo = (customerId) => {
   return Queue.findOne({
     where: {
       customerId: customerId

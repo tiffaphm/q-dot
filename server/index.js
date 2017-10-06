@@ -110,6 +110,8 @@ app.get('/queues', (req, res) => {
         results.queueId = partialResults.id;
         results.size = partialResults.size;
         results.position = partialResults.position;
+        results.position = partialResults.position;
+        results.wait = partialResults.wait;
         return db.getQueueInfo(partialResults.restaurantId, partialResults.customerId, partialResults.position);
       })
       .then(partialResults => {
