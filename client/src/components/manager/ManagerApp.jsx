@@ -21,7 +21,7 @@ class ManagerApp extends React.Component {
 
   switchStatus() {
     $.ajax({
-      url: 'https://q-dot-staging.herokuapp.com/restaurants?restaurantId=1&status=' + (this.state.restaurantInfo.status === 'Open' ? 'Closed' : 'Open'),
+      url: '/restaurants?restaurantId=1&status=' + (this.state.restaurantInfo.status === 'Open' ? 'Closed' : 'Open'),
       method: 'PATCH',
       success: (data) => {
         console.log(data);
@@ -36,7 +36,7 @@ class ManagerApp extends React.Component {
   removeCustomer(queueId) {
     console.log(queueId);
     $.ajax({
-      url: 'https://q-dot-staging.herokuapp.com/queues?queueId=' + queueId,
+      url: '/queues?queueId=' + queueId,
       method: 'PUT',
       success: (data) => {
         console.log(data);
@@ -50,7 +50,7 @@ class ManagerApp extends React.Component {
 
   reloadData() {
     $.ajax({
-      url: 'https://q-dot-staging.herokuapp.com/restaurants?restaurantId=1',
+      url: '/restaurants?restaurantId=1',
       success: (data) => {
         console.log(data);
         this.setState(
@@ -58,7 +58,7 @@ class ManagerApp extends React.Component {
             restaurantInfo: data,
             queues: data.queues
           });
-        let imageURL = `url(https://q-dot-staging.herokuapp.com/${data.image})`;
+        let imageURL = `url(/${data.image})`;
         $('.jumbotron-billboard').css('background', imageURL);
       },
       error: (err) => {
@@ -79,6 +79,8 @@ class ManagerApp extends React.Component {
             <div className="col-md-6">
               <h2>Total groups in queue</h2>
               <div id="number-in-queue">{this.state.restaurantInfo.queues ? this.state.restaurantInfo.queues.length : '0'}</div>
+              <h2>Approximate Wait Time</h2>
+              <div id="number-in-queue">{this.state.restaurantInfo.wait_time}</div>
             </div>
             <div className="col-md-6">
               <CustomerList queues={this.state.queues} removeCustomer={this.removeCustomer.bind(this)}/>

@@ -6,7 +6,7 @@ class GroupSizeSelector extends React.Component {
     this.getGroupSize = this.getGroupSize.bind(this);
     this.state = {
       currentGroupSize: 'Select your group size'
-    }
+    };
   }
 
   getGroupSize(event) {
@@ -14,7 +14,7 @@ class GroupSizeSelector extends React.Component {
 
     this.setState({
       currentGroupSize: size
-    })
+    });
 
     this.props.setGroupSize(size);
   }
@@ -23,26 +23,26 @@ class GroupSizeSelector extends React.Component {
     return (
       <div className="customer-group-buttons-container">
         <h4>Select your group size</h4>
-          <div className="select-wrapper">
-            <select className="browser-default" value={this.state.currentGroupSize} onChange={this.getGroupSize}>
-              <option value="Select your group size" disabled>Select your group size</option>
-              <option value="1">1</option>
-              <option value="2">2</option>
-              <option value="3">3</option>
-              <option value="4">4</option>
-              <option value="5">5</option>
-              <option value="6">6</option>
-              <option value="7">7</option>
-            </select>
-          </div>
+        <div className="select-wrapper">
+          <select className="browser-default" value={this.state.currentGroupSize} onChange={this.getGroupSize}>
+            <option value="Select your group size" disabled>Select your group size</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+            <option value="7">7</option>
+          </select>
+        </div>
       </div>
-    )
+    );
   }
-};
+}
 
 export default GroupSizeSelector;
-          // <div className="customer-group-buttons">
-            // <a className="waves-effect waves-light btn-large"><i className="material-icons left">person</i>solo</a>
-            // <a className="waves-effect waves-light btn-large"><i className="material-icons left">people</i>2</a>
-            // <a className="waves-effect waves-light btn-large"><i className="material-icons left">people</i>3 - 4</a>
-            // <a className="waves-effect waves-light btn-large"><i className="material-icons left">person_add</i>5 +</a>
+// <div className="customer-group-buttons">
+// <a className="waves-effect waves-light btn-large"><i className="material-icons left">person</i>solo</a>
+// <a className="waves-effect waves-light btn-large"><i className="material-icons left">people</i>2</a>
+// <a className="waves-effect waves-light btn-large"><i className="material-icons left">people</i>3 - 4</a>
+// <a className="waves-effect waves-light btn-large"><i className="material-icons left">person_add</i>5 +</a>

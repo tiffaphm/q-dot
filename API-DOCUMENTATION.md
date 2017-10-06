@@ -68,6 +68,8 @@ request.get('https://q-dot.herokuapp.com/restaurants');
         //returns a string, phone number of restaurant
         "queue_count": 0,                 
         //returns an integer, current number of people in queue
+        "wait_time": 0,                 
+        //returns an integer, total wait time for restaurant
         "status": "Open",                 
         //returns a string, either "Open" or "Close", reflecting 
         "createdAt": "2017-10-03T18:26:01.859Z",
@@ -112,6 +114,7 @@ request.get('https://q-dot.herokuapp.com/restaurants?restaurantId=1');
     "name": "Tempest",
     "phone": "(123) 456-7890",
     "queue_count": 0,
+    "wait_time": 30,
     "status": "Open",
     "createdAt": "2017-10-03T19:01:10.644Z",
     "updatedAt": "2017-10-03T19:01:10.644Z",
@@ -120,6 +123,7 @@ request.get('https://q-dot.herokuapp.com/restaurants?restaurantId=1');
             "id": 1,
             "position": 1,
             "size": 1,
+            "wait": 10,
             "createdAt": "2017-10-03T19:01:10.743Z",
             "updatedAt": "2017-10-03T19:01:10.743Z",
             "restaurantId": 1,
@@ -137,6 +141,7 @@ request.get('https://q-dot.herokuapp.com/restaurants?restaurantId=1');
             "id": 3,
             "position": 2,
             "size": 4,
+            "wait": 20,
             "createdAt": "2017-10-03T19:01:10.764Z",
             "updatedAt": "2017-10-03T19:01:10.764Z",
             "restaurantId": 1,
@@ -224,11 +229,13 @@ Successful Response:
     //position will be a number
     "queueInFrontCount": 3,
     //queueInFrontCount will be a number
+    "wait": 10,
     "queueInFrontList": [
         {
             "id": 2,
-            "position": 1,
             "size": 1,
+            "wait": 3,
+            "position": 1,
             "createdAt": "2017-10-04T22:46:20.345Z",
             "updatedAt": "2017-10-04T22:46:20.345Z",
             "restaurantId": 2,
@@ -236,8 +243,9 @@ Successful Response:
         },
         {
             "id": 4,
-            "position": 2,
             "size": 4,
+            "wait": 3,
+            "position": 2,
             "createdAt": "2017-10-04T22:46:20.361Z",
             "updatedAt": "2017-10-04T22:46:20.361Z",
             "restaurantId": 2,
@@ -245,8 +253,9 @@ Successful Response:
         },
         {
             "id": 5,
-            "position": 3,
             "size": 2,
+            "wait": 3,
+            "position": 3,
             "createdAt": "2017-10-05T05:01:36.260Z",
             "updatedAt": "2017-10-05T05:01:36.260Z",
             "restaurantId": 2,
@@ -315,6 +324,8 @@ Successful Request:
     //returns an integer, represents the group size of the customer's reservation
     "position": 2,
     //returns an integer, represents the queue number that was given to the customer 
+    "wait": 6,
+    //returns an integer, represents the wait time for the customer
     "queueInFrontCount": 1,
     //returns an integer, represents the number of customers in front of this customer
     "queueInFrontList": [
@@ -322,10 +333,12 @@ Successful Request:
         {
             "id": 1,
             //returns an unique integer, represents the queue id
-            "position": 1,
-            //returns an integer, represents the queue number given to this customer
             "size": 1,
             //returns an integer, represents the group size of the customer's reservation
+            "wait": 3,
+            //returns an integer, represents the wiat time for that customer
+            "position": 1,
+            //returns an integer, represents the queue number given to this customer
             "createdAt": "2017-10-03T19:01:10.743Z",
             //returns a string, represents the date that the queue was created in the database
             "updatedAt": "2017-10-03T19:01:10.743Z",

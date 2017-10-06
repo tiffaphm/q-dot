@@ -15,9 +15,9 @@ const addToQueue = () => {
 };
 
 const addRestaurants = () => {
-  return db.Restaurant.findOrCreate({where: {name: 'Tempest', phone: '(123) 456-7890', image: '../images/tempestbar.jpg', 'queue_count': 2, status: 'Open'}})
-    .then(() => db.Restaurant.findOrCreate({where: {name: 'Subway', phone: '(123) 456-7990', image: '../images/subway.jpg', 'queue_count': 2, status: 'Open'}}))
-    .then(() => db.Restaurant.findOrCreate({where: {name: 'Chipotle', phone: '(132) 456-7990', image: '../images/chipotle.jpg', 'queue_count': 1, status: 'Closed'}}));
+  return db.Restaurant.findOrCreate({where: {name: 'Tempest', phone: '(123) 456-7890', image: '../images/tempestbar.jpg', status: 'Open', 'wait_time': 10}})
+    .then(() => db.Restaurant.findOrCreate({where: {name: 'Subway', phone: '(123) 456-7990', image: '../images/subway.jpg', status: 'Open', 'wait_time': 3}}))
+    .then(() => db.Restaurant.findOrCreate({where: {name: 'Chipotle', phone: '(132) 456-7990', image: '../images/chipotle.jpg', status: 'Closed', 'wait_time': 3}}));
 };
 
 module.exports = {

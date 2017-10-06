@@ -45,8 +45,12 @@ const Queue = db.define('queue', {
     primaryKey: true,
     autoIncrement: true
   },
-  position: Sequelize.INTEGER,
-  size: Sequelize.INTEGER
+  size: Sequelize.INTEGER,
+  'wait': {
+    type: Sequelize.INTEGER,
+    defaultValue: 0
+  },
+  position: Sequelize.INTEGER
 });
 
 //Restaurant Schema
@@ -56,16 +60,22 @@ const Restaurant = db.define('restaurant', {
     primaryKey: true,
     autoIncrement: true
   },
-  image: Sequelize.STRING,
   name: Sequelize.STRING,
   phone: {
     type: Sequelize.STRING,
     unique: true,
     allowNull: false
   },
-  'queue_count': Sequelize.INTEGER,
-  status: Sequelize.STRING
-
+  'queue_count': {
+    type: Sequelize.INTEGER,
+    defaultValue: 0
+  },
+  'wait_time': {
+    type: Sequelize.INTEGER,
+    defaultValue: 0
+  },
+  status: Sequelize.STRING,
+  image: Sequelize.STRING
 });
 
 // Relationship between Restaurant & Queue
@@ -176,8 +186,10 @@ const addToQueue = (params) => {
     .then(restaurant => {
       if (restaurant.status === 'Open') {
         queueInfo.position = restaurant.queue_count + 1;
+        queueInfo.wait = restaurant.wait_time;
         queueInfo.restaurantId = restaurant.id;
-        return Restaurant.upsert({'queue_count': queueInfo.position, phone: restaurant.phone});
+        let totalWait = restaurant.wait_time + (queueInfo.wait / queueInfo.position);
+        return Restaurant.upsert({'queue_count': queueInfo.position, 'wait_time': totalWait, phone: restaurant.phone});
       } else {
         throw new Error('Restaurant has closed the queue');
       }
@@ -186,6 +198,7 @@ const addToQueue = (params) => {
       return Queue.create(queueInfo);
     })
     .then(result => {
+      response.wait = result.wait;
       response.queueId = result.id;
       response.size = result.size;
       response.position = result.position;
@@ -198,7 +211,7 @@ const addToQueue = (params) => {
     });
 };
 
-const getCustomerInfo = (customerId) =>{
+const getCustomerInfo = (customerId) => {
   return Queue.findOne({
     where: {
       customerId: customerId
