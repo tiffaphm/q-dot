@@ -23,10 +23,6 @@ class CustomerApp extends React.Component {
   }
 
   selectRestaurant(id) {
-    // this.setState({
-    //   selectRestaurant: true
-    // })
-
     $.ajax({
       method: 'GET',
       url: `/restaurants?restaurantId=${id}`,

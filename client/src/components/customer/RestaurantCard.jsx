@@ -13,9 +13,11 @@ class RestaurantCard extends React.Component {
     const openStatusCircle = {
       background: '#4FD135'
     };
+
     const closedStatusCircle = {
       background: '#C01717'
     };
+    
     this.state.restaurantStatus === 'Closed' ? statusCircle = closedStatusCircle : statusCircle = openStatusCircle;
     
     let image;

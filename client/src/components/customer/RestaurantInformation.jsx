@@ -11,15 +11,17 @@ const RestaurantInformation = (props) => {
   const closedStatusCircle = {
     background: '#C01717'
   };
+
+  let waitTime = <div className="restaurant-wait-time"><i className="tiny material-icons">access_time</i> {props.restaurant.wait_time} mins</div>;
   props.restaurant.status === 'Closed' ? statusCircle = closedStatusCircle : statusCircle = openStatusCircle;
+  props.restaurant.status === 'Closed' ? waitTime = undefined : waitTime;
   
   return (
     <div className="restaurant-info-container">
       <div className="restaurant-info">
         <div className="restaurant-name">{props.restaurant.name}</div>
         <div className="restaurant-queue-info">
-          <div className="restaurant-queue-count">{props.restaurant.queue_count} {groupsText}</div>
-          <div className="restaurant-wait-time">wait time: {props.restaurant.wait_time} mins</div>
+          <div className="restaurant-queue-count">{props.restaurant.queue_count} {groupsText} {waitTime}</div>
           <div className="restaurant-queue-status"><span className="status-circle" style={statusCircle}/>{props.restaurant.status}</div>
         </div>
       </div>
