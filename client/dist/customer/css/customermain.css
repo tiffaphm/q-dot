@@ -9673,10 +9673,17 @@ h4 {
   display: relative !important;
 }
 
-.restaurant-info-container, .customer-info-input-container, .customer-queue-info-container {
+.restaurant-info-container, .customer-info-input-container {
   width: 80%;
   margin: 0 auto !important;
   padding-top: 32px !important;
+}
+
+.customer-queue-info-container {
+  width: 100% !important;
+  margin: 0 auto !important;
+  padding-top: 32px !important;
+  text-align: center !important;
 }
 
 .restaurant-info {
@@ -9731,7 +9738,6 @@ h4 {
   font-size: 14px !important;
 }
 
-
 .restaurant-wait-time i {
   margin-left: 4px !important;
 }
@@ -9755,15 +9761,25 @@ h4 {
 }
 
 @media only screen and (min-width: 501px) {
-  .customer-queue-info-container h4 {
+  .customer-queue-info-container h5 {
     font-size: 28px !important;
     font-weight: 700 !important;
-    line-height: 38px !important;
     letter-spacing: -0.6px !important;
     display: inline-block;
     margin: 0 auto;
-    position: absolute;
+    position: relative;
     padding-top: 30px !important;
     padding-bottom: 12px;
   }
+}
+
+.customer-queue-info-container h5 {
+  font-size: 24px;
+  font-weight: 700;
+  letter-spacing: -0.6px;
+  display: inline-block;
+  margin: 0 auto;
+  position: relative;
+  padding-top: 20px;
+  padding-bottom: 12px;
 }

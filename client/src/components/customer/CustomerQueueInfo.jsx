@@ -14,7 +14,10 @@ class CustomerQueueInfo extends React.Component {
     return (
       <div className="customer-queue-info-container">
         <div className="queue-divider"></div>
-          <h4>YOUR CURRENT POSITION IS</h4>
+          <h5>YOUR CURRENT POSITION IS</h5>
+          <div className="queue-position-display">
+            <span className="position-number">10</span>
+          </div>
       </div>
     )
   }
