@@ -9673,7 +9673,7 @@ h4 {
   display: relative !important;
 }
 
-.restaurant-info-container, .customer-info-input-container {
+.restaurant-info-container, .customer-info-input-container, .customer-queue-info-container {
   width: 80%;
   margin: 0 auto !important;
   padding-top: 32px !important;
@@ -9738,4 +9738,32 @@ h4 {
 
 .wait-time {
   float: right;
+}
+
+/*CUSTOMER QUEUE INFO & POSITION INDICATOR*/
+
+.queue-divider {
+  position: relative;
+  height: 4px;
+  display: block;
+  width: 80% !important;
+  padding-top: 3px !important;
+  margin: -2px auto !important;
+  background-color: #acece6;
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+@media only screen and (min-width: 501px) {
+  .customer-queue-info-container h4 {
+    font-size: 28px !important;
+    font-weight: 700 !important;
+    line-height: 38px !important;
+    letter-spacing: -0.6px !important;
+    display: inline-block;
+    margin: 0 auto;
+    position: absolute;
+    padding-top: 30px !important;
+    padding-bottom: 12px;
+  }
 }
