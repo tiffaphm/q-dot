@@ -36,6 +36,11 @@ class ManagerApp extends React.Component {
     });
   }
 
+  notiCustomer(queueId) {
+    console.log(`noti sended to queueId: ${queueId}`);
+    this.socket.emit('noti customer', queueId);
+  }
+
   removeCustomer(queueId) {
     console.log(queueId);
     $.ajax({
@@ -87,7 +92,7 @@ class ManagerApp extends React.Component {
               <div id="number-in-queue">{this.state.restaurantInfo.wait_time}</div>
             </div>
             <div className="col-md-6">
-              <CustomerList queues={this.state.queues} removeCustomer={this.removeCustomer.bind(this)}/>
+              <CustomerList queues={this.state.queues} removeCustomer={this.removeCustomer.bind(this)} notiCustomer={this.notiCustomer.bind(this)}/>
             </div>
           </div>
         </div>
