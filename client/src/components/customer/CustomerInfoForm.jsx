@@ -6,14 +6,12 @@ class CustomerInfoForm extends React.Component {
     super(props);
     this.getFirstName = this.getFirstName.bind(this);
     this.getLastName = this.getLastName.bind(this);
-    this.getFullName = this.getFullName.bind(this);
     this.getMobile = this.getMobile.bind(this);
     this.getEmail = this.getEmail.bind(this);
     this.submitCustomerInfo = this.submitCustomerInfo.bind(this);
     this.state = {
       customerFirstName: '',
       customerLastName: '',
-      customerFullName: '',
       customerMobile: '',
       customerEmail: '',
       groupSize: this.props.groupSize,
@@ -33,13 +31,6 @@ class CustomerInfoForm extends React.Component {
     })
   }
 
-  getFullName() {
-    let fullName = `${this.state.customerFirstName} ${this.state.customerLastName}`;
-    this.setState({
-      customerFullName: fullName
-    })
-  }
-
   getMobile(event) {
     this.setState({
       customerMobile: event.target.value
@@ -53,13 +44,13 @@ class CustomerInfoForm extends React.Component {
   }
 
   submitCustomerInfo() {
-    this.getFullName();
+    let fullName = `${this.state.customerFirstName} ${this.state.customerLastName}`;
 
     $.ajax({
       method: 'POST',
       url: 'https://q-dot-staging.herokuapp.com/queues',
       data: JSON.stringify({
-        "name": this.state.customerFullName, 
+        "name": fullName, 
         "mobile": this.state.customerMobile,
         "email": this.state.customerEmail,
         "size": this.state.groupSize,
