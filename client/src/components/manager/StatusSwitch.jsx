@@ -15,7 +15,7 @@ const StatusSwitch = (props) => {
               <h2 className="modal-title"></h2>
             </div>
             <div className="modal-body">
-              <p className="warning-content"><b>{props.status === 'Open' ? 'Close' : 'Open'}</b>Queue?</p>
+              <p className="warning-content"><b>{props.status === 'Open' ? 'Close' : 'Open'} Queue?</b></p>
             </div>
             <div className="modal-footer">
               <button className="btn btn-primary" onClick={props.switchStatus.bind(this)} data-dismiss="modal">Confirm</button>
