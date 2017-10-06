@@ -46,7 +46,7 @@ app.get('/restaurants', (req, res) => {
 app.post('/dummydata', (req, res) => {
   dummyData.addRestaurants()
     .then(() => dummyData.addCustomers())
-    .then(() => dummyData.addToQueue())
+    // .then(() => dummyData.addToQueue())
     .then(() => {
       // console.log('Added dummy data to database');
       res.sendStatus(200);
@@ -75,6 +75,7 @@ app.post('/queues', (req, res) => {
         result.size = response.size;
         result.position = response.position;
         result.queueInFrontCount = response.queueCount;
+        result.wait = response.wait;
         result.queueInFrontList = response.queueList;
         res.send(result);
       })
