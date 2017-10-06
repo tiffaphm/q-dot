@@ -80,7 +80,7 @@ class ManagerApp extends React.Component {
               <h2>Total groups in queue</h2>
               <div id="number-in-queue">{this.state.restaurantInfo.queues ? this.state.restaurantInfo.queues.length : '0'}</div>
               <h2>Approximate Wait Time</h2>
-              <div id="number-in-queue">{this.state.restaurantInfo.wait_time}</div>
+              <div id="number-in-queue">{this.state.restaurantInfo.total_wait}</div>
             </div>
             <div className="col-md-6">
               <CustomerList queues={this.state.queues} removeCustomer={this.removeCustomer.bind(this)}/>
