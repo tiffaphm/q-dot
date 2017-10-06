@@ -1,5 +1,5 @@
 const Sequelize = require('sequelize');
-const { ne, lt } = Sequelize.Op;
+const { ne, lt, gt } = Sequelize.Op;
 let db;
 
 if (process.env.DATABASE_URL) {
@@ -46,7 +46,7 @@ const Queue = db.define('queue', {
     autoIncrement: true
   },
   size: Sequelize.INTEGER,
-  'wait': {
+  wait: {
     type: Sequelize.INTEGER,
     defaultValue: 0
   },
@@ -70,7 +70,11 @@ const Restaurant = db.define('restaurant', {
     type: Sequelize.INTEGER,
     defaultValue: 0
   },
-  'wait_time': {
+  'total_wait': {
+    type: Sequelize.INTEGER,
+    defaultValue: 0
+  },
+  'average_wait': {
     type: Sequelize.INTEGER,
     defaultValue: 0
   },
@@ -174,15 +178,24 @@ const addToQueue = (params) => {
     .then(customer => {
       queueInfo.customerId = customer.id;
       queueInfo.name = customer.name;
-      return findInfoForOneRestaurant(params.restaurantId);
+      return Queue.findOne({where: {customerId: customer.id, restaurantId: params.restaurantId}});
+      // return findInfoForOneRestaurant(params.restaurantId);
+    })
+    .then(row => {
+      console.log('row for this user', row);
+      if (row !== null) {
+        throw new Error('Already added');
+      } else {
+        return findInfoForOneRestaurant(params.restaurantId);
+      }
     })
     .then(restaurant => {
       if (restaurant.status === 'Open') {
         queueInfo.position = restaurant.queue_count + 1;
-        queueInfo.wait = restaurant.wait_time;
+        queueInfo.wait = restaurant.total_wait;
         queueInfo.restaurantId = restaurant.id;
-        let totalWait = restaurant.wait_time + (queueInfo.wait / queueInfo.position);
-        return Restaurant.upsert({'queue_count': queueInfo.position, 'wait_time': totalWait, phone: restaurant.phone});
+        let totalWait = restaurant.total_wait + restaurant.average_wait;
+        return Restaurant.upsert({'queue_count': queueInfo.position, 'total_wait': totalWait, phone: restaurant.phone});
       } else {
         throw new Error('Restaurant has closed the queue');
       }
@@ -214,11 +227,20 @@ const getCustomerInfo = (customerId) => {
 };
 
 const removeFromQueue = (queueId) => {
-  return Queue.update({position: null}, {
-    where: {
-      id: queueId
-    }
-  });
+  let restaurant;
+  return Queue.find({where: {id: queueId}, include: [Restaurant]})
+    .then(row => {
+      if (!row.position && !row.wait) {
+        throw new Error('Already removed');
+      } else {
+        restaurant = row.restaurant;
+        return Queue.findAll({where: {position: {[ne]: null, [gt]: row.position}}});
+      }
+    })
+    .then(result => result.map(row => Queue.upsert({wait: row.wait - restaurant.average_wait, id: row.id})))
+    .then(() => Restaurant.upsert({'total_wait': restaurant.total_wait - restaurant.average_wait, phone: restaurant.phone}))
+    .then(() => Queue.upsert({position: null, wait: null, id: queueId}))
+    .then(() => getQueueInfo(restaurant.id, 0, restaurant.queue_count + 1));
 };
 
 module.exports = {

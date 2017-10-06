@@ -58,35 +58,39 @@ request.get('https://q-dot.herokuapp.com/restaurants');
 
 [
     {
-        "id": 1,                          
+        "id": 2,
         //returns an unique integer
-        "image": "../images/blank.png",   
-        //returns a string, url for the restaurant image
-        "name": "Tempest",                
+        "name": "Subway",
         //returns a string, name of restaurant
-        "phone": "(123) 456-7890",        
+        "phone": "(123) 456-7990",
         //returns a string, phone number of restaurant
-        "queue_count": 0,                 
-        //returns an integer, current number of people in queue
-        "wait_time": 0,                 
+        "queue_count": 0,
+        //returns an integer, total number of people who queued
+        "total_wait": 3,
         //returns an integer, total wait time for restaurant
-        "status": "Open",                 
+        "average_wait": 3,
+        //returns an integer, average wait time of restaurant
+        "status": "Open",
         //returns a string, either "Open" or "Close", reflecting 
-        "createdAt": "2017-10-03T18:26:01.859Z",
+        "image": "../images/subway.jpg",
+         //returns a string, url for the restaurant image
+        "createdAt": "2017-10-06T19:23:08.999Z",
         //returns a string, showing date of when restaurant info was created in db
-        "updatedAt": "2017-10-03T18:26:01.859Z"
+        "updatedAt": "2017-10-06T19:23:08.999Z"
         //returns a string, showing date of when restaurant info was updated in db
     },
     {
-        "id": 2,
-        "image": "../images/blank.png",
-        "name": "Subway",
-        "phone": "(123) 456-7990",
+        "id": 3,
+        "name": "Chipotle",
+        "phone": "(132) 456-7990",
         "queue_count": 0,
-        "status": "Open",
-        "createdAt": "2017-10-03T18:26:01.942Z",
-        "updatedAt": "2017-10-03T18:26:01.942Z"
-    }
+        "total_wait": 3,
+        "average_wait": 3,
+        "status": "Closed",
+        "image": "../images/chipotle.jpg",
+        "createdAt": "2017-10-06T19:23:09.019Z",
+        "updatedAt": "2017-10-06T19:23:09.019Z"
+    },
 ]
 
 ```
@@ -109,15 +113,16 @@ request.get('https://q-dot.herokuapp.com/restaurants?restaurantId=1');
 //response:
 
 {
-    "id": 1,
-    "image": "../images/blank.png",
-    "name": "Tempest",
-    "phone": "(123) 456-7890",
+    "id": 3,
+    "name": "Chipotle",
+    "phone": "(132) 456-7990",
     "queue_count": 0,
-    "wait_time": 30,
-    "status": "Open",
-    "createdAt": "2017-10-03T19:01:10.644Z",
-    "updatedAt": "2017-10-03T19:01:10.644Z",
+    "total_wait": 3,
+    "average_wait": 3,
+    "status": "Closed",
+    "image": "../images/chipotle.jpg",
+    "createdAt": "2017-10-06T19:23:09.019Z",
+    "updatedAt": "2017-10-06T19:23:09.019Z"
     "queues": [
         {
             "id": 1,
@@ -265,7 +270,7 @@ Successful Response:
 }
 
 200 - 'Restaurant has closed the queue' (if restaurant closed the queue in the interim time)
-
+200 - 'Already added' (If the request was made more than once)
 
 Failed Response:
 400 - 'Bad Request' (if the parameters are incorrect)
@@ -287,7 +292,35 @@ request.put('https://q-dot.herokuapp.com/queues?queueId=1');
 //response
 
 Successful Response:
-200 - Removed queueId:1 from queue;
+
+If someone was removed from the queue succesfully, it will send an updated queue for that restaurant as stated below
+200 - {
+    "count": 2,
+    "rows": [
+        {
+            "id": 4,
+            "size": 2,
+            "wait": 10,
+            "position": 4,
+            "createdAt": "2017-10-06T19:32:19.853Z",
+            "updatedAt": "2017-10-06T19:32:19.853Z",
+            "restaurantId": 1,
+            "customerId": 8
+        },
+        {
+            "id": 6,
+            "size": 2,
+            "wait": 20,
+            "position": 6,
+            "createdAt": "2017-10-06T19:32:30.997Z",
+            "updatedAt": "2017-10-06T19:32:52.343Z",
+            "restaurantId": 1,
+            "customerId": 10
+        }
+    ]
+};
+
+200 - 'Already removed' (in case the request was made more than once)
 
 Failed Response:
 400 - 'Bad Request' (if the parameters are incorrect)
