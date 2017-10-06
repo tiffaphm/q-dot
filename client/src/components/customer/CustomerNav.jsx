@@ -20,7 +20,9 @@ const CustomerNav = () => (
 =======
     <div className="customer-nav-bar">
       <ul id="dropdown1" className="dropdown-content">
-        <li><a href="../manager/index.html">manager</a></li>
+        <li><a href="/">home</a></li>
+        <li className="divider"></li>
+        <li><a href="../manager">manager</a></li>
       </ul>
       <nav>
         <div className="nav-wrapper">
