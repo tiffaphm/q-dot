@@ -47,7 +47,7 @@ app.post('/dummydata', (req, res) => {
     .then(() => db.Customer.sync({force: true}))
     .then(() => db.Queue.sync({force: true}))
     .then(() => dummyData.addRestaurants())
-    .then(() => dummyData.addCustomers())
+    // .then(() => dummyData.addCustomers())
     .then(() => dummyData.addToQueue())
     .then(() => {
       res.sendStatus(200);
