@@ -86,13 +86,6 @@ Queue.belongsTo(Restaurant);
 Customer.hasOne(Queue);
 Queue.belongsTo(Customer);
 
-
-//Uncomment and use this if dropping tables and comment out the basic sync ones below
-// Restaurant.sync({force: true})
-//   .then(() => Customer.sync({force: true}))
-//   .then(() => Queue.sync({force: true}))
-//   .catch(error => console.log('Error syncing data (force true)', error));
-
 Customer.sync()
   .then(() => Restaurant.sync())
   .then(() => Queue.sync())

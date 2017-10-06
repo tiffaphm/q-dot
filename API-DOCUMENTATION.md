@@ -274,7 +274,7 @@ Failed Response:
 ```
 **To remove customer from a queue of a restaurant**
 
-PUT request to '/queues?queueId=[queueId' will remove a customer from the queue of a restaurant.
+PUT request to '/queues?queueId=[queueId]' will remove a customer from the queue of a restaurant.
 
 The response is a string stating the status of the change.
 
@@ -361,7 +361,7 @@ Failed Request:
 
 **To insert dummy data into database**
 
-POST request to '/dummydata' adds dummy data to the database if it does not already exist. 
+POST request to '/dummydata' drops all tables and adds dummy data to the database.
 
 Does not accept any arguments as part of query string or body.
 
