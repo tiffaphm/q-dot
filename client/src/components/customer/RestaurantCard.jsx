@@ -35,7 +35,7 @@ class RestaurantCard extends React.Component {
             </div>
             <div className="card-content">
               <span className="queue-number">groups in queue: {this.props.restaurant.queue_count} </span>
-              <span className="wait-time">wait time: {this.props.restaurant.wait_time} mins</span>
+              <span className="wait-time">wait time: {this.props.restaurant.total_wait} mins</span>
             </div>
           </div>
         </div>
