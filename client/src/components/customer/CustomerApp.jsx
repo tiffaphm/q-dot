@@ -1,6 +1,6 @@
 import React from 'react';
 import CustomerNav from './CustomerNav.jsx';
-import GroupSizeButtons from './GroupSizeButtons.jsx';
+import GroupSizeSelector from './GroupSizeSelector.jsx';
 import RestaurantCard from './RestaurantCard.jsx';
 import SelectedRestaurant from './SelectedRestaurant.jsx';
 import $ from 'jquery';
@@ -63,7 +63,7 @@ class CustomerApp extends React.Component {
   render() {
     const defaultHomeRender = 
       <div>
-        <GroupSizeButtons setGroupSize={this.setGroupSize}/>
+        <GroupSizeSelector setGroupSize={this.setGroupSize}/>
         <div className="select-restaurant-container">
           <h4>Select a restaurant</h4>
           {this.state.restaurantList.map((item, index) => 
