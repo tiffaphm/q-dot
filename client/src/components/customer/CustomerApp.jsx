@@ -15,7 +15,7 @@ class CustomerApp extends React.Component {
       currentGroupSize: 0,
       currentRestaurant: {},
       restaurantList: []
-    }
+    };
   }
 
   componentDidMount() {
@@ -29,7 +29,7 @@ class CustomerApp extends React.Component {
 
     $.ajax({
       method: 'GET',
-      url: `https://q-dot-staging.herokuapp.com/restaurants?restaurantId=${id}`,
+      url: `/restaurants?restaurantId=${id}`,
       success: (data) => {
         console.log('successfully grabbed current restaurant data', data);
         this.setState({ currentRestaurant: data, selectRestaurant: true });
@@ -37,27 +37,27 @@ class CustomerApp extends React.Component {
       failure: (error) => {
         console.log('failed to grab current restaurant data', error);
       }
-    })
+    });
   }
 
   setGroupSize(size) {
     this.setState({
       currentGroupSize: size
-    })
+    });
   }
 
   getRestaurantList() {
     $.ajax({
       method: 'GET',
-      url: 'https://q-dot-staging.herokuapp.com/restaurants',
+      url: '/restaurants',
       success: (data) => {
-        console.log('successfully grabbed restaurant data', data);
+        console.log('successfully grabbed restaurant data', data); 
         this.setState({ restaurantList: data });
       },
       failure: (error) => {
         console.log('failed to grab restaurant data', error);
       }
-    })
+    });
   }
 
   render() {
@@ -70,18 +70,18 @@ class CustomerApp extends React.Component {
             <RestaurantCard restaurant={item} key={index} selectRestaurant={this.selectRestaurant} />
           )}
         </div>
-      </div>
+      </div>;
 
     // this is a very hacky way of rendering a different page. will refactor to use react router later.
     let currentRender;
-    this.state.selectRestaurant === false ? currentRender = defaultHomeRender : currentRender = <SelectedRestaurant currentRestaurant={this.state.currentRestaurant} groupSize={this.state.currentGroupSize}/>
+    this.state.selectRestaurant === false ? currentRender = defaultHomeRender : currentRender = <SelectedRestaurant currentRestaurant={this.state.currentRestaurant} groupSize={this.state.currentGroupSize}/>;
 
     return (
       <div className="customer-home">
         <CustomerNav />
         {currentRender}
       </div>
-    )
+    );
   }
 
 }

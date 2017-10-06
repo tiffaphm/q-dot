@@ -9701,7 +9701,7 @@ h4 {
   display: flex !important;
 }
 
-.restaurant-queue-info .restaurant-queue-count {
+.restaurant-queue-info .restaurant-queue-count, .restaurant-wait-time {
   display: inline-block;
   color: #6d6d6d;
   font-size: 16px !important;
@@ -9723,4 +9723,8 @@ h4 {
   line-height: 18px;
   margin: 0px;
   padding-top: 10px;
+}
+
+.wait-time {
+  float: right;
 }

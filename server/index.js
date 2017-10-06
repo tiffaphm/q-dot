@@ -14,12 +14,12 @@ app.use(bodyParser.urlencoded({extended: true}));
 
 app.use(express.static(path.resolve(__dirname, '../client/dist')));
 
-app.use((req, res, next) => {
-  res.set('Access-Control-Allow-Origin', '*');
-  res.set('Access-Control-Allow-Methods', 'GET, POST, PUT, PATCH, DELETE, HEAD, OPTIONS');
-  res.set('Access-Control-Allow-Headers', 'Origin, Content-Type, Authorization, X-Auth-Token');
-  next();
-});
+// app.use((req, res, next) => {
+//   res.set('Access-Control-Allow-Origin', '*');
+//   res.set('Access-Control-Allow-Methods', 'GET, POST, PUT, PATCH, DELETE, HEAD, OPTIONS');
+//   res.set('Access-Control-Allow-Headers', 'Origin, Content-Type, Authorization, X-Auth-Token');
+//   next();
+// });
 
 app.get('/', (req, res) => {
   res.redirect('/customer');

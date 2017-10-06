@@ -12,7 +12,7 @@ class SelectedRestaurant extends React.Component {
       infoSubmitted: false,
       queueId: 0,
       queuePosition: 0
-    }
+    };
   }
 
   customerInfoSubmitted(id, position) {
@@ -20,7 +20,7 @@ class SelectedRestaurant extends React.Component {
       infoSubmitted: true,
       queueId: id,
       queuePosition: position
-    })
+    });
   }
 
   render() {
@@ -37,7 +37,7 @@ class SelectedRestaurant extends React.Component {
         <RestaurantInformation restaurant={this.props.currentRestaurant}/>
         {this.state.infoSubmitted === false ? <CustomerInfoForm currentRestaurantId={this.props.currentRestaurant.id} customerInfoSubmitted={this.customerInfoSubmitted} groupSize={this.props.groupSize}/> : <CustomerQueueInfo />}
       </div>
-    )
+    );
   }
 }
 
