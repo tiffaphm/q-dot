@@ -28,14 +28,14 @@ app.get('/restaurants', (req, res) => {
       .catch(error => {
         console.log('error getting info for one restaurants', error);
         res.send('failed for one restaurant');
-      });  
+      });
   } else {
     db.findInfoForAllRestaurants()
       .then(restaurants => res.send(restaurants))
       .catch(error => {
         console.log('error getting info for all restaurants', error);
         res.send('failed for info on all restaurants');
-      });  
+      });
   }
 });
 
@@ -43,11 +43,14 @@ app.post('/dummydata', (req, res) => {
   db.Queue.drop()
     .then(() => db.Customer.drop())
     .then(() => db.Restaurant.drop())
+    .then(() => db.Manager.drop())
     .then(() => db.Restaurant.sync({force: true}))
     .then(() => db.Customer.sync({force: true}))
     .then(() => db.Queue.sync({force: true}))
+    .then(() => db.Manager.sync({force: true}))
     .then(() => dummyData.addRestaurants())
     .then(() => dummyData.addToQueue())
+    .then(() => dummyData.addManager())
     .then(() => {
       res.sendStatus(200);
     })
