@@ -107,9 +107,9 @@ app.patch('/restaurants', (req, res) => {
 });
 
 app.get('/queues', (req, res) => {
-  if (req.query.customerId) {
+  if (req.query.queueId) {
     var results = {};
-    db.getCustomerInfo(req.query.customerId)
+    db.getCustomerInfo(req.query.queueId)
       .then(partialResults => {
         results.name = partialResults.customer.name;
         results.mobile = partialResults.customer.mobile;
