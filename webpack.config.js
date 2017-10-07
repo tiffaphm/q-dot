@@ -7,7 +7,8 @@ const config = {
     //if you have a new entry point for a new page, add it here
     customerApp: path.resolve(__dirname, 'client/src/customerIndex.jsx'),
     queueinfo: path.resolve(__dirname, 'client/src/queueinfo.jsx'),
-    managerApp: path.resolve(__dirname, 'client/src/managerIndex.jsx')
+    managerApp: path.resolve(__dirname, 'client/src/managerIndex.jsx'),
+    managerLogin: path.resolve(__dirname, 'client/src/managerLoginIndex.jsx')
   },
   output: {
     path: path.resolve(__dirname, 'client/dist/js'),
@@ -21,7 +22,7 @@ const config = {
         exclude: /node_modules/
       },
       {
-        test: /\.css$/, 
+        test: /\.css$/,
         loader: 'style-loader!css-loader'
       },
       {
