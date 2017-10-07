@@ -10,7 +10,7 @@ if (process.env.DATABASE_URL) {
     username: 'postgres',
     password: 'qdot',
     dialect: 'postgres',
-    port: 5000
+    port: 5432
   });
 }
 
@@ -21,6 +21,17 @@ db.authenticate()
   .catch(err => {
     console.error('Unable to connect to the database:', err);
   });
+
+//Manager Schema
+const Manager = db.define('manager', {
+  id: {
+    type: Sequelize.INTEGER,
+    primaryKey: true,
+    autoIncrement: true
+  },
+  username: Sequelize.STRING,
+  password: Sequelize.STRING
+});
 
 //Customer Schema
 const Customer = db.define('customer', {
@@ -144,7 +155,7 @@ const addToCustomers = (params) => {
         };
 
         if (params.email) {
-          customer.email = params.email;  
+          customer.email = params.email;
         }
 
         return Customer.create(customer);
@@ -248,6 +259,7 @@ module.exports = {
   Customer: Customer,
   Queue: Queue,
   Restaurant: Restaurant,
+  Manager: Manager,
   dropAllTables: dropAllTables,
   findInfoForAllRestaurants: findInfoForAllRestaurants,
   findInfoForOneRestaurant: findInfoForOneRestaurant,
