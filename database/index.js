@@ -8,9 +8,9 @@ if (process.env.DATABASE_URL) {
   db = new Sequelize({
     database: 'qdot',
     username: 'postgres',
-    password: '671179',
+    password: 'qdot',
     dialect: 'postgres',
-    port: 5432
+    port: 5000
   });
 }
 
