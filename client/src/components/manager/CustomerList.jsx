@@ -29,7 +29,7 @@ class CustomerList extends React.Component {
     return (
       <div>
         <h3 className="customer-list-head">Customers in Queue</h3>
-        <AddToQueue addCustomer={props.addCustomer.bind(this)}/>
+        <AddToQueue addCustomer={this.props.addCustomer.bind(this)}/>
         <div className="panel panel-default">
           {entries}
         </div>
