@@ -327,18 +327,18 @@ Failed Response:
 418 - ''Failed to change position - Unknown Error'
 
 ```
-### /queues?customerId=[customerId]
+### /queues?queueId=[queueId]
 
 **Returns detailed queue information of a selected customer in database, including customer information**
 
-GET request to '/queues?customerId=[customerId]' will return detailed queue information of a selected customer, including his/her information.
+GET request to '/queues?queueId=[queueId]' will return detailed queue information of a selected customer, including his/her information.
 
-Accepts the customer id as part of the query string.
+Accepts the queue id as part of the query string.
 
 Example:
 
 ```
-request.get('https://q-dot.herokuapp.com/queues?customerId=3');
+request.get('https://q-dot.herokuapp.com/queues?queueId=3');
 
 //response
 
