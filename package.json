@@ -43,6 +43,7 @@
   "devDependencies": {
     "eslint-config-hackreactor": "git://github.com/reactorcore/eslint-config-hackreactor",
     "mocha": "^4.0.0",
-    "nodemon": "^1.12.1"
+    "nodemon": "^1.12.1",
+    "react-router-dom": "^4.2.2"
   }
 }
