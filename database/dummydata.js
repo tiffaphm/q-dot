@@ -22,7 +22,17 @@ const addRestaurants = () => {
 // .then(() => db.Restaurant.findOrCreate({where: {name: 'Chipotle', phone: '(132) 456-7990', image: '../images/chipotle.jpg', status: 'Closed', 'average_wait': 3, 'total_wait': 3}}));
 };
 
+const addManager = () => {
+  return db.Manager.findOrCreate({
+    where: {
+      username: 'johnny',
+      password: 'hunter2'
+    }
+  });
+};
+
 module.exports = {
   addRestaurants: addRestaurants,
-  addToQueue: addToQueue
-}; 
+  addToQueue: addToQueue,
+  addManager: addManager
+};
