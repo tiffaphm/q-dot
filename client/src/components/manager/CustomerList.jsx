@@ -2,6 +2,7 @@ import React from 'react';
 import CustomerListEntry from './CustomerListEntry.jsx';
 import _ from 'lodash';
 import $ from 'jquery';
+import AddToQueue from './AddToQueue.jsx';
 
 class CustomerList extends React.Component {
 
@@ -27,7 +28,8 @@ class CustomerList extends React.Component {
     let removeCustomer = () => this.props.removeCustomer(this.state.modalQueue.id);
     return (
       <div>
-        <h2>Customers in Queue</h2>
+        <h3 className="customer-list-head">Customers in Queue</h3>
+        <AddToQueue addCustomer={props.addCustomer.bind(this)}/>
         <div className="panel panel-default">
           {entries}
         </div>
@@ -43,8 +45,8 @@ class CustomerList extends React.Component {
                   <p className="warning-content"><b>Remove</b> Customer: {this.state.modalQueue.customer.name} In Queue</p>
                 </div>
                 <div className="modal-footer">
-                  <button className="btn btn-warning" data-dismiss="modal" onClick={removeCustomer}>Customer Not Shown Up</button>
-                  <button className="btn btn-success" data-dismiss="modal" onClick={removeCustomer}>Customer Here</button>
+                  <button className="btn btn-warning" data-dismiss="modal" onClick={removeCustomer}>No Show</button>
+                  <button className="btn btn-success" data-dismiss="modal" onClick={removeCustomer}>Seated</button>
                   <button type="button" className="btn btn-default" data-dismiss="modal">Close</button>
                 </div>
               </div>
