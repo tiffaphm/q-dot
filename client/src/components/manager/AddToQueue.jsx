@@ -11,7 +11,7 @@ class AddToQueue extends React.Component {
     };
   }
 
-  addToQueue (e) {
+  addToQueue () {
     let queueInfo = {
       name: this.state.name,
       mobile: this.state.mobile,
@@ -21,10 +21,8 @@ class AddToQueue extends React.Component {
     if (this.state.email) {
       queueInfo.email = this.state.email;
     }
-
-    this.props.addCustomer(queueInfo);
-
     this.resetValues();
+    this.props.addCustomer(queueInfo);
   }
 
   getName (e) {
