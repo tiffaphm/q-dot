@@ -228,10 +228,10 @@ const addToQueue = (params) => {
     });
 };
 
-const getCustomerInfo = (customerId) => {
+const getCustomerInfo = (queueId) => {
   return Queue.findOne({
     where: {
-      customerId: customerId
+      id: queueId
     },
     include: [Customer]
   });

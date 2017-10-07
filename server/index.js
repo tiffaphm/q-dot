@@ -5,17 +5,38 @@ const port = process.env.PORT || 1337;
 const db = require('../database/index.js');
 const dummyData = require('../database/dummydata.js');
 const bodyParser = require('body-parser');
+const session = require('express-session');
+const RedisStore = require('connect-redis')(session);
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static(path.resolve(__dirname, '../client/dist')));
-
+app.use(session({
+  store: new RedisStore({
+    host: process.env.REDISURL || 'localhost',
+    port: process.env.REDISPORT || 6379
+  }),
+  secret: process.env.SESSIONSECRET || 'nyancat',
+  cookie: {
+    maxAge: 18000000
+  },
+  name: 'qsessionid',
+  resave: false
+}));
 // app.use((req, res, next) => {
 //   res.set('Access-Control-Allow-Origin', '*');
 //   res.set('Access-Control-Allow-Methods', 'GET, POST, PUT, PATCH, DELETE, HEAD, OPTIONS');
 //   res.set('Access-Control-Allow-Headers', 'Origin, Content-Type, Authorization, X-Auth-Token');
 //   next();
 // });
+
+//this shows how you can get queue information from the cookie of a customer who has already queue up
+app.use((req, res, next) => {
+  if (req.session.queueInfo) {
+    console.log(req.session.queueInfo);
+  }
+  next();
+});
 
 app.get('/', (req, res) => {
   res.redirect('/customer');
@@ -81,6 +102,7 @@ app.post('/queues', (req, res) => {
         result.queueInFrontCount = response.queueCount;
         result.wait = response.wait;
         result.queueInFrontList = response.queueList;
+        req.session.queueInfo = result;
         res.send(result);
         socketUpdateManager(req.body.restaurantId);
       })
@@ -108,9 +130,9 @@ app.patch('/restaurants', (req, res) => {
 });
 
 app.get('/queues', (req, res) => {
-  if (req.query.customerId) {
+  if (req.query.queueId) {
     var results = {};
-    db.getCustomerInfo(req.query.customerId)
+    db.getCustomerInfo(req.query.queueId)
       .then(partialResults => {
         results.name = partialResults.customer.name;
         results.mobile = partialResults.customer.mobile;
