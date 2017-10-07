@@ -7,7 +7,7 @@ class AddToQueue extends React.Component {
       name: '',
       mobile: '',
       email: '',
-      size: 0
+      size: ''
     };
   }
 
@@ -44,7 +44,7 @@ class AddToQueue extends React.Component {
   resetValues () {
     this.state.name = '';
     this.state.mobile = '';
-    this.state.size = 0;
+    this.state.size = '';
     this.state.email = '';
   }
 
@@ -67,7 +67,7 @@ class AddToQueue extends React.Component {
               </div>
               <div className="modal-footer">
                 <button className="btn btn-primary" data-dismiss="modal" onClick={this.addToQueue.bind(this)}>Confirm</button>
-                <button type="button" className="btn btn-default" data-dismiss="modal">Cancel</button>
+                <button type="button" className="btn btn-default" data-dismiss="modal" onClick={this.resetValues}>Cancel</button>
               </div>
             </div>
           </div>
