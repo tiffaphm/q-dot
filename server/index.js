@@ -82,6 +82,7 @@ app.post('/queues', (req, res) => {
         result.wait = response.wait;
         result.queueInFrontList = response.queueList;
         res.send(result);
+        socketUpdateManager(req.body.restaurantId);
       })
       .catch(err => {
         if (err.message.includes('closed')) {
@@ -164,6 +165,7 @@ server.listen(port, () => {
 // });
 
 let queueMap = {};
+let managerMap = {};
 
 io.on('connection', (socket) => {
   console.log(`${socket.id} connected`);
@@ -175,6 +177,7 @@ io.on('connection', (socket) => {
   //manager event
   socket.on('manager report', (restaurantId) => {
     console.log(`restaurantId: ${restaurantId} manager reporting with socket id: ${socket.id}`);
+    managerMap[restaurantId] = socket.id;
   });
 
   socket.on('noti customer', (queueId) => {
@@ -189,4 +192,10 @@ io.on('connection', (socket) => {
     queueMap[queueId] = socket.id;
   });
 });
+
+const socketUpdateManager = (restaurantId) => {
+  if (managerMap[restaurantId]) {
+    io.to(managerMap[restaurantId]).emit('update', 'queue changed');
+  }
+};
 

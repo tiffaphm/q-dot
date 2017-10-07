@@ -17,6 +17,10 @@ class ManagerApp extends React.Component {
     };
 
     this.socket = io();
+
+    this.socket.on('update', () => {
+      this.reloadData();
+    });
   }
 
   componentDidMount() {
