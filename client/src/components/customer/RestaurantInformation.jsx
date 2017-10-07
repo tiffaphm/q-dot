@@ -12,7 +12,7 @@ const RestaurantInformation = (props) => {
     background: '#C01717'
   };
 
-  let waitTime = <div className="restaurant-wait-time"><i className="tiny material-icons">access_time</i> {props.restaurant.total_wait} mins</div>;
+  let waitTime = <div className="restaurant-wait-time"><i className="tiny material-icons">access_time</i> {props.restaurant.total_wait - props.restaurant.average_wait} mins</div>;
   props.restaurant.status === 'Closed' ? statusCircle = closedStatusCircle : statusCircle = openStatusCircle;
   props.restaurant.status === 'Closed' ? waitTime = undefined : waitTime;
   

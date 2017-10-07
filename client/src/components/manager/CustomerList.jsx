@@ -1,6 +1,7 @@
 import React from 'react';
 import CustomerListEntry from './CustomerListEntry.jsx';
 import _ from 'lodash';
+import AddToQueue from './AddToQueue.jsx';
 
 const CustomerList = (props) => {
   let entries = props.queues ? _.map(props.queues, (queue, index) => {
@@ -9,7 +10,8 @@ const CustomerList = (props) => {
 
   return (
     <div>
-      <h2>Customers in Queue</h2>
+      <h3 className="customer-list-head">Customers in Queue</h3>
+      <AddToQueue addCustomer={props.addCustomer.bind(this)}/>
       <div className="panel panel-default">
         {entries}
       </div>
