@@ -12,7 +12,7 @@ Schema includes 3 tables shown below:
 |image         |string, url link                  |
 |name          |string, restaurant name           |
 |phone         |string, restaurant number         |
-|queue_count   |integer, current queue count      |
+|nextPosition   |integer, current queue count      |
 |status        |string, current queue status      |
 |createdAt     |string, restaurant creation date  |
 |updatedAt     |string, restaurant updated date   |
@@ -64,7 +64,7 @@ request.get('https://q-dot.herokuapp.com/restaurants');
         //returns a string, name of restaurant
         "phone": "(123) 456-7990",
         //returns a string, phone number of restaurant
-        "queue_count": 0,
+        "nextPosition": 0,
         //returns an integer, total number of people who queued
         "total_wait": 3,
         //returns an integer, total wait time for restaurant
@@ -83,7 +83,7 @@ request.get('https://q-dot.herokuapp.com/restaurants');
         "id": 3,
         "name": "Chipotle",
         "phone": "(132) 456-7990",
-        "queue_count": 0,
+        "nextPosition": 0,
         "total_wait": 3,
         "average_wait": 3,
         "status": "Closed",
@@ -116,7 +116,7 @@ request.get('https://q-dot.herokuapp.com/restaurants?restaurantId=1');
     "id": 3,
     "name": "Chipotle",
     "phone": "(132) 456-7990",
-    "queue_count": 0,
+    "nextPosition": 0,
     "total_wait": 3,
     "average_wait": 3,
     "status": "Closed",
@@ -406,10 +406,10 @@ request.post('https://q-dot.herokuapp.com/dummydata');
 3 Restaurants:
 
 [
-    {name: 'Tempest', phone: '(123) 456-7890', image: '../images/tempest.png', 'queue_count': 0, status: 'Open'},
-    {name: 'Subway', phone: '(123) 456-7990', image: '../images/subway.png', 'queue_count': 0, status: 
+    {name: 'Tempest', phone: '(123) 456-7890', image: '../images/tempest.png', 'nextPosition': 0, status: 'Open'},
+    {name: 'Subway', phone: '(123) 456-7990', image: '../images/subway.png', 'nextPosition': 0, status: 
     'Open'},
-    {name: 'Chipotle', phone: '(132) 456-7990', image: '../images/chipotle.png', 'queue_count': 1, status: 'Closed'}
+    {name: 'Chipotle', phone: '(132) 456-7990', image: '../images/chipotle.png', 'nextPosition': 1, status: 'Closed'}
 ]
 
 4 Customers:

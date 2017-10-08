@@ -77,7 +77,7 @@ const Restaurant = db.define('restaurant', {
     unique: true,
     allowNull: false
   },
-  'queue_count': {
+  'nextPosition': {
     type: Sequelize.INTEGER,
     defaultValue: 0
   },
@@ -202,11 +202,11 @@ const addToQueue = (params) => {
     })
     .then(restaurant => {
       if (restaurant.status === 'Open') {
-        queueInfo.position = restaurant.queue_count + 1;
+        queueInfo.position = restaurant.nextPosition + 1;
         queueInfo.wait = restaurant.total_wait;
         queueInfo.restaurantId = restaurant.id;
         let totalWait = restaurant.total_wait + restaurant.average_wait;
-        return Restaurant.upsert({'queue_count': queueInfo.position, 'total_wait': totalWait, phone: restaurant.phone});
+        return Restaurant.upsert({'nextPosition': queueInfo.position, 'total_wait': totalWait, phone: restaurant.phone});
       } else {
         throw new Error('Restaurant has closed the queue');
       }
@@ -251,7 +251,7 @@ const removeFromQueue = (queueId) => {
     .then(result => result.map(row => Queue.upsert({wait: row.wait - restaurant.average_wait, id: row.id})))
     .then(() => Restaurant.upsert({'total_wait': restaurant.total_wait - restaurant.average_wait, phone: restaurant.phone}))
     .then(() => Queue.upsert({position: null, wait: null, id: queueId}))
-    .then(() => getQueueInfo(restaurant.id, 0, restaurant.queue_count + 1));
+    .then(() => getQueueInfo(restaurant.id, 0, restaurant.nextPosition + 1));
 };
 
 module.exports = {
