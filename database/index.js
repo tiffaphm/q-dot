@@ -237,6 +237,14 @@ const getCustomerInfo = (queueId) => {
   });
 };
 
+const getManagerInfo = (username) => {
+  return Manager.findOne({
+    where: {
+      username: username
+    }
+  });
+};
+
 const removeFromQueue = (queueId) => {
   let restaurant;
   return Queue.find({where: {id: queueId}, include: [Restaurant]})
@@ -270,5 +278,6 @@ module.exports = {
   updateRestaurantStatus: updateRestaurantStatus,
   getQueueInfo: getQueueInfo,
   getCustomerInfo: getCustomerInfo,
+  getManagerInfo: getManagerInfo,
   removeFromQueue: removeFromQueue
 };

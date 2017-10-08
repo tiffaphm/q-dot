@@ -13,7 +13,7 @@ const Nav = (props) => {
         </ul>
         <ul className="nav navbar-nav navbar-right">
           <StatusSwitch status={props.status} switchStatus={props.switchStatus.bind(this)}/>
-          <button className="btn btn-danger navbar-btn">Logout</button>
+          <button className="btn btn-danger navbar-btn" onClick={e => location.href = '/logout'}>Logout</button>
         </ul>
       </div>
     </nav>
