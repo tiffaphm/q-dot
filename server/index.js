@@ -7,6 +7,7 @@ const dummyData = require('../database/dummydata.js');
 const bodyParser = require('body-parser');
 const session = require('express-session');
 const RedisStore = require('connect-redis')(session);
+const passport = require('./login.js');
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
@@ -23,6 +24,8 @@ app.use(session({
   name: 'qsessionid',
   resave: false
 }));
+app.use(passport.initialize());
+app.use(passport.session());
 // app.use((req, res, next) => {
 //   res.set('Access-Control-Allow-Origin', '*');
 //   res.set('Access-Control-Allow-Methods', 'GET, POST, PUT, PATCH, DELETE, HEAD, OPTIONS');
@@ -171,6 +174,25 @@ app.put('/queues', (req, res) => {
         }
       });
   }
+});
+
+app.post('/managerlogin', passport.authenticate('local'), (req, res) => {
+  res.redirect('/manager');
+});
+
+app.get('/testauthenticate', (req, res) => {
+  if (req.user) {
+    console.log('im in');
+    res.send(req.user);
+  } else {
+    res.send('NUP YA BAD PERSON');
+  }
+});
+
+app.get('/logout', (req, res) => {
+  console.log(req.user);
+  req.logout();
+  res.redirect('/managerlogin');
 });
 
 var server = require('http').Server(app);
