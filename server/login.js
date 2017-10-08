@@ -1,10 +1,11 @@
 const db = require('../database/index.js');
+const dbQuery = require('../controller/index.js');
 const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
 
 passport.use(new LocalStrategy(
   function(username, password, done) {
-    db.getManagerInfo(username)
+    dbQuery.getManagerInfo(username)
       .then(user => {
         if (!user) {
           return done(null, false, { message: 'incorrect username' });
