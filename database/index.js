@@ -10,7 +10,7 @@ if (process.env.DATABASE_URL) {
     username: 'postgres',
     password: 'qdot',
     dialect: 'postgres',
-    port: 5432
+    port: 5000
   });
 }
 
