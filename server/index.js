@@ -72,10 +72,7 @@ app.get('/restaurants', (req, res) => {
       });
   } else {
     db.findInfoForAllRestaurants()
-      .then(restaurants => {
-        console.log('restauuuurants', restaurants);
-        res.send(restaurants);
-      })
+      .then(restaurants => res.send(restaurants))
       .catch(error => {
         console.log('error getting info for all restaurants', error);
         res.send('failed for info on all restaurants');
