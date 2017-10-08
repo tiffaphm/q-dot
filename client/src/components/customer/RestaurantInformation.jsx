@@ -21,7 +21,7 @@ const RestaurantInformation = (props) => {
       <div className="restaurant-info">
         <div className="restaurant-name">{props.restaurant.name}</div>
         <div className="restaurant-queue-info">
-          <div className="restaurant-queue-count">{props.restaurant.nextPosition} {groupsText} {waitTime}</div>
+          <div className="restaurant-queue-count">{props.restaurant.queues.length} {groupsText} {waitTime}</div>
           <div className="restaurant-queue-status"><span className="status-circle" style={statusCircle}/>{props.restaurant.status}</div>
         </div>
       </div>

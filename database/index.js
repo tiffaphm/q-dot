@@ -138,7 +138,7 @@ const findInfoForOneRestaurant = (restaurantId) => {
 };
 
 const findInfoForAllRestaurants = () => {
-  return Restaurant.findAll();
+  return Restaurant.findAll({include: [Queue]});
 };
 
 const updateRestaurantStatus = (info) => {
