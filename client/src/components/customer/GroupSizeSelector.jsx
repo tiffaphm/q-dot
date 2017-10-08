@@ -21,11 +21,10 @@ class GroupSizeSelector extends React.Component {
 
   render() {
     return (
-      <div className="customer-group-buttons-container">
-        <h4>Select your group size</h4>
+      <div className="customer-group-selector-container">
           <div className="select-wrapper">
             <select className="browser-default" value={this.state.currentGroupSize} onChange={this.getGroupSize}>
-              <option value="Select your group size" disabled>Group size</option>
+              <option value="Select your group size" disabled>Select group size</option>
               <option value="1">1</option>
               <option value="2">2</option>
               <option value="3">3</option>
