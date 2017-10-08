@@ -11,7 +11,8 @@ const passport = require('./login.js');
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
-app.use(express.static(path.resolve(__dirname, '../client/dist')));
+
+//checks if session already exists, if it does, adds req.session to req object
 app.use(session({
   store: new RedisStore({
     host: process.env.REDISURL || '104.237.154.8',
@@ -24,14 +25,30 @@ app.use(session({
   name: 'qsessionid',
   resave: false
 }));
+
+//these middlewares initialise passport and adds req.user to req object if user has aleady been authenticated
 app.use(passport.initialize());
 app.use(passport.session());
+
 // app.use((req, res, next) => {
 //   res.set('Access-Control-Allow-Origin', '*');
 //   res.set('Access-Control-Allow-Methods', 'GET, POST, PUT, PATCH, DELETE, HEAD, OPTIONS');
 //   res.set('Access-Control-Allow-Headers', 'Origin, Content-Type, Authorization, X-Auth-Token');
 //   next();
 // });
+
+//this is to check if manager is logged in, before using static middleware. MUST always be above express.static!
+app.get('/manager', (req, res, next) => {
+
+  if (req.user) {
+    console.log('logged in');
+    next();
+  } else {
+    res.redirect('/managerlogin');
+  }
+});
+
+app.use(express.static(path.resolve(__dirname, '../client/dist')));
 
 //this shows how you can get queue information from the cookie of a customer who has already queue up
 app.use((req, res, next) => {
@@ -177,20 +194,11 @@ app.put('/queues', (req, res) => {
 });
 
 app.post('/managerlogin', passport.authenticate('local'), (req, res) => {
-  res.redirect('/manager');
+  res.send('/manager');
 });
 
-app.get('/testauthenticate', (req, res) => {
-  if (req.user) {
-    console.log('im in');
-    res.send(req.user);
-  } else {
-    res.send('NUP YA BAD PERSON');
-  }
-});
 
 app.get('/logout', (req, res) => {
-  console.log(req.user);
   req.logout();
   res.redirect('/managerlogin');
 });

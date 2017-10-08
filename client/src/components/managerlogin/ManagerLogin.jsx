@@ -1,18 +1,20 @@
 import React from 'react';
+import $ from 'jquery';
 
 class ManagerLogin extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      email: '',
-      password: ''
+      username: '',
+      password: '',
+      unauthorised: false
     };
   }
 
   updateInputFields(event, field) {
-    if (field === 'email') {
+    if (field === 'username') {
       this.setState({
-        email: event.target.value
+        username: event.target.value
       });
     } else {
       this.setState({
@@ -23,7 +25,27 @@ class ManagerLogin extends React.Component {
 
   submitHandler(event) {
     event.preventDefault();
-    console.log(this.state.email, this.state.password);
+    var self = this;
+    $.ajax({
+      url: `/managerlogin?username=${this.state.username}&password=${this.state.password}`,
+      method: 'POST',
+      success: (data) => {
+        self.setState({
+          unauthorised: false
+        });
+        window.location.href = data;
+      },
+      failure: (err) => {
+        console.log('failed to load page', err);
+      },
+      statusCode: {
+        401: function() {
+          self.setState({
+            unauthorised: true
+          });
+        }
+      }
+    });
   }
 
   render() {
@@ -33,12 +55,12 @@ class ManagerLogin extends React.Component {
           <h2 className='form-signin-heading'>Please sign in</h2>
           <label className='sr-only'>Email address</label>
           <input
-            value={this.state.email}
-            type='email'
+            value={this.state.username}
+            type='username'
             className='form-control'
-            placeholder='Email address'
+            placeholder='username'
             required autoFocus
-            onChange={(e) => this.updateInputFields(e, 'email')}
+            onChange={(e) => this.updateInputFields(e, 'username')}
           />
           <label className='sr-only'>Password</label>
           <input
@@ -50,7 +72,16 @@ class ManagerLogin extends React.Component {
             onChange={(e) => this.updateInputFields(e, 'password')}
           />
           <button className='btn btn-lg btn-primary btn-block' type='submit'>Sign in</button>
+          <br />
+          {
+            this.state.unauthorised ?
+              <div className="alert alert-danger">
+              invalid credentials - please try again!
+              </div>
+              : null
+          }
         </form>
+
       </div>
     );
   }
