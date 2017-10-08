@@ -89,6 +89,7 @@ class ManagerApp extends React.Component {
             restaurantInfo: data,
             queues: data.queues
           });
+        // report restaurantId to server socket
         this.socket.emit('manager report', this.state.restaurantInfo.id);
         let imageURL = `url(/${data.image})`;
         $('.jumbotron-billboard').css('background', imageURL);

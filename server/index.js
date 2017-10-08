@@ -13,7 +13,7 @@ app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static(path.resolve(__dirname, '../client/dist')));
 app.use(session({
   store: new RedisStore({
-    host: process.env.REDISURL || 'localhost',
+    host: process.env.REDISURL || '104.237.154.8',
     port: process.env.REDISPORT || 6379
   }),
   secret: process.env.SESSIONSECRET || 'nyancat',
@@ -104,6 +104,7 @@ app.post('/queues', (req, res) => {
         result.queueInFrontList = response.queueList;
         req.session.queueInfo = result;
         res.send(result);
+        //automatically update manager side client
         socketUpdateManager(req.body.restaurantId);
       })
       .catch(err => {

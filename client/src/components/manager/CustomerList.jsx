@@ -33,6 +33,7 @@ class CustomerList extends React.Component {
         <div className="panel panel-default">
           {entries}
         </div>
+        
         { this.state.modalQueue
           ? <div id="remove-warning" className="modal fade" role="dialog">
             <div className="modal-dialog">

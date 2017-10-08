@@ -24,8 +24,9 @@ class SelectedRestaurant extends React.Component {
       queueId: id,
       queuePosition: position
     });
+    // report queueId to server socket
     this.socket.emit('customer report', this.state.queueId);
-
+    
     this.socket.on('noti', (message) => {
       console.log(message);
       this.setState({ ready: true });
