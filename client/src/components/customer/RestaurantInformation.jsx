@@ -2,7 +2,7 @@ import React from 'react';
 
 const RestaurantInformation = (props) => {
   let groupsText;
-  props.restaurant.queue_count === 1 ? groupsText = 'group queued' : groupsText = 'groups queued';
+  props.restaurant.queues.length === 1 ? groupsText = 'group queued' : groupsText = 'groups queued';
 
   let statusCircle;
   const openStatusCircle = {
@@ -21,7 +21,7 @@ const RestaurantInformation = (props) => {
       <div className="restaurant-info">
         <div className="restaurant-name">{props.restaurant.name}</div>
         <div className="restaurant-queue-info">
-          <div className="restaurant-queue-count">{props.restaurant.queue_count} {groupsText} {waitTime}</div>
+          <div className="restaurant-queue-count">{props.restaurant.queues.length} {groupsText} {waitTime}</div>
           <div className="restaurant-queue-status"><span className="status-circle" style={statusCircle}/>{props.restaurant.status}</div>
         </div>
       </div>

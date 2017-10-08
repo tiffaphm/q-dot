@@ -28,7 +28,7 @@ describe ('Restaurant API routes', function() {
           image: '../images/tempestbar.jpg',
           name: 'Tempest',
           phone: '(123) 456-7890',
-          'queue_count': 2,
+          'nextPosition': 2,
           status: 'Open',
           createdAt: '2017-10-04T21:41:25.071Z',
           updatedAt: '2017-10-04T21:41:25.071Z'
@@ -38,7 +38,7 @@ describe ('Restaurant API routes', function() {
           image: '../images/subway.jpg',
           name: 'Subway',
           phone: '(123) 456-7990',
-          'queue_count': 2,
+          'nextPosition': 2,
           status: 'Open',
           createdAt: '2017-10-04T21:41:25.091Z',
           updatedAt: '2017-10-04T21:41:25.091Z'
@@ -48,7 +48,7 @@ describe ('Restaurant API routes', function() {
           image: '../images/chipotle.jpg',
           name: 'Chipotle',
           phone: '(132) 456-7990',
-          'queue_count': 1,
+          'nextPosition': 1,
           status: 'Closed',
           createdAt: '2017-10-04T21:41:25.104Z',
           updatedAt: '2017-10-04T21:41:25.104Z'
