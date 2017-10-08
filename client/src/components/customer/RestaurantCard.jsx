@@ -1,5 +1,8 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
+import SelectedRestaurant from './SelectedRestaurant.jsx';
 
+// RestaurantCard is what the customers click on the home page to select their restaurant. Routes to /SelectedRestaurant
 class RestaurantCard extends React.Component {
   constructor(props) {
     super(props);
@@ -25,7 +28,7 @@ class RestaurantCard extends React.Component {
     return (
       <div className="restaurant-container">
         <div className="col s12 m7">
-          <div className="card small hoverable" onClick={() => this.props.selectRestaurant(this.props.restaurant.id)}>
+          <div className="card small hoverable">
             <div className="card-image">
               <img src={image}/>
             </div>
@@ -45,3 +48,4 @@ class RestaurantCard extends React.Component {
 }
 
 export default RestaurantCard;
+          // <Link to={`/restaurant/${this.props.restaurant.name}`}>

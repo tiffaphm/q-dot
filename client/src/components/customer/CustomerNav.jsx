@@ -1,5 +1,6 @@
 import React from 'react';
 
+// nav bar
 const CustomerNav = () => (
     <div className="customer-nav-bar">
       <ul id="dropdown1" className="dropdown-content">

@@ -1,22 +1,31 @@
 import React from 'react';
 import $ from 'jquery';
+import GroupSizeSelector from './GroupSizeSelector.jsx';
 
+// the form where customers submit their information
 class CustomerInfoForm extends React.Component {
   constructor(props) {
     super(props);
+    this.getGroupSize = this.getGroupSize.bind(this);
     this.getFirstName = this.getFirstName.bind(this);
     this.getLastName = this.getLastName.bind(this);
     this.getMobile = this.getMobile.bind(this);
     this.getEmail = this.getEmail.bind(this);
     this.submitCustomerInfo = this.submitCustomerInfo.bind(this);
     this.state = {
+      groupSize: 0,
       customerFirstName: '',
       customerLastName: '',
       customerMobile: '',
       customerEmail: '',
-      groupSize: this.props.groupSize,
       currentRestaurantId: this.props.currentRestaurantId
     };
+  }
+
+  getGroupSize(size) {
+    this.setState({
+      groupSize: size
+    });
   }
 
   getFirstName(event) {
@@ -52,16 +61,18 @@ class CustomerInfoForm extends React.Component {
 
   submitCustomerInfo() {
     let fullName = `${this.state.customerFirstName} ${this.state.customerLastName}`;
+    let url = window.location.href;
+    let id = url.split('').pop();
 
     $.ajax({
       method: 'POST',
-      url: '/queues',
+      url: '../../queues',
       data: JSON.stringify({
         name: fullName, 
         mobile: this.state.customerMobile,
         email: this.state.customerEmail,
         size: this.state.groupSize,
-        restaurantId: this.state.currentRestaurantId
+        restaurantId: id
       }),
       contentType: 'application/json',
       success: (data) => {
@@ -78,6 +89,7 @@ class CustomerInfoForm extends React.Component {
     return (
       <div className="customer-info-input-container">
         <div className="row">
+          <GroupSizeSelector getGroupSize={this.getGroupSize}/>
           <div className="row">
             <div className="input-field col s6">
               <input id="first_name" type="text" className="validate" onChange={this.getFirstName}/>

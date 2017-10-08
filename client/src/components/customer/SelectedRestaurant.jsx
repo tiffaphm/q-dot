@@ -3,6 +3,7 @@ import RestaurantLogoBanner from './RestaurantLogoBanner.jsx';
 import CustomerInfoForm from './CustomerInfoForm.jsx';
 import CustomerQueueInfo from './CustomerQueueInfo.jsx';
 import RestaurantInformation from './RestaurantInformation.jsx';
+import { Link } from 'react-router-dom';
 import io from 'socket.io-client';
 
 class SelectedRestaurant extends React.Component {
@@ -10,12 +11,34 @@ class SelectedRestaurant extends React.Component {
     super(props);
     this.customerInfoSubmitted = this.customerInfoSubmitted.bind(this);
     this.state = {
+      currentRestaurant: {},
       infoSubmitted: false,
       queueId: 0,
       queuePosition: 0,
       ready: false
     };
     this.socket = io();
+  }
+
+  componentDidMount() {
+    this.getRestaurant();
+  }
+
+  getRestaurant() {
+    let url = window.location.href;
+    let id = url.split('').pop();
+
+    $.ajax({
+      method: 'GET',
+      url: `/restaurants?restaurantId=${id}`,
+      success: (data) => {
+        console.log('successfully grabbed current restaurant data', data);
+        this.setState({ currentRestaurant: data });
+      },
+      failure: (error) => {
+        console.log('failed to grab current restaurant data', error);
+      }
+    });
   }
 
   customerInfoSubmitted(id, position) {
@@ -33,21 +56,18 @@ class SelectedRestaurant extends React.Component {
   }
 
   render() {
-    let image;
-    this.props.currentRestaurant.image === '../images/blank.png' ? image = '../images/randomrestaurant.jpg' : image = this.props.currentRestaurant.image;
-
     const restaurantImg = {
-      backgroundImage: `url(${image})`
+      backgroundImage: `url(../${this.state.currentRestaurant.image})`
     };
 
     return (
       <div className="selected-restaurant">
         <RestaurantLogoBanner style={restaurantImg} />
-        {this.state.infoSubmitted === false ? <RestaurantInformation restaurant={this.props.currentRestaurant}/> : <RestaurantInformation restaurant={this.props.currentRestaurant}/>}
+        {this.state.infoSubmitted === false ? <RestaurantInformation restaurant={this.state.currentRestaurant}/> : <RestaurantInformation restaurant={this.state.currentRestaurant}/>}
         {this.state.ready 
           ? <h3 className="ready-noti">Your table is ready!</h3>
           : []}
-        {this.state.infoSubmitted === false ? <CustomerInfoForm currentRestaurantId={this.props.currentRestaurant.id} customerInfoSubmitted={this.customerInfoSubmitted} groupSize={this.props.groupSize}/> : <CustomerQueueInfo />}
+        {this.state.infoSubmitted === false ? <CustomerInfoForm currentRestaurantId={this.state.currentRestaurant.id} customerInfoSubmitted={this.customerInfoSubmitted} /> : <CustomerQueueInfo />}
       </div>
     );
   }
