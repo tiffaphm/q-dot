@@ -11,7 +11,7 @@ import { Link } from 'react-router-dom';
 class CustomerHome extends React.Component {
   constructor(props) {
     super(props);
-    this.selectRestaurant = this.selectRestaurant.bind(this);
+    // this.selectRestaurant = this.selectRestaurant.bind(this);
     this.state = {
       selectRestaurant: false,
       currentRestaurant: {},
@@ -23,19 +23,19 @@ class CustomerHome extends React.Component {
     this.getRestaurantList();
   }
 
-  selectRestaurant(id) {
-    $.ajax({
-      method: 'GET',
-      url: `/restaurants?restaurantId=${id}`,
-      success: (data) => {
-        console.log('successfully grabbed current restaurant data', data);
-        this.setState({ currentRestaurant: data, selectRestaurant: true });
-      },
-      failure: (error) => {
-        console.log('failed to grab current restaurant data', error);
-      }
-    });
-  }
+  // selectRestaurant(id) {
+  //   $.ajax({
+  //     method: 'GET',
+  //     url: `/restaurants?restaurantId=${id}`,
+  //     success: (data) => {
+  //       console.log('successfully grabbed current restaurant data', data);
+  //       this.setState({ currentRestaurant: data, selectRestaurant: true });
+  //     },
+  //     failure: (error) => {
+  //       console.log('failed to grab current restaurant data', error);
+  //     }
+  //   });
+  // }
 
   getRestaurantList() {
     $.ajax({
@@ -61,9 +61,11 @@ class CustomerHome extends React.Component {
       <div className="customer-home">
         <div className="select-restaurant-container">
           <h4>Select a restaurant</h4>
-          {this.state.restaurantList.map((item, index) => 
-            <RestaurantCard restaurant={item} key={index} selectRestaurant={this.selectRestaurant}/>
-          )}
+            {this.state.restaurantList.map(restaurant => (
+              <div key={restaurant.id}>
+                <Link to={`/restaurant/${restaurant.id}/${restaurant.name}`}><RestaurantCard restaurant={restaurant}/></Link>
+              </div>
+            ))}
         </div>
       </div>
     );

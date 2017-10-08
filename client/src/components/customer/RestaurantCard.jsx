@@ -1,7 +1,8 @@
 import React from 'react';
-import { Route, Link, Switch } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import SelectedRestaurant from './SelectedRestaurant.jsx';
 
+// RestaurantCard is what the customers click on the home page to select their restaurant. Routes to /SelectedRestaurant
 class RestaurantCard extends React.Component {
   constructor(props) {
     super(props);

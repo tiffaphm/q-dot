@@ -1,5 +1,6 @@
 import React from 'react';
 import $ from 'jquery';
+import GroupSizeSelector from './GroupSizeSelector.jsx';
 
 // the form where customers submit their information
 class CustomerInfoForm extends React.Component {
