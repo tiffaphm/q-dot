@@ -33,7 +33,7 @@ class SelectedRestaurant extends React.Component {
       url: `/restaurants?restaurantId=${id}`,
       success: (data) => {
         console.log('successfully grabbed current restaurant data', data);
-        this.setState({ currentRestaurant: data, image: data.image });
+        this.setState({ currentRestaurant: data });
       },
       failure: (error) => {
         console.log('failed to grab current restaurant data', error);
@@ -57,7 +57,7 @@ class SelectedRestaurant extends React.Component {
 
   render() {
     const restaurantImg = {
-      backgroundImage: `url(${this.state.currentRestaurant.image})`
+      backgroundImage: `url(../${this.state.currentRestaurant.image})`
     };
 
     return (

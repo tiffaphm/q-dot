@@ -61,16 +61,18 @@ class CustomerInfoForm extends React.Component {
 
   submitCustomerInfo() {
     let fullName = `${this.state.customerFirstName} ${this.state.customerLastName}`;
+    let url = window.location.href;
+    let id = url.split('').pop();
 
     $.ajax({
       method: 'POST',
-      url: '/queues',
+      url: '../../queues',
       data: JSON.stringify({
         name: fullName, 
         mobile: this.state.customerMobile,
         email: this.state.customerEmail,
         size: this.state.groupSize,
-        restaurantId: this.state.currentRestaurantId
+        restaurantId: id
       }),
       contentType: 'application/json',
       success: (data) => {

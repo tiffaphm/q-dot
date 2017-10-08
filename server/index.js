@@ -102,6 +102,7 @@ app.post('/dummydata', (req, res) => {
 });
 
 app.post('/queues', (req, res) => {
+  console.log('req body', req.body);
   if (!req.body.name || !req.body.mobile || !req.body.restaurantId
       || !req.body.size) {
     res.status(400).send('Bad Request');
