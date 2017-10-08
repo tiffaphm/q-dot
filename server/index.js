@@ -98,7 +98,6 @@ app.post('/queues', (req, res) => {
   } else {
     dbQuery.addToQueue(req.body)
       .then(response => {
-        console.log('here with response after addng to queue', response);
         const result = {
           name: helpers.nameFormatter(req.body.name),
           mobile: req.body.mobile

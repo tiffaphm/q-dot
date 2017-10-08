@@ -86,7 +86,6 @@ const addToQueue = (params) => {
       return db.Queue.findOne({where: {customerId: customer.id, restaurantId: params.restaurantId}});
     })
     .then(row => {
-      console.log('row for this user', row);
       if (row !== null) {
         throw new Error('Already added');
       } else {
