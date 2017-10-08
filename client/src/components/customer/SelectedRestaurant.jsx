@@ -25,12 +25,13 @@ class SelectedRestaurant extends React.Component {
   }
 
   getRestaurant() {
+    console.log('is this working');
     let url = window.location.href;
     let id = url.split('').pop();
 
     $.ajax({
       method: 'GET',
-      url: `/restaurants?restaurantId=${id}`,
+      url: `../../restaurants?restaurantId=${id}`,
       success: (data) => {
         console.log('successfully grabbed current restaurant data', data);
         this.setState({ currentRestaurant: data });
@@ -63,7 +64,7 @@ class SelectedRestaurant extends React.Component {
     return (
       <div className="selected-restaurant">
         <RestaurantLogoBanner style={restaurantImg} />
-        {this.state.infoSubmitted === false ? <RestaurantInformation restaurant={this.state.currentRestaurant}/> : <RestaurantInformation restaurant={this.state.currentRestaurant}/>}
+        <RestaurantInformation restaurant={this.state.currentRestaurant}/>
         {this.state.ready 
           ? <h3 className="ready-noti">Your table is ready!</h3>
           : []}
