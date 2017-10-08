@@ -2,7 +2,7 @@ import React from 'react';
 
 const RestaurantInformation = (props) => {
   let groupsText;
-  props.restaurant.nextPosition === 1 ? groupsText = 'group queued' : groupsText = 'groups queued';
+  props.restaurant.queues.length === 1 ? groupsText = 'group queued' : groupsText = 'groups queued';
 
   let statusCircle;
   const openStatusCircle = {
