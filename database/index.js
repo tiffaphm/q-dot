@@ -138,7 +138,13 @@ const findInfoForOneRestaurant = (restaurantId) => {
 };
 
 const findInfoForAllRestaurants = () => {
-  return Restaurant.findAll({include: [Queue]});
+  return Restaurant.findAll({include: [Queue]})
+    .then(restaurants => {
+      restaurants.forEach(restaurant => {
+        restaurant.dataValues.queues = restaurant.queues.filter(row => row.position !== null);
+      });
+      return restaurants;
+    });
 };
 
 const updateRestaurantStatus = (info) => {
