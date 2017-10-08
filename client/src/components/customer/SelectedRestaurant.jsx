@@ -47,7 +47,7 @@ class SelectedRestaurant extends React.Component {
         {this.state.ready 
           ? <h3 className="ready-noti">Your table is ready!</h3>
           : []}
-        {this.state.infoSubmitted === false ? <CustomerInfoForm currentRestaurantId={this.props.currentRestaurant.id} customerInfoSubmitted={this.customerInfoSubmitted} groupSize={this.props.groupSize}/> : <CustomerQueueInfo />}
+        {this.state.infoSubmitted === false ? <CustomerInfoForm currentRestaurantId={this.props.currentRestaurant.id} customerInfoSubmitted={this.customerInfoSubmitted} /> : <CustomerQueueInfo />}
       </div>
     );
   }

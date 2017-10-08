@@ -6,14 +6,14 @@ import SelectedRestaurant from './SelectedRestaurant.jsx';
 import $ from 'jquery';
 import { Link } from 'react-router-dom';
 
+
+// this is the customer home page
 class CustomerHome extends React.Component {
   constructor(props) {
     super(props);
     this.selectRestaurant = this.selectRestaurant.bind(this);
-    this.setGroupSize = this.setGroupSize.bind(this);
     this.state = {
       selectRestaurant: false,
-      currentGroupSize: 0,
       currentRestaurant: {},
       restaurantList: []
     };
@@ -37,12 +37,6 @@ class CustomerHome extends React.Component {
     });
   }
 
-  setGroupSize(size) {
-    this.setState({
-      currentGroupSize: size
-    });
-  }
-
   getRestaurantList() {
     $.ajax({
       method: 'GET',
@@ -58,28 +52,17 @@ class CustomerHome extends React.Component {
   }
 
   render() {
-    const defaultHomeRender = 
-      <div>
-        <GroupSizeSelector setGroupSize={this.setGroupSize}/>
+
+    // this is a very hacky way of rendering a different page. will refactor to use react router later.
+    let currentRender;
+    // this.state.selectRestaurant === false ? currentRender = defaultHomeRender : currentRender = <SelectedRestaurant currentRestaurant={this.state.currentRestaurant} groupSize={this.state.currentGroupSize}/>;
+
+    return (
+      <div className="customer-home">
         <div className="select-restaurant-container">
           <h4>Select a restaurant</h4>
           {this.state.restaurantList.map((item, index) => 
             <RestaurantCard restaurant={item} key={index} selectRestaurant={this.selectRestaurant}/>
-          )}
-        </div>
-      </div>;
-
-    // this is a very hacky way of rendering a different page. will refactor to use react router later.
-    let currentRender;
-    this.state.selectRestaurant === false ? currentRender = defaultHomeRender : currentRender = <SelectedRestaurant currentRestaurant={this.state.currentRestaurant} groupSize={this.state.currentGroupSize}/>;
-
-    return (
-      <div className="customer-home">
-        <GroupSizeSelector setGroupSize={this.setGroupSize}/>
-        <div className="select-restaurant-container">
-          <h4>Select a restaurant</h4>
-          {this.state.restaurantList.map((item, index) => 
-            <RestaurantCard restaurant={item} key={index} selectRestaurant={this.selectRestaurant} groupSize={this.state.currentGroupSize}/>
           )}
         </div>
       </div>

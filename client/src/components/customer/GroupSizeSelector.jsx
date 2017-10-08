@@ -16,7 +16,7 @@ class GroupSizeSelector extends React.Component {
       currentGroupSize: size
     });
 
-    this.props.setGroupSize(size);
+    this.props.getGroupSize(size);
   }
 
   render() {

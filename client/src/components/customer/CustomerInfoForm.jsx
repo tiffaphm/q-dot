@@ -1,22 +1,30 @@
 import React from 'react';
 import $ from 'jquery';
 
+// the form where customers submit their information
 class CustomerInfoForm extends React.Component {
   constructor(props) {
     super(props);
+    this.getGroupSize = this.getGroupSize.bind(this);
     this.getFirstName = this.getFirstName.bind(this);
     this.getLastName = this.getLastName.bind(this);
     this.getMobile = this.getMobile.bind(this);
     this.getEmail = this.getEmail.bind(this);
     this.submitCustomerInfo = this.submitCustomerInfo.bind(this);
     this.state = {
+      groupSize: 0,
       customerFirstName: '',
       customerLastName: '',
       customerMobile: '',
       customerEmail: '',
-      groupSize: this.props.groupSize,
       currentRestaurantId: this.props.currentRestaurantId
     };
+  }
+
+  getGroupSize(size) {
+    this.setState({
+      groupSize: size
+    });
   }
 
   getFirstName(event) {
@@ -78,6 +86,7 @@ class CustomerInfoForm extends React.Component {
     return (
       <div className="customer-info-input-container">
         <div className="row">
+          <GroupSizeSelector getGroupSize={this.getGroupSize}/>
           <div className="row">
             <div className="input-field col s6">
               <input id="first_name" type="text" className="validate" onChange={this.getFirstName}/>

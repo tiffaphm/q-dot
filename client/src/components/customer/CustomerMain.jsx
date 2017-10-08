@@ -3,6 +3,7 @@ import { Switch, Route } from 'react-router-dom';
 import CustomerHome from './CustomerHome.jsx';
 import SelectedRestaurant from './SelectedRestaurant.jsx';
 
+// main component that will switch components on render via routes
 const CustomerMain = () => (
   <main>
     <Switch>
