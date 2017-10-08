@@ -28,7 +28,7 @@ q. - an exploration into full-stack web engineering and project management, base
 
 - Node 6.4.x
 - Redis 2.6.x
-- Postgresql 9.1.x
+- Postgresql 6.4.x
 - etc
 - etc
 

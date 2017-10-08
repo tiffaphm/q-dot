@@ -1,10 +1,11 @@
 const db = require('./index.js');
+const dbQuery = require('../controller/index.js');
 
 const addToQueue = () => {
-  return db.addToQueue({name: 'Tiffany', restaurantId: 1, size: 2, mobile: '(415) 847-5697'})
-    .then(() => db.addToQueue({name: 'Neha', restaurantId: 1, size: 3, mobile: '(415) 896-5693', email: 'nez@gmail.com'}))
-    .then(() => db.addToQueue({name: 'Eugene', restaurantId: 2, size: 3, mobile: '(415) 785-5678', email: 'eugene@gmail.com'}))
-    .then(() => db.addToQueue({name: 'Johnny', restaurantId: 2, size: 2, mobile: '(415) 684-4758'}));
+  return dbQuery.addToQueue({name: 'Tiffany', restaurantId: 1, size: 2, mobile: '(415) 847-5697'})
+    .then(() => dbQuery.addToQueue({name: 'Neha', restaurantId: 1, size: 3, mobile: '(415) 896-5693', email: 'nez@gmail.com'}))
+    .then(() => dbQuery.addToQueue({name: 'Eugene', restaurantId: 2, size: 3, mobile: '(415) 785-5678', email: 'eugene@gmail.com'}))
+    .then(() => dbQuery.addToQueue({name: 'Johnny', restaurantId: 2, size: 2, mobile: '(415) 684-4758'}));
 };
 
 const addRestaurants = () => {
