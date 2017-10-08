@@ -76,7 +76,7 @@ const Restaurant = db.define('restaurant', {
     unique: true,
     allowNull: false
   },
-  'nextPosition': {
+  nextPosition: {
     type: Sequelize.INTEGER,
     defaultValue: 0
   },
