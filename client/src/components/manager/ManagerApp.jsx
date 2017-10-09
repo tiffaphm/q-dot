@@ -3,6 +3,7 @@ import CustomerList from './CustomerList.jsx';
 import StatusSwitch from './StatusSwitch.jsx';
 import AddToQueue from './AddToQueue.jsx';
 import Nav from './Nav.jsx';
+import ManagerAudit from './ManagerAudit.jsx';
 import $ from 'jquery';
 import io from 'socket.io-client';
 
@@ -85,7 +86,7 @@ class ManagerApp extends React.Component {
       success: (data) => {
         console.log(data);
         this.setState(
-          { 
+          {
             restaurantInfo: data,
             queues: data.queues
           });
@@ -117,6 +118,13 @@ class ManagerApp extends React.Component {
             </div>
             <div className="col-md-6">
               <CustomerList queues={this.state.queues} addCustomer={this.addToQueue.bind(this)} removeCustomer={this.removeCustomer.bind(this)} notiCustomer={this.notiCustomer.bind(this)}/>
+            </div>
+          </div>
+          <div className="row">
+            <div className="col-md-6">
+              <ManagerAudit />
+            </div>
+            <div className="col-md-6">
             </div>
           </div>
         </div>

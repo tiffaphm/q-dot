@@ -1,7 +1,7 @@
 import React from 'react';
 import RestaurantLogoBanner from './RestaurantLogoBanner.jsx';
 import CustomerInfoForm from './CustomerInfoForm.jsx';
-import CustomerQueueInfo from './CustomerQueueInfo.jsx';
+import QueueInfo from './QueueInfo.jsx';
 import RestaurantInformation from './RestaurantInformation.jsx';
 import { Link } from 'react-router-dom';
 import io from 'socket.io-client';
@@ -26,7 +26,7 @@ class SelectedRestaurant extends React.Component {
 
   getRestaurant() {
     let windowUrl = window.location.href;
-    let id = windowUrl.split('').pop();
+    let id = windowUrl.slice(-1);
 
     $.ajax({
       method: 'GET',
@@ -61,15 +61,15 @@ class SelectedRestaurant extends React.Component {
       backgroundImage: `url(../${this.state.currentRestaurant.image})`
     };
 
-      //  <RestaurantInformation restaurant={this.state.currentRestaurant}/>
+       // <CustomerInfoForm currentRestaurantId={this.state.currentRestaurant.id} customerInfoSubmitted={this.customerInfoSubmitted} />
     return (
       <div className="selected-restaurant">
         <RestaurantLogoBanner style={restaurantImg} />
-        {this.state.infoSubmitted === false ? <RestaurantInformation restaurant={this.state.currentRestaurant}/> : <RestaurantInformation restaurant={this.state.currentRestaurant}/>}
+        <RestaurantInformation restaurant={this.state.currentRestaurant}/>
         {this.state.ready 
           ? <h3 className="ready-noti">Your table is ready!</h3>
           : []}
-        {this.state.infoSubmitted === false ? <CustomerInfoForm currentRestaurantId={this.state.currentRestaurant.id} customerInfoSubmitted={this.customerInfoSubmitted} /> : <CustomerQueueInfo />}
+        <CustomerInfoForm customerInfoSubmitted={this.customerInfoSubmitted} />
       </div>
     );
   }

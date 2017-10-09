@@ -62,13 +62,13 @@ class CustomerInfoForm extends React.Component {
   submitCustomerInfo() {
     let fullName = `${this.state.customerFirstName} ${this.state.customerLastName}`;
     let windowUrl = window.location.href;
-    let id = windowUrl.split('').pop();
+    let id = windowUrl.slice(-1);
 
     $.ajax({
       method: 'POST',
       url: '../../queues',
       data: JSON.stringify({
-        name: fullName, 
+        name: fullName,
         mobile: this.state.customerMobile,
         email: this.state.customerEmail,
         size: this.state.groupSize,
@@ -78,6 +78,7 @@ class CustomerInfoForm extends React.Component {
       success: (data) => {
         console.log('this was a successful post request', data);
         this.props.customerInfoSubmitted(data.queueId, data.position);
+        window.location.replace(`/customer/queueinfo?queueId=${data.queueId}`);
       },
       failure: (error) => {
         console.log('something went wrong with the post request', error);
@@ -122,4 +123,4 @@ class CustomerInfoForm extends React.Component {
 }
 
 export default CustomerInfoForm;
-        
+
