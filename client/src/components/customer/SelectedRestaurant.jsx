@@ -26,7 +26,7 @@ class SelectedRestaurant extends React.Component {
 
   getRestaurant() {
     let windowUrl = window.location.href;
-    let id = windowUrl.split('').pop();
+    let id = windowUrl.slice(-1);
 
     $.ajax({
       method: 'GET',
