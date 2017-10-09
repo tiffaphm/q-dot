@@ -1,8 +1,6 @@
 import React from 'react';
 
 const CustomerListEntry = (props) => {
-  
-
   return (
     <div className="row panel-body">
       <div className="col-md-7">

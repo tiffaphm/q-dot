@@ -9,7 +9,13 @@ class QueueInfo extends React.Component {
       currentCustomer: {},
       ready: false
     };
+    // socket initialize
     this.socket = io();
+    // dynamically update if table is ready
+    this.socket.on('noti', (message) => {
+      console.log(message);
+      this.setState({ ready: true });
+    });
   }
 
   componentDidMount() {
@@ -28,11 +34,6 @@ class QueueInfo extends React.Component {
         this.setState({ currentCustomer: data });
         // report queueId to server socket
         this.socket.emit('customer report', id);
-        
-        this.socket.on('noti', (message) => {
-          console.log(message);
-          this.setState({ ready: true });
-        });
       },
       failure: (error) => {
         console.log('failed to grab queue data for customer', error);
