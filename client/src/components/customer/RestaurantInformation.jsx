@@ -1,7 +1,7 @@
 import React from 'react';
 
 const RestaurantInformation = (props) => {
-  let groupsText;
+  let groupsText; // change text following group length indicator to be grammatically correct
   props.restaurant.queues.length === 1 ? groupsText = 'group queued' : groupsText = 'groups queued';
 
   let statusCircle;

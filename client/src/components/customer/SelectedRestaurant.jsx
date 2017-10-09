@@ -11,7 +11,7 @@ class SelectedRestaurant extends React.Component {
     super(props);
     this.customerInfoSubmitted = this.customerInfoSubmitted.bind(this);
     this.state = {
-      currentRestaurant: {},
+      currentRestaurant: {queues: []},
       infoSubmitted: false,
       queueId: 0,
       queuePosition: 0,
@@ -25,8 +25,8 @@ class SelectedRestaurant extends React.Component {
   }
 
   getRestaurant() {
-    let url = window.location.href;
-    let id = url.split('').pop();
+    let windowUrl = window.location.href;
+    let id = windowUrl.split('').pop();
 
     $.ajax({
       method: 'GET',
@@ -60,6 +60,7 @@ class SelectedRestaurant extends React.Component {
       backgroundImage: `url(../${this.state.currentRestaurant.image})`
     };
 
+      //  <RestaurantInformation restaurant={this.state.currentRestaurant}/>
     return (
       <div className="selected-restaurant">
         <RestaurantLogoBanner style={restaurantImg} />
