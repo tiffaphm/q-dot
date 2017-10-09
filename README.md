@@ -1,4 +1,4 @@
-<p align="center"><img src="/documentation/images/logo.png" height="50%" width="50%" ></p>
+<p align="center"><img src="/documentation/images/logo.png" height="25%" width="25%" ></p>
 
 # q.
 
@@ -34,21 +34,31 @@ Manager facing page:
 http://<server_url>/manager
 
 Default login information:
-username: johnny
-password: hunter2
+
+|field       |value        |
+|------------|-------------|
+|username    |johnny       |
+|password    |hunter2      |
 
 Currently, the manager page has been developed for a single restaurant.
 
 Customer facing page:
+
+```
 http://<server_url>/customer
+```
 
 Queue information page:
-http://<server_url>/customer/queueinfo
 
-Visiting http://<server_url>/ redirects you to either /customer or /customer/queueinfo?queueId=[queueId], depending on whether a spot in queue has been reserved at a restaurant.
+```
+http://<server_url>/customer/queueinfo
+```
+
+Visiting `http://<server_url>/` redirects you to either `/customer` or `/customer/queueinfo?queueId=[queueId]`, depending on whether a spot in queue has been reserved at a restaurant.
 
 ### Deployment
 **How to deploy**
+
 Currently, q. is currently hosted on [Heroku](https://www.heroku.com/) and [Linode](https://www.linode.com/).
 
 The webserver and postgreSQL server is hosted on Heroku, while the session store is hosted on DigitalOcean.
@@ -70,18 +80,59 @@ Linode provides a similar service to [DigitalOcean](https://www.digitalocean.com
 The session store for q. is currently configured to use a Redis Server, and the simplest way to deploy a Redis Server is to use a pre-made docker image.
 
 ##### Setup
-1. Create and setup an Ubuntu-based linux server on Linode or DigitalOcean.
+1. Create and setup an 64-bit Ubuntu-based linux server on Linode or DigitalOcean.
+
 1. Install Docker using the repository.
-- Refer to docker installations instruction for more information.
+
+Refer to (docker installation instruction)[https://docs.docker.com/engine/installation/linux/docker-ce/ubuntu/#install-using-the-repository] for more information. **At Step 4 of the instructions, use `amd64` for the stable apt repository.** `amd64` refers to 64-bit operating systems, if you're interested to know :)
+
 1. Pull the Redis docker image from dockerhub.
-- Refer to the [official repository for redis](https://hub.docker.com/_/redis/) for more information.
-1. Run the redis image with the following script:
-`sudo docker run --name q-sessions -p 6379:6379 -d redis redis-server --appendonly yes`
-This exposes port 6379 on the docker container to port 6379 of your linode/digitalocean server, so that it is possible to access the redis server via http://<linode_ip_address>:6379/
+
+```
+sudo docker pull redis //clones the redis image from dockerhub to your ubuntu server.
+
+Refer to the [official repository for redis](https://hub.docker.com/_/redis/) for more information.
+```
+
+1. Start the redis image with the following script:
+
+```
+sudo docker run --name q-sessions -p 6379:6379 -d redis redis-server --appendonly yes
+```
+
+This creates a new instance/container of the redis server, WITH persistant storage so that when you restart the docker container, the session information will not be wiped. 
+
+This also exposes port 6379 on the docker container to port 6379 of your linode/digitalocean server, so that it is possible to access the redis server via http://<linode_ip_address>:6379/
+
+It would be helpful to also install redis-cli, to be able to access the redis server like how you would access a mysql server.
+
+To install redis-cli, you can install npm, then install redis-cli:
+
+```
+sudo apt-get npm
+sudo apt-get redis-cli
+```
+
+Here are some useful redis commnds:
+```
+keys * //shows you all the key-value pairs
+get [key name] //shows you the information in the key
+```
+
+Here are some useful docker commands:
+
+```
+sudo docker ps -a //shows all containers, including the not active containers
+sudo docker attach [containername, for e.g. qsessions] //attach the container so that you can get inside of it. use ctrl-c to exit, but you have to start the container again once you have exited the container.
+```
+
 1. add the following config variables in Heroku:
-- REDISURL: points to the linode ip address.
-- REDISPORT: point this to 6379, or whichever port you exposed the docker container port to.
-- REDISSECRET: set a random string here to generate session id hashes with.
+
+```
+REDISURL: points to the linode ip address.
+REDISPORT: point this to 6379, or whichever port you exposed the docker container port to.
+REDISSECRET: set a random string here to generate session id hashes with.
+```
 
 #### Initialisation
 **NPM Scripts**
@@ -105,14 +156,121 @@ To add dummy data to the database, use postman or curl to make a POST request to
 
 ### File Structure
 
+```
+.
+├── API-DOCUMENTATION.md //documentation for API
+├── CONTRIBUTING.md //documentation for Contribution Guidelines
+├── LICENSE
+├── Procfile
+├── README.md
+├── STYLE-GUIDE.md
+├── app.json
+├── client
+│   ├── dist
+│   │   ├── customer
+│   │   │   ├── css
+│   │   │   │   ├── customermain.css
+│   │   │   │   ├── materialize.css
+│   │   │   │   └── materialize.min.css
+│   │   │   ├── fonts
+│   │   │   │   └── roboto
+│   │   │   ├── index.html
+│   │   │   ├── js
+│   │   │   │   ├── materialize.js
+│   │   │   │   └── materialize.min.js
+│   │   │   └── queueinfo
+│   │   │       └── index.html
+│   │   ├── images
+│   │   ├── js
+│   │   │   ├── customerApp-bundle.js
+│   │   │   ├── managerApp-bundle.js
+│   │   │   └── queueinfo-bundle.js
+│   │   ├── manager
+│   │   │   ├── index.html
+│   │   │   └── style.css
+│   │   └── managerlogin
+│   │       ├── index.html
+│   │       └── styles.css
+│   └── src
+│       ├── components
+│       │   ├── customer
+│       │   │   ├── CustomerApp.jsx
+│       │   │   ├── CustomerHome.jsx
+│       │   │   ├── CustomerInfoForm.jsx
+│       │   │   ├── CustomerMain.jsx
+│       │   │   ├── CustomerNav.jsx
+│       │   │   ├── GroupSizeSelector.jsx
+│       │   │   ├── QueueInfo.jsx
+│       │   │   ├── RestaurantCard.jsx
+│       │   │   ├── RestaurantInformation.jsx
+│       │   │   ├── RestaurantLogoBanner.jsx
+│       │   │   └── SelectedRestaurant.jsx
+│       │   ├── manager
+│       │   │   ├── AddToQueue.jsx
+│       │   │   ├── CustomerList.jsx
+│       │   │   ├── CustomerListEntry.jsx
+│       │   │   ├── ManagerApp.jsx
+│       │   │   ├── ManagerAudit.jsx
+│       │   │   ├── Nav.jsx
+│       │   │   └── StatusSwitch.jsx
+│       │   └── managerlogin
+│       │       └── ManagerLogin.jsx
+│       ├── customerIndex.jsx
+│       ├── managerIndex.jsx
+│       ├── managerLoginIndex.jsx
+│       └── queueinfoIndex.jsx
+├── controller
+│   ├── index.js
+│   └── manager.js
+├── database
+│   ├── dummydata.js
+│   └── index.js
+├── documentation
+│   └── images
+│       └── logo.png
+├── helpers
+│   └── helpers.js
+├── package-lock.json
+├── package.json
+├── server
+│   ├── components
+│   ├── index.js
+│   └── passport.js
+├── test
+│   └── test.js
+└── webpack.config.js
+```
 
 ## Requirements
 
-- Node 6.4.x
-- Redis 2.6.x
-- Postgresql 6.4.x
-- etc
-- etc
+- babel-cli 6.7.5
+- babel-core 6.26.0
+- babel-loader 7.1.2
+- babel-preset-es2015 6.6.0
+- babel-preset-react 6.24.1
+- babel-register 6.7.2
+- body-parser 1.18.2
+- bootstrap 3.3.7
+- connect-redis 3.3.2
+- css-loader 0.28.7
+- express 4.15.5
+- express-session 1.15.6
+- file-loader 1.1.4
+- jquery 3.2.1
+- passport 0.4.0
+- passport-local 1.0.0
+- pg 6.4.2
+- pg-hstore 2.3.2
+- react 16.0.0
+- react-dom 16.0.0
+- redis 2.8.0
+- request 2.83.0
+- sequelize 4.13.2
+- socket.io 2.0.3
+- style-loader 0.18.2
+- url-loader 0.5.9
+- webpack 3.6.0
+- react-router-dom 4.2.2
 
 ## Development
 
