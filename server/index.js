@@ -58,7 +58,7 @@ app.use((req, res, next) => {
 
 app.get('/', (req, res) => {
   if (req.session.queueInfo) {
-    res.redirect('/customer/queueinfo');
+    res.redirect(`/customer/queueinfo?queueId=${req.session.queueInfo.queueId}`);
   } else {
     res.redirect('/customer');
   }
