@@ -59,6 +59,18 @@ class CustomerInfoForm extends React.Component {
     });
   }
 
+  checkInfo() {
+    // console.log('number', this.state.customerMobile);
+    if (this.state.customerMobile.length !== 10 || isNaN(Number(this.state.customerMobile))) {
+      alert('Please enter a valid phone number');
+    } else if (this.state.groupSize === 0) {
+      console.log('here with 0 group size');
+      alert('Please select a group size');
+    } else {
+      this.submitCustomerInfo();
+    }
+  }
+ 
   submitCustomerInfo() {
     let fullName = `${this.state.customerFirstName} ${this.state.customerLastName}`;
     let windowUrl = window.location.href;
@@ -113,7 +125,7 @@ class CustomerInfoForm extends React.Component {
               <label htmlFor="email" data-error="wrong" data-success="right">Email</label>
             </div>
           </div>
-          <div className="row">
+          <div className="btn row">
             <input type="submit" value="Add to Queue" onClick={this.submitCustomerInfo}/>
           </div>
         </div>
