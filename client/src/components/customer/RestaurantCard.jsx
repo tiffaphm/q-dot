@@ -23,8 +23,8 @@ class RestaurantCard extends React.Component {
     
     this.state.restaurantStatus === 'Closed' ? statusCircle = closedStatusCircle : statusCircle = openStatusCircle;
     
-    let image;
-    this.props.restaurant.image === '../images/blank.png' ? image = '../images/randomrestaurant.jpg' : image = this.props.restaurant.image;
+    let image = this.props.restaurant.image;
+    
     return (
       <div className="restaurant-container">
         <div className="col s12 m7">

@@ -11,7 +11,7 @@ class SelectedRestaurant extends React.Component {
     super(props);
     this.customerInfoSubmitted = this.customerInfoSubmitted.bind(this);
     this.state = {
-      currentRestaurant: {},
+      currentRestaurant: {queues: []},
       infoSubmitted: false,
       queueId: 0,
       queuePosition: 0,
@@ -25,13 +25,12 @@ class SelectedRestaurant extends React.Component {
   }
 
   getRestaurant() {
-    console.log('is this working');
-    let url = window.location.href;
-    let id = url.split('').pop();
+    let windowUrl = window.location.href;
+    let id = windowUrl.split('').pop();
 
     $.ajax({
       method: 'GET',
-      url: `../../restaurants?restaurantId=${id}`,
+      url: `/restaurants?restaurantId=${id}`,
       success: (data) => {
         console.log('successfully grabbed current restaurant data', data);
         this.setState({ currentRestaurant: data });
@@ -61,10 +60,11 @@ class SelectedRestaurant extends React.Component {
       backgroundImage: `url(../${this.state.currentRestaurant.image})`
     };
 
+      //  <RestaurantInformation restaurant={this.state.currentRestaurant}/>
     return (
       <div className="selected-restaurant">
         <RestaurantLogoBanner style={restaurantImg} />
-        <RestaurantInformation restaurant={this.state.currentRestaurant}/>
+        {this.state.infoSubmitted === false ? <RestaurantInformation restaurant={this.state.currentRestaurant}/> : <RestaurantInformation restaurant={this.state.currentRestaurant}/>}
         {this.state.ready 
           ? <h3 className="ready-noti">Your table is ready!</h3>
           : []}
