@@ -9862,6 +9862,17 @@ nav li a {
   color: #529CAC;
 }
 
+.wait-time-indicator {
+  color: #053C5E;
+  font-weight: 200 !important;
+  font-size: 18px;
+}
+
+.groups-in-front-indicator {
+  font-weight: 200 !important;
+  font-size: 15px;
+}
+
 /*GRADIENT BANNER*/
 
 @media screen and (min-width: 451px) {

@@ -41,7 +41,7 @@ class QueueInfo extends React.Component {
           <span className="position-number">{this.state.currentCustomer.position}</span>
           <h6>your approximate wait time is:</h6>
           <span className="wait-time-indicator">{this.state.currentCustomer.wait} minutes</span>
-          <p>There are {this.state.currentCustomer.queueInFrontCount} groups in front of you</p>
+          <p className="groups-in-front-indicator">There are currently {this.state.currentCustomer.queueInFrontCount} groups in front of you</p>
         </div>
       </div>
     );
