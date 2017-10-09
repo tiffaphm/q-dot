@@ -32,9 +32,25 @@ const addAuditHistory = function(type, managerId) {
   });
 };
 
+const getAuditHistory = function() {
+  return db.ManagerAudit.findAll({
+    include: [{
+      model: db.Manager,
+      attributes: ['username'],
+      required: false
+    }]
+  });
+};
+
+const deleteAuditHistory = function() {
+  return db.ManagerAudit.drop().then(() => db.ManagerAudit.sync({force: true}));
+};
+
 module.exports = {
   genSalt: genSalt,
   genPassword: genPassword,
   addManager: addManager,
-  addAuditHistory: addAuditHistory
+  addAuditHistory: addAuditHistory,
+  getAuditHistory: getAuditHistory,
+  deleteAuditHistory: deleteAuditHistory
 };

@@ -203,12 +203,34 @@ app.get('/logout', (req, res) => {
 
 //add a new manager login for a restaurant
 app.post('/manager', (req, res) => {
-  if (!req.query.password || !req.query.username) {
-    res.sendStatus(400);
+  if (req.user) {
+    if (!req.query.password || !req.query.username) {
+      res.sendStatus(400);
+    } else {
+      var passwordInfo = dbManagerQuery.genPassword(req.query.password, dbManagerQuery.genSalt());
+      dbManagerQuery.addManager(req.query.username, passwordInfo.passwordHash, passwordInfo.salt)
+        .then(results => res.send(results));
+    }
   } else {
-    var passwordInfo = dbManagerQuery.genPassword(req.query.password, dbManagerQuery.genSalt());
-    dbManagerQuery.addManager(req.query.username, passwordInfo.passwordHash, passwordInfo.salt)
-      .then(results => res.send(results));
+    res.sendStatus(401);
+  }
+});
+
+//returns manager login/logout history
+app.get('/manager/history', (req, res) => {
+  if (req.user) {
+    dbManagerQuery.getAuditHistory().then(results => res.send(results));
+  } else {
+    res.sendStatus(401);
+  }
+});
+
+//deletes manager login/logout history
+app.delete('/manager/history', (req, res) => {
+  if (req.user) {
+    dbManagerQuery.deleteAuditHistory().then(results => res.send(results));
+  } else {
+    res.sendStatus(401);
   }
 });
 
