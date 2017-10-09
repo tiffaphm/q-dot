@@ -8,7 +8,11 @@ class QueueInfo extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      currentCustomer: {},
+      currentCustomer: {
+        restaurant: {
+          name:''
+        }
+      },
       ready: false
     };
     // socket initialize

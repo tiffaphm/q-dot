@@ -1,12 +1,10 @@
 import React from 'react';
 
 // nav bar
-const CustomerBanner = (props) => {
+const Footer = (props) => {
 
   let welcomeMessage;
-  let queueMessage;
   (props.customer) ? welcomeMessage = `Welcome back, ${props.customer.name}!` : welcomeMessage = 'Welcome!';
-  (props.customer) ? queueMessage = <p className="restaurant-queued-at">You are currently queued at {props.customer.restaurant.name.toUpperCase()}</p> : queueMessage = null;
 
   let months = new Array('January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December');
   let d = new Date();
@@ -19,7 +17,6 @@ const CustomerBanner = (props) => {
     <div className="gradient-banner-container">
       <div className="banner-content">
         <p className="banner-title">{welcomeMessage}</p>
-        {queueMessage}
       </div>
      <div className="date-container">
        <p className="date-info">Today is {date_now}</p>
