@@ -11,7 +11,7 @@ const nameFormatter = (name) => {
 };
 
 const phoneNumberFormatter = (number) => {
-  return `(${number.slice(0, 3)}) ${number.slice(3, 6)}-${number.slice(6, 10)}`;
+  return number.replace(/^(\d{3})(\d{3})(\d{4})$/, '($1) $2-$3');
 };
 
 module.exports = {
