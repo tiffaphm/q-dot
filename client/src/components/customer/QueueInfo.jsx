@@ -35,13 +35,13 @@ class QueueInfo extends React.Component {
   render() {
     return (
       <div className="customer-queue-info-container">
-        <CustomerNav />
         <CustomerBanner customer={this.state.currentCustomer}/>
-        <h5>YOUR QUEUE POSITION IS</h5>
+        <h5>YOUR QUEUE NUMBER IS</h5>
         <div className="queue-position-display">
           <span className="position-number">{this.state.currentCustomer.position}</span>
-          <p>your approximate wait time is:</p>
-          <span className="wait-time-indicator">{this.state.currentCustomer.wait}</span>
+          <h6>your approximate wait time is:</h6>
+          <span className="wait-time-indicator">{this.state.currentCustomer.wait} minutes</span>
+          <p>There are {this.state.currentCustomer.queueInFrontCount} groups in front of you</p>
         </div>
       </div>
     );
