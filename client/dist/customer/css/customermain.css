@@ -9832,8 +9832,15 @@ nav li a {
   padding-bottom: 12px;
 }
 
-.ready-noti {
-  text-align: center;
+.ready-noti h3{
+  font-size: 32px;
+  font-weight: 700;
+  letter-spacing: -0.6px;
+  display: inline-block;
+  margin: 0 auto;
+  position: relative;
+  padding-top: 20px;
+  padding-bottom: 12px;
 }
 
 .queue-position-display {
