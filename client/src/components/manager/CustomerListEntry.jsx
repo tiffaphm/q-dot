@@ -5,16 +5,20 @@ const CustomerListEntry = (props) => {
 
   return (
     <div className="row panel-body">
-      <div className="col-md-8">
-        <h4>{props.queue.customer.name}</h4>
-        <p><i className="fa fa-mobile fa-2x" aria-hidden="true"></i>Contact: {props.queue.customer.mobile}</p>
-        {props.queue.customer.email ? <p>Email: {props.queue.customer.email}</p> : null}
-        <p>Group Size: {props.queue.size}</p>
-        <p>Wait Time: {props.queue.wait} mins</p>
+      <div className="col-md-7">
+        <h3 className="customer-entry-title">{props.queue.customer.name}</h3>
+        <div className="row">
+          <p className="col-md-6"><i className="fa fa-mobile fa-fw" aria-hidden="true"></i> {props.queue.customer.mobile}</p>
+          {props.queue.customer.email ? <p><i className="fa fa-envelope-o fa-fw" aria-hidden="true"></i> {props.queue.customer.email}</p> : null}
+        </div>
+        <div className="row">
+          <p className="col-md-6"><i className="fa fa-users fa-fw" aria-hidden="true"></i> {props.queue.size}</p>
+          <p><i className="fa fa-clock-o fa-fw" aria-hidden="true"></i> {props.queue.wait} mins</p>
+        </div>
       </div>
-      <div className="col-md-4 row">
-        <button className="btn-primary btn-sm" data-dismiss="modal" onClick={() => props.showModal(props.queue)}>Remove</button>
-        <button className="btn-success btn-sm" onClick={() => props.notiCustomer(props.queue.id)}>Notify</button>
+      <div className="col-md-5 row">
+        <button className="btn-primary btn-sm entry-button" data-dismiss="modal" onClick={() => props.showModal(props.queue)}><i className="fa fa-user-times fa-fw" aria-hidden="true"></i>Remove</button>
+        <button className="btn-success btn-sm entry-button" onClick={() => props.notiCustomer(props.queue.id)}><i className="fa fa-bullhorn fa-fw" aria-hidden="true"></i>Ready </button>
       </div>
     </div>
   );
