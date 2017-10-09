@@ -1,7 +1,7 @@
 import React from 'react';
 import RestaurantLogoBanner from './RestaurantLogoBanner.jsx';
 import CustomerInfoForm from './CustomerInfoForm.jsx';
-import CustomerQueueInfo from './CustomerQueueInfo.jsx';
+import QueueInfo from './QueueInfo.jsx';
 import RestaurantInformation from './RestaurantInformation.jsx';
 import { Link } from 'react-router-dom';
 import io from 'socket.io-client';
@@ -68,7 +68,7 @@ class SelectedRestaurant extends React.Component {
         {this.state.ready 
           ? <h3 className="ready-noti">Your table is ready!</h3>
           : []}
-        <CustomerQueueInfo />
+        <CustomerInfoForm customerInfoSubmitted={this.customerInfoSubmitted} />
       </div>
     );
   }

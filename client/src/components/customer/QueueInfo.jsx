@@ -1,13 +1,25 @@
 import React from 'react';
+import $ from 'jquery';
 
-const QueueInfo = () => (
-  <div className="customer-queue-info-container">
-    <div className="queue-divider"></div>
-      <h5>YOUR QUEUE POSITION IS</h5>
-      <div className="queue-position-display">
-        <span className="position-number">10</span>
+class QueueInfo extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+
+    };
+  }
+
+  render() {
+    return (
+      <div className="customer-queue-info-container">
+        <div className="queue-divider"></div>
+          <h5>YOUR QUEUE POSITION IS</h5>
+          <div className="queue-position-display">
+            <span className="position-number">10</span>
+          </div>
       </div>
-  </div>
-);
+    )
+  }
+}
 
 export default QueueInfo;
