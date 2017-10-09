@@ -25,8 +25,16 @@ const addManager = function(username, passwordHash, passwordSalt) {
   });
 };
 
+const addAuditHistory = function(type, managerId) {
+  return db.ManagerAudit.create({
+    type: type,
+    managerId: managerId
+  });
+};
+
 module.exports = {
   genSalt: genSalt,
   genPassword: genPassword,
-  addManager: addManager
+  addManager: addManager,
+  addAuditHistory: addAuditHistory
 };

@@ -34,11 +34,13 @@ const dropDB = () => {
   return db.Queue.drop()
     .then(() => db.Customer.drop())
     .then(() => db.Restaurant.drop())
+    .then(() => db.ManagerAudit.drop())
     .then(() => db.Manager.drop())
     .then(() => db.Restaurant.sync({force: true}))
     .then(() => db.Customer.sync({force: true}))
     .then(() => db.Queue.sync({force: true}))
     .then(() => db.Manager.sync({force: true}))
+    .then(() => db.ManagerAudit.sync({force: true}))
     .then(() => addRestaurants())
     .then(() => addToQueue())
     .then(() => addManager());

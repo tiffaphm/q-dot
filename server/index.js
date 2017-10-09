@@ -188,13 +188,17 @@ app.put('/queues', (req, res) => {
 
 //login a manager for a restaurant
 app.post('/managerlogin', passport.authenticate('local'), (req, res) => {
-  res.send('/manager');
+  dbManagerQuery.addAuditHistory('LOGIN', req.user.id)
+    .then(results => res.send('/manager'));
 });
 
 //request for logout of manager page of a restaurant
 app.get('/logout', (req, res) => {
-  req.logout();
-  res.redirect('/managerlogin');
+  dbManagerQuery.addAuditHistory('LOGOUT', req.user.id)
+    .then(results => {
+      req.logout();
+      res.redirect('/managerlogin');
+    });
 });
 
 //add a new manager login for a restaurant
