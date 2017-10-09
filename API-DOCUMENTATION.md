@@ -12,7 +12,7 @@ Schema includes 3 tables shown below:
 |image         |string, url link                  |
 |name          |string, restaurant name           |
 |phone         |string, restaurant number         |
-|nextPosition   |integer, current queue count      |
+|nextPosition   |integer, current queue count     |
 |status        |string, current queue status      |
 |createdAt     |string, restaurant creation date  |
 |updatedAt     |string, restaurant updated date   |
