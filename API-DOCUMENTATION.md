@@ -42,6 +42,26 @@ Schema includes 3 tables shown below:
 |createdAt     |string, customer creation date    |
 |updatedAt     |string, customer updated date     |
 
+**Managers Table**
+
+|field name    |field type                        |
+|--------------|----------------------------------|
+|id            |integer, auto increasing          |
+|username      |string, manager username          |
+|passwordHash  |string, SHA512 password hash      |
+|passwordSalt  |string, 16 character salt         |
+|createdAt     |string, manager creation date     |
+|updatedAt     |string, manager updated date      |
+
+**Managers Audit History Table**
+
+|field name    |field type                        |
+|--------------|----------------------------------|
+|id            |integer, auto increasing          |
+|type          |string, either LOGIN or LOGOUT    |
+|managerId     |integer, manager ID               |
+|createdAt     |string, manager creation date     |
+|updatedAt     |string, manager updated date      |
 
 ## /restaurants
 
@@ -395,6 +415,8 @@ Failed Request:
 
 POST request to /manager?username=[username]&password=[password] creates a new manager login in the database.
 
+The POST request will only work if user has been authenticated.
+
 Manager password is salted and hashed with SHA512.
 
 Example:
@@ -420,6 +442,59 @@ Successful Request:
 
 Failed Request:
 400 - 'Bad Request' (if username or password is not provided)
+401 - 'Unauthorized' (if user was not authenticated)
+```
+## GET /manager/history
+
+**To get manager login/logout history**
+
+GET request to /manager/history returns the login/logouthistory of managers for the restaurant.
+
+The GET request will only work if user has been authenticated.
+
+Example:
+
+```
+request.get('http://q-dot.herokuapp.com/manager/history');
+
+Successful Request:
+
+[
+{
+        "id": 1,
+        "type": "LOGIN",
+        "createdAt": "2017-10-09T05:20:41.274Z",
+        "updatedAt": "2017-10-09T05:20:41.274Z",
+        "managerId": 1,
+        "manager": {
+            "username": "johnny"
+        }   
+}
+]
+
+Failed Request:
+401 - 'Unauthorized' (if user was not authenticated)
+```
+## DELETE /manager/history
+
+**To delete manager login/logout history**
+
+DELETE request to /manager/history clears the login/logouthistory of managers for the restaurant.
+
+The DELETE request will only work if user has been authenticated.
+
+This request returns nothing.
+
+Example:
+
+```
+request.delete('http://q-dot.herokuapp.com/manager/history');
+
+Successful Request:
+null
+
+Failed Request:
+401 - 'Unauthorized' (if user was not authenticated)
 ```
 
 ## /dummydata
