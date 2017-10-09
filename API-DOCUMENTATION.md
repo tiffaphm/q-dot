@@ -351,7 +351,7 @@ Failed Response:
 
 **Returns detailed queue information of a selected customer in database, including customer information**
 
-GET request to '/queues?queueId=[queueId]' will return detailed queue information of a selected customer, including his/her information.
+GET request to '/queues?queueId=[queueId]' will return detailed queue information of a selected customer, including his/her information, and restaurant information.
 
 Accepts the queue id as part of the query string.
 
@@ -379,6 +379,19 @@ Successful Request:
     //returns an integer, represents the queue number that was given to the customer 
     "wait": 6,
     //returns an integer, represents the wait time for the customer
+    "restaurant": {
+        "id": 1,
+        "name": "Tempest",
+        "phone": "(123) 456-7890",
+        "nextPosition": 4,
+        "total_wait": 40,
+        "average_wait": 10,
+        "status": "Open",
+        "image": "../images/tempestbar.jpg",
+        "createdAt": "2017-10-09T21:34:49.525Z",
+        "updatedAt": "2017-10-09T21:36:26.771Z"
+    },
+    //returns an object, with restaurant information
     "queueInFrontCount": 1,
     //returns an integer, represents the number of customers in front of this customer
     "queueInFrontList": [
