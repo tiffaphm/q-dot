@@ -9825,14 +9825,13 @@ nav li a {
   font-size: 24px;
   font-weight: 700;
   letter-spacing: -0.6px;
-  display: inline-block;
+  display: block;
   margin: 0 auto;
   position: relative;
   padding-top: 20px;
-  padding-bottom: 12px;
 }
 
-.ready-noti h3{
+.ready-noti h3 {
   font-size: 32px;
   font-weight: 700;
   letter-spacing: -0.6px;
@@ -9898,6 +9897,17 @@ nav li a {
     display: block !important;
     top: calc(50% - 20px) !important;
     left: 50%;
+  }
+
+  .restaurant-queued-at {
+    color: #fff;
+    font-size: 24px;
+    font-weight: 200;
+    letter-spacing: -0.6px;
+    display: block;
+    margin: 0 auto;
+    position: relative;
+    padding-bottom: 12px;
   }
 
   .banner-title {
