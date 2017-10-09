@@ -7,8 +7,8 @@ import SelectedRestaurant from './SelectedRestaurant.jsx';
 const CustomerMain = () => (
   <main>
     <Switch>
-      <Route exact path='/customer' component={CustomerHome}/>
-      <Route path='/restaurant' component={SelectedRestaurant}/>
+      <Route exact path={'/customer'} component={CustomerHome}/>
+      <Route path={'/restaurant'} component={SelectedRestaurant}/>
     </Switch>
   </main> 
 )
