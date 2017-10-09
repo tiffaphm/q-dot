@@ -1,12 +1,15 @@
 import React from 'react';
 import $ from 'jquery';
+import io from 'socket.io-client';
 
 class QueueInfo extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      currentCustomer: {}
+      currentCustomer: {},
+      ready: false
     };
+    this.socket = io();
   }
 
   componentDidMount() {
@@ -23,6 +26,13 @@ class QueueInfo extends React.Component {
       success: (data) => {
         console.log('successfully grabbed queue data for customer', data);
         this.setState({ currentCustomer: data });
+        // report queueId to server socket
+        this.socket.emit('customer report', id);
+        
+        this.socket.on('noti', (message) => {
+          console.log(message);
+          this.setState({ ready: true });
+        });
       },
       failure: (error) => {
         console.log('failed to grab queue data for customer', error);
@@ -36,11 +46,15 @@ class QueueInfo extends React.Component {
         <div className="queue-divider"></div>
         <h4>Hello, {this.state.currentCustomer.name}</h4>
         <h5>YOUR QUEUE POSITION IS</h5>
-        <div className="queue-position-display">
-          <span className="position-number">{this.state.currentCustomer.position}</span>
-          <p>your approximate wait time is:</p>
-          <span className="wait-time-indicator">{this.state.currentCustomer.wait}</span>
-        </div>
+        {
+          this.state.ready 
+            ? <h3 className="ready-noti">Your table is ready!</h3>
+            : <div className="queue-position-display">
+              <span className="position-number">{this.state.currentCustomer.position}</span>
+              <p>your approximate wait time is:</p>
+              <span className="wait-time-indicator">{this.state.currentCustomer.wait}</span>
+            </div>
+        }
       </div>
     );
   }

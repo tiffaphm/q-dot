@@ -28,11 +28,14 @@ class CustomerList extends React.Component {
     let removeCustomer = () => this.props.removeCustomer(this.state.modalQueue.id);
     return (
       <div>
-        <h3 className="customer-list-head">Customers in Queue</h3>
-        <AddToQueue addCustomer={this.props.addCustomer.bind(this)}/>
+        <div className="row">
+          <h3 className="customer-list-head col-md-8">Customers in Queue</h3>
+          <AddToQueue className="col-md-4" addCustomer={this.props.addCustomer.bind(this)}/>
+        </div>
         <div className="panel panel-default">
           {entries}
         </div>
+        
         { this.state.modalQueue
           ? <div id="remove-warning" className="modal fade" role="dialog">
             <div className="modal-dialog">

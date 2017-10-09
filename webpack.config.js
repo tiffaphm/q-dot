@@ -12,7 +12,8 @@ const config = {
   },
   output: {
     path: path.resolve(__dirname, 'client/dist/js'),
-    filename: '[name]-bundle.js'
+    filename: '[name]-bundle.js',
+    publicPath: '../js'
   },
   module: {
     loaders: [
@@ -27,10 +28,7 @@ const config = {
       },
       {
         test: /\.(png|jpg|gif|svg|eot|ttf|woff|woff2)$/,
-        loader: 'url-loader',
-        options: {
-          limit: 10000
-        }
+        loader: 'file-loader?name=/assets/[name].[ext]'
       }
     ],
   },
