@@ -4853,21 +4853,36 @@ small {
   position: relative;
   left: 0;
   right: 0;
-  top: 0;
+  top: -20px;
   bottom: 0;
   width: 100%;
   vertical-align: bottom;
   overflow: hidden;
 }
 
-@media only screen and (min-width: 1031px) {
+@media only screen and (min-width: 601px) {
   .card .card-image img {
     display: block;
     border-radius: 2px 2px 0 0;
     position: relative;
     left: 0;
     right: 0;
-    top: -75px;
+    top: -80px;
+    bottom: 0;
+    width: 100%;
+    vertical-align: bottom;
+    overflow: hidden;
+  }
+}
+
+@media only screen and (min-width: 1101px) {
+  .card .card-image img {
+    display: block;
+    border-radius: 2px 2px 0 0;
+    position: relative;
+    left: 0;
+    right: 0;
+    top: -110px;
     bottom: 0;
     width: 100%;
     vertical-align: bottom;
@@ -7028,6 +7043,7 @@ select {
 
 .select-wrapper {
   position: relative;
+  margin-bottom: 18px !important;
 }
 
 .select-wrapper.valid + label,
@@ -9463,14 +9479,14 @@ nav li a {
 }
 
 @media only screen and (min-width: 501px) {
-  .customer-group-buttons-container, .select-restaurant-container {
+  .customer-group-selector-container, .select-restaurant-container {
     position: relative;
     display: table;
     margin: 0 auto !important;
   }
 }
 
-.customer-group-buttons-container, .select-restaurant-container {
+.select-restaurant-container {
   position: relative !important;
   display: table !important;
   margin: 0 auto !important;
@@ -9479,7 +9495,16 @@ nav li a {
   width: 100%;
 }
 
-.customer-group-buttons-container .btn-large {
+.customer-group-selector-container {
+  position: relative !important;
+  display: table !important;
+  margin: 0 auto !important;
+  margin-top: 0px !important;
+  margin-bottom: -20px;
+  width: 100%;
+}
+
+/*.customer-group-selector-container .btn-large {
   display: inline-block;
   width: 140px;
   text-align: center;
@@ -9487,10 +9512,10 @@ nav li a {
   margin: 10px 5px;
 }
 
-.customer-group-buttons-container .btn-large i.left {
+.customer-group-selector-container .btn-large i.left {
   margin-left: 15px;
   margin-right: 0px;
-}
+}*/
 
 @media only screen and (min-width: 501px) {
   .customer-group-buttons {
@@ -9646,7 +9671,6 @@ h4 {
 .restaurant-banner-container {
   overflow: hidden !important;
   height: 250px !important;
-  border-top-style: 1px solid;
 }
 
 .restaurant-img-banner {
@@ -9673,10 +9697,16 @@ h4 {
   display: relative !important;
 }
 
-.restaurant-info-container, .customer-info-input-container {
+.restaurant-info-container {
   width: 80%;
   margin: 0 auto !important;
-  padding-top: 32px !important;
+  padding-top: 25px !important;
+}
+
+.customer-info-input-container {
+  width: 80%;
+  margin: 0 auto !important;
+  padding-top: 0 !important;
 }
 
 .customer-queue-info-container {
