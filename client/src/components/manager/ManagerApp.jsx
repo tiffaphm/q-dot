@@ -17,8 +17,10 @@ class ManagerApp extends React.Component {
       restaurantInfo: {}
     };
 
+    // socket initialize
     this.socket = io();
 
+    // dynamically update queue
     this.socket.on('update', () => {
       this.reloadData();
     });

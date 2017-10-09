@@ -16,6 +16,8 @@ class CustomerList extends React.Component {
 
   showModal(queue) {
     this.setState({ modalQueue: queue });
+    // everytime the state changed, modal needs to initialize.
+    // so put the modal toggle in the next runloop of modal initialize
     setTimeout(() => $('#remove-warning').modal('toggle'), 0);
   }
 

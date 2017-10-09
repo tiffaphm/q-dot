@@ -249,8 +249,8 @@ server.listen(port, () => {
 //   console.log(`(>^.^)> Server now listening on ${port}!`);
 // });
 
-let queueMap = {};
-let managerMap = {};
+let queueMap = {};// queueId: socketId
+let managerMap = {};// restaurantId: socketId
 
 io.on('connection', (socket) => {
   console.log(`${socket.id} connected`);
@@ -278,6 +278,7 @@ io.on('connection', (socket) => {
   });
 });
 
+// send message to manager client to update the queue
 const socketUpdateManager = (restaurantId) => {
   if (managerMap[restaurantId]) {
     io.to(managerMap[restaurantId]).emit('update', 'queue changed');
