@@ -39,11 +39,11 @@ class CustomerHome extends React.Component {
       <div className="customer-home">
         <div className="select-restaurant-container">
           <h4>Select a restaurant</h4>
-            {this.state.restaurantList.map(restaurant => (
-              <div key={restaurant.id}>
-                <Link to={`/restaurant/${restaurant.name}/${restaurant.id}`}><RestaurantCard restaurant={restaurant}/></Link>
-              </div>
-            ))}
+          {this.state.restaurantList.map(restaurant => (
+            <div key={restaurant.id}>
+              <Link to={`/restaurant/${restaurant.name}/${restaurant.id}`}><RestaurantCard restaurant={restaurant}/></Link>
+            </div>
+          ))}
         </div>
       </div>
     );
