@@ -74,6 +74,8 @@ This section outlines the steps on how to deploy the webserver and postgreSQL se
 2. Create a postgres database for your app. Follow instructions on [Heroku Postgres](https://devcenter.heroku.com/articles/heroku-postgresql).
 
 3. To post dummy data in the database, use postman or curl to make a POST request to http://<server_url>/dummydata
+  
+  Note: Post request for dummy data will delete all tables in the database and re-create them.
 
 #### DigitalOcean Deployment
 This section outlines the steps on how to deploy the session store database to [Linode](https://www.linode.com/).
@@ -168,9 +170,13 @@ Note: At this point you will not have a database called 'q-dot'. You will have t
 create database qdot;
 ```
 
+4. Make a post request for dummy data. Details below.
+
 **Add Dummy Data**
 
 To add dummy data to the database, use postman or curl to make a POST request to `http://<server_url>/dummydata`
+
+  Note: Post request for dummy data will delete all tables in the database and re-create them.
 
 ### File Structure
 
