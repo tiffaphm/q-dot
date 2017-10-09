@@ -12,6 +12,7 @@ class CustomerInfoForm extends React.Component {
     this.getMobile = this.getMobile.bind(this);
     this.getEmail = this.getEmail.bind(this);
     this.submitCustomerInfo = this.submitCustomerInfo.bind(this);
+    this.checkInfo = this.checkInfo.bind(this);
     this.state = {
       groupSize: 0,
       customerFirstName: '',
@@ -59,6 +60,16 @@ class CustomerInfoForm extends React.Component {
     });
   }
 
+  checkInfo() {
+    if (this.state.customerMobile.length !== 10 || isNaN(Number(this.state.customerMobile))) {
+      alert('Please enter a valid phone number');
+    } else if (this.state.groupSize === 0) {
+      alert('Please select a group size');
+    } else {
+      this.submitCustomerInfo();
+    }
+  }
+ 
   submitCustomerInfo() {
     let fullName = `${this.state.customerFirstName} ${this.state.customerLastName}`;
     let windowUrl = window.location.href;
@@ -114,7 +125,7 @@ class CustomerInfoForm extends React.Component {
             </div>
           </div>
           <div className="row">
-            <input type="submit" value="Add to Queue" onClick={this.submitCustomerInfo}/>
+            <input type="submit" value="Add to Queue" onClick={this.checkInfo}/>
           </div>
         </div>
       </div>
