@@ -31,7 +31,10 @@ Customers are able to see their current position in line and total wait time, wh
 q. comes with a customer-facing page, a queue information page and a manager-facing page/
 
 Manager facing page:
+
+```
 http://<server_url>/manager
+```
 
 Default login information:
 
@@ -84,15 +87,15 @@ The session store for q. is currently configured to use a Redis Server, and the 
 
 1. Install Docker using the repository.
 
-Refer to (docker installation instruction)[https://docs.docker.com/engine/installation/linux/docker-ce/ubuntu/#install-using-the-repository] for more information. **At Step 4 of the instructions, use `amd64` for the stable apt repository.** `amd64` refers to 64-bit operating systems, if you're interested to know :)
+Refer to [Docker installation instructions](https://docs.docker.com/engine/installation/linux/docker-ce/ubuntu/#install-using-the-repository) for more information. **At Step 4 of the instructions, use `amd64` for the stable apt repository.** `amd64` refers to 64-bit operating systems, if you're interested to know :)
 
 1. Pull the Redis docker image from dockerhub.
 
 ```
 sudo docker pull redis //clones the redis image from dockerhub to your ubuntu server.
+```
 
 Refer to the [official repository for redis](https://hub.docker.com/_/redis/) for more information.
-```
 
 1. Start the redis image with the following script:
 
@@ -102,7 +105,7 @@ sudo docker run --name q-sessions -p 6379:6379 -d redis redis-server --appendonl
 
 This creates a new instance/container of the redis server, WITH persistant storage so that when you restart the docker container, the session information will not be wiped. 
 
-This also exposes port 6379 on the docker container to port 6379 of your linode/digitalocean server, so that it is possible to access the redis server via http://<linode_ip_address>:6379/
+This also exposes port 6379 on the docker container to port 6379 of your linode/digitalocean server, so that it is possible to access the redis server via `http://<linode_ip_address>:6379/`
 
 It would be helpful to also install redis-cli, to be able to access the redis server like how you would access a mysql server.
 
@@ -135,7 +138,8 @@ REDISSECRET: set a random string here to generate session id hashes with.
 ```
 
 #### Initialisation
-**NPM Scripts**
+
+NPM Scripts:
 
 |script name   |action                            |
 |--------------|----------------------------------|
@@ -152,7 +156,7 @@ npm start
 
 ### Add Dummy Data
 
-To add dummy data to the database, use postman or curl to make a POST request to http://<server_url>/dummydata
+To add dummy data to the database, use postman or curl to make a POST request to `http://<server_url>/dummydata`
 
 ### File Structure
 
@@ -160,14 +164,14 @@ To add dummy data to the database, use postman or curl to make a POST request to
 .
 ├── API-DOCUMENTATION.md //documentation for API
 ├── CONTRIBUTING.md //documentation for Contribution Guidelines
-├── LICENSE
-├── Procfile
-├── README.md
-├── STYLE-GUIDE.md
-├── app.json
-├── client
-│   ├── dist
-│   │   ├── customer
+├── LICENSE //license file
+├── Procfile //file that heroku uses to run initial commands after deployment
+├── README.md //this file
+├── STYLE-GUIDE.md //documentation for style-guides
+├── app.json //heroku requires this file
+├── client //where are client files get stored
+│   ├── dist //where client files are served
+│   │   ├── customer //routes to http://<server_url>/customer comes here
 │   │   │   ├── css
 │   │   │   │   ├── customermain.css
 │   │   │   │   ├── materialize.css
@@ -185,59 +189,59 @@ To add dummy data to the database, use postman or curl to make a POST request to
 │   │   │   ├── customerApp-bundle.js
 │   │   │   ├── managerApp-bundle.js
 │   │   │   └── queueinfo-bundle.js
-│   │   ├── manager
+│   │   ├── manager //routes to http://<server_url>/manager comes here
 │   │   │   ├── index.html
 │   │   │   └── style.css
-│   │   └── managerlogin
+│   │   └── managerlogin //routes to http://<server_url>/managerlogin comes here
 │   │       ├── index.html
 │   │       └── styles.css
 │   └── src
 │       ├── components
-│       │   ├── customer
-│       │   │   ├── CustomerApp.jsx
-│       │   │   ├── CustomerHome.jsx
-│       │   │   ├── CustomerInfoForm.jsx
-│       │   │   ├── CustomerMain.jsx
-│       │   │   ├── CustomerNav.jsx
-│       │   │   ├── GroupSizeSelector.jsx
-│       │   │   ├── QueueInfo.jsx
-│       │   │   ├── RestaurantCard.jsx
-│       │   │   ├── RestaurantInformation.jsx
-│       │   │   ├── RestaurantLogoBanner.jsx
-│       │   │   └── SelectedRestaurant.jsx
-│       │   ├── manager
-│       │   │   ├── AddToQueue.jsx
-│       │   │   ├── CustomerList.jsx
-│       │   │   ├── CustomerListEntry.jsx
-│       │   │   ├── ManagerApp.jsx
-│       │   │   ├── ManagerAudit.jsx
-│       │   │   ├── Nav.jsx
-│       │   │   └── StatusSwitch.jsx
-│       │   └── managerlogin
-│       │       └── ManagerLogin.jsx
-│       ├── customerIndex.jsx
-│       ├── managerIndex.jsx
-│       ├── managerLoginIndex.jsx
-│       └── queueinfoIndex.jsx
+│       │   ├── customer //customer components
+│       │   │   ├── CustomerApp.jsx //renders main components
+│       │   │   ├── CustomerHome.jsx //renders customer home page
+│       │   │   ├── CustomerInfoForm.jsx //nested in SelectedRestaurant, renders input form
+│       │   │   ├── CustomerMain.jsx //component that renders other component based on url
+│       │   │   ├── CustomerNav.jsx //renders navigation bar
+│       │   │   ├── GroupSizeSelector.jsx //nested in CustomerInfoForm, renders group size selector
+│       │   │   ├── QueueInfo.jsx //renders /customer/queueinfo
+│       │   │   ├── RestaurantCard.jsx //nested in CustomerHome, renders each restaurant in list
+│       │   │   ├── RestaurantInformation.jsx //nested in SelectedRestaurant, displays queue info
+│       │   │   ├── RestaurantLogoBanner.jsx //nested in Selected Restaurant, renders restaurant image
+│       │   │   └── SelectedRestaurant.jsx //renders main page after selecting restaurant
+│       │   ├── manager //manager components
+│       │   │   ├── AddToQueue.jsx //renders add to queue button on manager page
+│       │   │   ├── CustomerList.jsx //renders the list of customer queuing up and remove customer modal
+│       │   │   ├── CustomerListEntry.jsx //renders each customer queue entry
+│       │   │   ├── ManagerApp.jsx //renders main page for manager
+│       │   │   ├── ManagerAudit.jsx //renders login history for manager
+│       │   │   ├── Nav.jsx //renders navigation bar
+│       │   │   └── StatusSwitch.jsx //renders open/close queue on navigation bar
+│       │   └── managerlogin //manager login components
+│       │       └── ManagerLogin.jsx //renders login page
+│       ├── customerIndex.jsx //renders /customer page
+│       ├── managerIndex.jsx //renders /manager page
+│       ├── managerLoginIndex.jsx //renders /managerlogin page
+│       └── queueinfoIndex.jsx //renders /customer/queueinfo page
 ├── controller
-│   ├── index.js
-│   └── manager.js
+│   ├── index.js //contains functions that does a query to the database
+│   └── manager.js //contains all manager-related queries to the database
 ├── database
-│   ├── dummydata.js
-│   └── index.js
-├── documentation
+│   ├── dummydata.js //contains all functions that creates dummy data
+│   └── index.js //contains schema information and associations
+├── documentation //contains documentation files
 │   └── images
 │       └── logo.png
 ├── helpers
-│   └── helpers.js
+│   └── helpers.js //contains any functions not related to database queries or server
 ├── package-lock.json
 ├── package.json
 ├── server
 │   ├── components
-│   ├── index.js
-│   └── passport.js
+│   ├── index.js //contains express, sockets and all routings
+│   └── passport.js //contains settings for passport.js
 ├── test
-│   └── test.js
+│   └── test.js //contains test suite
 └── webpack.config.js
 ```
 
@@ -284,8 +288,9 @@ npm install
 
 ### Roadmap
 
-View the project roadmap [here](LINK_TO_DOC)
+View the project roadmap [here](https://docs.google.com/document/d/1nZWyFHd6PuJd0sl97Ik7XCR5y3FO7S336ywUhs0l6vQ/edit)
 
+Features in black have not been implemented.
 
 ## Contributing
 
