@@ -154,7 +154,21 @@ npm run client
 npm start
 ```
 
-### Add Dummy Data
+**Setup Postgres Database**
+
+1. [Install](https://www.postgresql.org/download) postgres on your local computer. 
+
+Note: At this point you will not have a database called 'q-dot'. You will have to create it manually on your local computer.
+
+2. Go to Postgres in your applications folder and run SQL Shell. The default database is called 'postgres'. Login in to the database.
+
+3. Run command 
+
+```
+create database qdot;
+```
+
+**Add Dummy Data**
 
 To add dummy data to the database, use postman or curl to make a POST request to `http://<server_url>/dummydata`
 
