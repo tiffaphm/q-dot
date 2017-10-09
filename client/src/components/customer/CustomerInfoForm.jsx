@@ -78,6 +78,7 @@ class CustomerInfoForm extends React.Component {
       success: (data) => {
         console.log('this was a successful post request', data);
         this.props.customerInfoSubmitted(data.queueId, data.position);
+        window.location.replace(`/customer/queue-info?customerID=${data.queueId}`);
       },
       failure: (error) => {
         console.log('something went wrong with the post request', error);
