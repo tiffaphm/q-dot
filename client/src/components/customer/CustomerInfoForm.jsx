@@ -10,7 +10,6 @@ class CustomerInfoForm extends React.Component {
     this.getFirstName = this.getFirstName.bind(this);
     this.getLastName = this.getLastName.bind(this);
     this.getMobile = this.getMobile.bind(this);
-    // this.formatMobile = this.formatMobile.bind(this);
     this.getEmail = this.getEmail.bind(this);
     this.submitCustomerInfo = this.submitCustomerInfo.bind(this);
     // this.checkInfo = this.checkInfo.bind(this);
@@ -54,11 +53,6 @@ class CustomerInfoForm extends React.Component {
       customerMobile: event.target.value
     });
   }
-
-  // formatMobile(event) {
-  //   console.log('hi', $(this));
-  //   $(this).val(event.target.value.replace(/^(\d{3})(\d{3})(\d{4})$/, "($1) $2-$3"));
-  // }
 
   getEmail(event) {
     this.setState({
@@ -110,17 +104,17 @@ class CustomerInfoForm extends React.Component {
           <GroupSizeSelector getGroupSize={this.getGroupSize}/>
           <div className="row">
             <div className="input-field col s6">
-              <input id="first_name" type="text" className="validate" onChange={this.getFirstName} required/>
+              <input id="first_name" type="text" className="validate" onChange={this.getFirstName}/>
               <label htmlFor="first_name" data-error="wrong" data-success="right">First Name</label>
             </div>
             <div className="input-field col s6">
-              <input id="last_name" type="text" className="validate" onChange={this.getLastName} required/>
+              <input id="last_name" type="text" className="validate" onChange={this.getLastName}/>
               <label htmlFor="last_name" data-error="wrong" data-success="right">Last Name</label>
             </div>
           </div>
           <div className="row">
             <div className="input-field col s12">
-              <input id="telephone" type="tel" className="validate" onChange={this.getMobile} required/>
+              <input id="telephone" type="tel" className="validate" onChange={this.getMobile}/>
               <label htmlFor="telephone" data-error="wrong" data-success="right">Phone Number</label>
             </div>
           </div>
@@ -131,7 +125,7 @@ class CustomerInfoForm extends React.Component {
             </div>
           </div>
           <div className="row">
-            <input type="submit" value="Add to Queue" onClick={this.submitCustomerInfo}/>
+            <input className="waves-effect waves-light btn" type="submit" value="Add to Queue" onClick={this.checkInfo} />
           </div>
         </div>
       </div>
@@ -140,4 +134,3 @@ class CustomerInfoForm extends React.Component {
 }
 
 export default CustomerInfoForm;
-
