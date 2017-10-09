@@ -126,7 +126,7 @@ const getCustomerInfo = (queueId) => {
     where: {
       id: queueId
     },
-    include: [db.Customer]
+    include: [db.Customer, db.Restaurant]
   });
 };
 
