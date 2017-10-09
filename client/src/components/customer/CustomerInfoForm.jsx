@@ -62,7 +62,7 @@ class CustomerInfoForm extends React.Component {
   submitCustomerInfo() {
     let fullName = `${this.state.customerFirstName} ${this.state.customerLastName}`;
     let windowUrl = window.location.href;
-    let id = windowUrl.split('').pop();
+    let id = windowUrl.slice(-1);
 
     $.ajax({
       method: 'POST',
