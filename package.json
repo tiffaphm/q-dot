@@ -21,10 +21,9 @@
     "body-parser": "^1.18.2",
     "bootstrap": "^3.3.7",
     "connect-redis": "^3.3.2",
-    "css-loader": "^0.28.7",
     "express": "^4.15.5",
     "express-session": "^1.15.6",
-    "file-loader": "^1.1.4",
+    "font-awesome": "^4.7.0",
     "jquery": "^3.2.1",
     "passport": "^0.4.0",
     "passport-local": "^1.0.0",
@@ -32,18 +31,20 @@
     "pg-hstore": "^2.3.2",
     "react": "^16.0.0",
     "react-dom": "^16.0.0",
+    "react-router-dom": "^4.2.2",
     "redis": "^2.8.0",
     "request": "^2.83.0",
     "sequelize": "^4.13.2",
     "socket.io": "^2.0.3",
-    "style-loader": "^0.18.2",
-    "url-loader": "^0.5.9",
-    "webpack": "^3.6.0",
-    "react-router-dom": "^4.2.2"
+    "webpack": "^3.6.0"
   },
   "devDependencies": {
     "eslint-config-hackreactor": "git://github.com/reactorcore/eslint-config-hackreactor",
     "mocha": "^4.0.0",
-    "nodemon": "^1.12.1"
+    "nodemon": "^1.12.1",
+    "url-loader": "^0.5.9",
+    "style-loader": "^0.18.2",
+    "file-loader": "^1.1.4",
+    "css-loader": "^0.28.7"
   }
 }

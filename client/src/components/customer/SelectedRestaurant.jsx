@@ -4,7 +4,6 @@ import CustomerInfoForm from './CustomerInfoForm.jsx';
 import QueueInfo from './QueueInfo.jsx';
 import RestaurantInformation from './RestaurantInformation.jsx';
 import { Link } from 'react-router-dom';
-import io from 'socket.io-client';
 
 class SelectedRestaurant extends React.Component {
   constructor(props) {
@@ -17,7 +16,6 @@ class SelectedRestaurant extends React.Component {
       queuePosition: 0,
       ready: false
     };
-    this.socket = io();
   }
 
   componentDidMount() {
@@ -47,13 +45,6 @@ class SelectedRestaurant extends React.Component {
       queueId: id,
       queuePosition: position
     });
-    // report queueId to server socket
-    this.socket.emit('customer report', this.state.queueId);
-    
-    this.socket.on('noti', (message) => {
-      console.log(message);
-      this.setState({ ready: true });
-    });
   }
 
   render() {
@@ -61,14 +52,10 @@ class SelectedRestaurant extends React.Component {
       backgroundImage: `url(../${this.state.currentRestaurant.image})`
     };
 
-       // <CustomerInfoForm currentRestaurantId={this.state.currentRestaurant.id} customerInfoSubmitted={this.customerInfoSubmitted} />
     return (
       <div className="selected-restaurant">
         <RestaurantLogoBanner style={restaurantImg} />
         <RestaurantInformation restaurant={this.state.currentRestaurant}/>
-        {this.state.ready 
-          ? <h3 className="ready-noti">Your table is ready!</h3>
-          : []}
         <CustomerInfoForm customerInfoSubmitted={this.customerInfoSubmitted} />
       </div>
     );

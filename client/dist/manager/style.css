@@ -31,5 +31,12 @@ h2 {
 }
 
 .customer-list-head {
+  margin-bottom: 30px;
+  margin-top: 5px;
+}
+
+.centered-button {
   display: inline-block;
+  vertical-align: middle;
+  float: none;
 }
