@@ -1,4 +1,6 @@
 import React from 'react';
+import CustomerNav from './CustomerNav.jsx';
+import CustomerBanner from './CustomerBanner.jsx';
 import $ from 'jquery';
 import io from 'socket.io-client';
 
@@ -44,16 +46,16 @@ class QueueInfo extends React.Component {
   render() {
     return (
       <div className="customer-queue-info-container">
-        <div className="queue-divider"></div>
-        <h4>Hello, {this.state.currentCustomer.name}</h4>
-        <h5>YOUR QUEUE POSITION IS</h5>
+        <CustomerBanner customer={this.state.currentCustomer}/>
+        <h5>YOUR QUEUE NUMBER IS</h5>
         {
           this.state.ready 
             ? <h3 className="ready-noti">Your table is ready!</h3>
             : <div className="queue-position-display">
               <span className="position-number">{this.state.currentCustomer.position}</span>
-              <p>your approximate wait time is:</p>
+              <h6>your approximate wait time is:</h6>
               <span className="wait-time-indicator">{this.state.currentCustomer.wait}</span>
+              <p className="groups-in-front-indicator">There are currently {this.state.currentCustomer.queueInFrontCount} groups in front of you</p>
             </div>
         }
       </div>
