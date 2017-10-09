@@ -124,7 +124,7 @@ class CustomerInfoForm extends React.Component {
               <label htmlFor="email" data-error="wrong" data-success="right">Email</label>
             </div>
           </div>
-          <div className="btn row">
+          <div className="row">
             <input type="submit" value="Add to Queue" onClick={this.checkInfo}/>
           </div>
         </div>
