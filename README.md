@@ -306,6 +306,10 @@ From within the root directory:
 npm install
 ```
 
+### API Documentation
+
+Please refer to [API Documentation](API-DOCUMENTATION.md).
+
 ### Roadmap
 
 View the project roadmap [here](https://docs.google.com/document/d/1nZWyFHd6PuJd0sl97Ik7XCR5y3FO7S336ywUhs0l6vQ/edit)
