@@ -115,16 +115,10 @@ class ManagerApp extends React.Component {
               <div id="number-in-queue">{this.state.restaurantInfo.queues ? this.state.restaurantInfo.queues.length : '0'}</div>
               <h2>Approximate Wait Time</h2>
               <div id="number-in-queue">{this.state.restaurantInfo.total_wait}</div>
-            </div>
-            <div className="col-md-6">
-              <CustomerList queues={this.state.queues} addCustomer={this.addToQueue.bind(this)} removeCustomer={this.removeCustomer.bind(this)} notiCustomer={this.notiCustomer.bind(this)}/>
-            </div>
-          </div>
-          <div className="row">
-            <div className="col-md-6">
               <ManagerAudit />
             </div>
             <div className="col-md-6">
+              <CustomerList queues={this.state.queues} addCustomer={this.addToQueue.bind(this)} removeCustomer={this.removeCustomer.bind(this)} notiCustomer={this.notiCustomer.bind(this)}/>
             </div>
           </div>
         </div>

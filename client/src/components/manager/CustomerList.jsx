@@ -45,7 +45,7 @@ class CustomerList extends React.Component {
                   <h2 className="modal-title">Statement</h2>
                 </div>
                 <div className="modal-body">
-                  <p className="warning-content"><b>Remove</b> Customer: {this.state.modalQueue.customer.name} In Queue</p>
+                  <p className="warning-content"><b>Remove {this.state.modalQueue.customer.name}</b> From Queue?</p>
                 </div>
                 <div className="modal-footer">
                   <button className="btn btn-warning" data-dismiss="modal" onClick={removeCustomer}>No Show</button>

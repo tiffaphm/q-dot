@@ -51,7 +51,7 @@ class AddToQueue extends React.Component {
   render () {
     return (
       <div>
-        <button type="button" className="btn btn-primary" data-toggle="modal" data-target="#add-to-queue">Add To Queue</button>
+        <button type="button" className="btn btn-primary" data-toggle="modal" data-target="#add-to-queue"><i className="fa fa-plus fa-fw" aria-hidden="true"></i>  Add To Queue</button>
         <div id="add-to-queue" className="modal fade" role="dialog">
           <div className="modal-dialog">
             <div className="modal-content">
@@ -66,7 +66,7 @@ class AddToQueue extends React.Component {
                 <label>Size: <input type="text" placeholder="size of group.." value={this.state.size} onChange={this.getSize.bind(this)}/></label>
               </div>
               <div className="modal-footer">
-                <button className="btn btn-primary" data-dismiss="modal" onClick={this.addToQueue.bind(this)}>Confirm</button>
+                <button className="btn btn-primary" data-dismiss="modal" onClick={this.addToQueue.bind(this)}>Add</button>
                 <button type="button" className="btn btn-default" data-dismiss="modal" onClick={this.resetValues}>Cancel</button>
               </div>
             </div>
