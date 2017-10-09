@@ -57,7 +57,11 @@ app.use((req, res, next) => {
 });
 
 app.get('/', (req, res) => {
-  res.redirect('/customer');
+  if (req.session.queueInfo) {
+    res.redirect('/customer/queueinfo');
+  } else {
+    res.redirect('/customer');
+  }
 });
 
 //get info for one restaurant or all restaurants
