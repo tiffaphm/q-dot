@@ -4,7 +4,7 @@
 
 An exploration into full-stack web engineering and project management, based on a restaurant's queue management system.
 
-q. is a restaurant queue management platform catered towards allowing customers to queue up for a restaurant digitally, so that customers do not have to travel to a restaurant to wait in line.
+**q.** is a restaurant queue management platform catered towards allowing customers to queue up for a restaurant digitally, so that customers do not have to travel to a restaurant to wait in line.
 
 Customers are able to see their current position in line and total wait time, while restaurant managers have the ability to manage the restaurant's queue.
 
@@ -56,6 +56,12 @@ The webserver and postgreSQL server is hosted on Heroku, while the session store
 #### Heroku Deployment
 This section outlines the steps on how to deploy the webserver and postgreSQL server to [Heroku](https://www.heroku.com/).
 
+1. Follow instructions on [Heroku - Getting Started](https://devcenter.heroku.com/articles/getting-started-with-nodejs#introduction) to deploy the app on heroku.
+
+2. Create a postgres database for your app. Follow instructions on [Heroku Postgres](https://devcenter.heroku.com/articles/heroku-postgresql).
+
+3. To post dummy data in the database, use postman or curl to make a POST request to http://<server_url>/dummydata
+
 #### DigitalOcean Deployment
 This section outlines the steps on how to deploy the session store database to [Linode](https://www.linode.com/).
 
@@ -92,6 +98,10 @@ npm install
 npm run client
 npm start
 ```
+
+### Add Dummy Data
+
+To add dummy data to the database, use postman or curl to make a POST request to http://<server_url>/dummydata
 
 ### File Structure
 
