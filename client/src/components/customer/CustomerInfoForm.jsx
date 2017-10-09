@@ -59,16 +59,6 @@ class CustomerInfoForm extends React.Component {
       customerEmail: event.target.value
     });
   }
-
-  // checkInfo() {
-  //   if (this.state.customerMobile.length !== 10 || isNaN(Number(this.state.customerMobile))) {
-  //     alert('Please enter a valid phone number');
-  //   } else if (this.state.groupSize === 0) {
-  //     alert('Please select a group size');
-  //   } else {
-  //     this.submitCustomerInfo();
-  //   }
-  // }
  
   submitCustomerInfo() {
     let fullName = `${this.state.customerFirstName} ${this.state.customerLastName}`;
@@ -125,7 +115,7 @@ class CustomerInfoForm extends React.Component {
             </div>
           </div>
           <div className="row">
-            <input className="waves-effect waves-light btn" type="submit" value="Add to Queue" onClick={this.checkInfo} />
+            <input className="waves-effect waves-light btn" type="submit" value="Add to Queue" onClick={this.submitCustomerInfo} />
           </div>
         </div>
       </div>
