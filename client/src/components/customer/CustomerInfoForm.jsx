@@ -10,9 +10,10 @@ class CustomerInfoForm extends React.Component {
     this.getFirstName = this.getFirstName.bind(this);
     this.getLastName = this.getLastName.bind(this);
     this.getMobile = this.getMobile.bind(this);
+    // this.formatMobile = this.formatMobile.bind(this);
     this.getEmail = this.getEmail.bind(this);
     this.submitCustomerInfo = this.submitCustomerInfo.bind(this);
-    this.checkInfo = this.checkInfo.bind(this);
+    // this.checkInfo = this.checkInfo.bind(this);
     this.state = {
       groupSize: 0,
       customerFirstName: '',
@@ -54,21 +55,26 @@ class CustomerInfoForm extends React.Component {
     });
   }
 
+  // formatMobile(event) {
+  //   console.log('hi', $(this));
+  //   $(this).val(event.target.value.replace(/^(\d{3})(\d{3})(\d{4})$/, "($1) $2-$3"));
+  // }
+
   getEmail(event) {
     this.setState({
       customerEmail: event.target.value
     });
   }
 
-  checkInfo() {
-    if (this.state.customerMobile.length !== 10 || isNaN(Number(this.state.customerMobile))) {
-      alert('Please enter a valid phone number');
-    } else if (this.state.groupSize === 0) {
-      alert('Please select a group size');
-    } else {
-      this.submitCustomerInfo();
-    }
-  }
+  // checkInfo() {
+  //   if (this.state.customerMobile.length !== 10 || isNaN(Number(this.state.customerMobile))) {
+  //     alert('Please enter a valid phone number');
+  //   } else if (this.state.groupSize === 0) {
+  //     alert('Please select a group size');
+  //   } else {
+  //     this.submitCustomerInfo();
+  //   }
+  // }
  
   submitCustomerInfo() {
     let fullName = `${this.state.customerFirstName} ${this.state.customerLastName}`;
@@ -104,17 +110,17 @@ class CustomerInfoForm extends React.Component {
           <GroupSizeSelector getGroupSize={this.getGroupSize}/>
           <div className="row">
             <div className="input-field col s6">
-              <input id="first_name" type="text" className="validate" onChange={this.getFirstName}/>
+              <input id="first_name" type="text" className="validate" onChange={this.getFirstName} required/>
               <label htmlFor="first_name" data-error="wrong" data-success="right">First Name</label>
             </div>
             <div className="input-field col s6">
-              <input id="last_name" type="text" className="validate" onChange={this.getLastName}/>
+              <input id="last_name" type="text" className="validate" onChange={this.getLastName} required/>
               <label htmlFor="last_name" data-error="wrong" data-success="right">Last Name</label>
             </div>
           </div>
           <div className="row">
             <div className="input-field col s12">
-              <input id="telephone" type="tel" className="validate" onChange={this.getMobile}/>
+              <input id="telephone" type="tel" className="validate" onChange={this.getMobile} required/>
               <label htmlFor="telephone" data-error="wrong" data-success="right">Phone Number</label>
             </div>
           </div>
@@ -125,7 +131,7 @@ class CustomerInfoForm extends React.Component {
             </div>
           </div>
           <div className="row">
-            <input type="submit" value="Add to Queue" onClick={this.checkInfo}/>
+            <input type="submit" value="Add to Queue" onClick={this.submitCustomerInfo}/>
           </div>
         </div>
       </div>

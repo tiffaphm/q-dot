@@ -7050,11 +7050,17 @@ select {
   margin-bottom: 18px !important;
 }
 
-.select-wrapper.valid + label,
-.select-wrapper.invalid + label {
+.select-wrapper.valid + label {
   width: 100%;
   pointer-events: none;
 }
+
+.select-wrapper:invalid + label {
+  border: 1px solid #F44336;
+  width: 100%;
+  pointer-events: none;
+}
+
 
 .select-wrapper input.select-dropdown {
   position: relative;
@@ -9463,7 +9469,7 @@ button.picker__today:focus, button.picker__clear:focus, button.picker__close:foc
 
 /*
 
-THESE ARE CHANGES THAT ARE UNRELATED TO MATERIAL CSS
+MAIN CUSTOMER CLIENT CSS CHANGES
 
 */
 
@@ -9778,6 +9784,12 @@ h4 {
 
 .wait-time {
   float: right;
+}
+
+/*FORM & INPUT CSS*/
+
+select:required {
+
 }
 
 /*CUSTOMER QUEUE INFO & POSITION INDICATOR*/
