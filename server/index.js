@@ -6,12 +6,13 @@ const path = require('path');
 const port = process.env.PORT || 1337;
 const db = require('../database/index.js');
 const dbQuery = require('../controller/index.js');
+const dbManagerQuery = require('../controller/manager.js');
 const dummyData = require('../database/dummydata.js');
 const helpers = require('../helpers/helpers.js');
 const bodyParser = require('body-parser');
 const session = require('express-session');
 const RedisStore = require('connect-redis')(session);
-const passport = require('./login.js');
+const passport = require('./passport.js');
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
@@ -139,7 +140,7 @@ app.patch('/restaurants', (req, res) => {
   }
 });
 
-//get queue info 
+//get queue info
 app.get('/queues', (req, res) => {
   if (req.query.queueId) {
     var results = {};
@@ -187,15 +188,29 @@ app.put('/queues', (req, res) => {
 
 //login a manager for a restaurant
 app.post('/managerlogin', passport.authenticate('local'), (req, res) => {
-  res.send('/manager');
+  dbManagerQuery.addAuditHistory('LOGIN', req.user.id)
+    .then(results => res.send('/manager'));
 });
 
 //request for logout of manager page of a restaurant
 app.get('/logout', (req, res) => {
-  req.logout();
-  res.redirect('/managerlogin');
+  dbManagerQuery.addAuditHistory('LOGOUT', req.user.id)
+    .then(results => {
+      req.logout();
+      res.redirect('/managerlogin');
+    });
 });
 
+//add a new manager login for a restaurant
+app.post('/manager', (req, res) => {
+  if (!req.query.password || !req.query.username) {
+    res.sendStatus(400);
+  } else {
+    var passwordInfo = dbManagerQuery.genPassword(req.query.password, dbManagerQuery.genSalt());
+    dbManagerQuery.addManager(req.query.username, passwordInfo.passwordHash, passwordInfo.salt)
+      .then(results => res.send(results));
+  }
+});
 
 server.listen(port, () => {
   console.log(`(>^.^)> Server now listening on ${port}!`);

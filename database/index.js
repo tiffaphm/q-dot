@@ -21,6 +21,16 @@ db.authenticate()
     console.error('Unable to connect to the database:', err);
   });
 
+//Manager Audit History Schema
+const ManagerAudit = db.define('manageraudit', {
+  id: {
+    type: Sequelize.INTEGER,
+    primaryKey: true,
+    autoIncrement: true
+  },
+  type: Sequelize.STRING
+});
+
 //Manager Schema
 const Manager = db.define('manager', {
   id: {
@@ -29,7 +39,8 @@ const Manager = db.define('manager', {
     autoIncrement: true
   },
   username: Sequelize.STRING,
-  password: Sequelize.STRING
+  passwordHash: Sequelize.STRING,
+  passwordSalt: Sequelize.STRING
 });
 
 //Customer Schema
@@ -100,6 +111,10 @@ Queue.belongsTo(Restaurant);
 Customer.hasOne(Queue);
 Queue.belongsTo(Customer);
 
+//Relationship between Manager & ManagerAudit
+Manager.hasOne(ManagerAudit);
+ManagerAudit.belongsTo(Manager);
+
 Customer.sync()
   .then(() => Restaurant.sync())
   .then(() => Queue.sync())
@@ -111,5 +126,6 @@ module.exports = {
   Customer: Customer,
   Queue: Queue,
   Restaurant: Restaurant,
-  Manager: Manager
+  Manager: Manager,
+  ManagerAudit: ManagerAudit
 };
