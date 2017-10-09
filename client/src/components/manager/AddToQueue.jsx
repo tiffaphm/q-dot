@@ -66,7 +66,7 @@ class AddToQueue extends React.Component {
                 <label>Size: <input type="text" placeholder="size of group.." value={this.state.size} onChange={this.getSize.bind(this)}/></label>
               </div>
               <div className="modal-footer">
-                <button className="btn btn-primary" data-dismiss="modal" onClick={this.addToQueue.bind(this)}>Confirm</button>
+                <button className="btn btn-primary" data-dismiss="modal" onClick={this.addToQueue.bind(this)}>Add</button>
                 <button type="button" className="btn btn-default" data-dismiss="modal" onClick={this.resetValues}>Cancel</button>
               </div>
             </div>

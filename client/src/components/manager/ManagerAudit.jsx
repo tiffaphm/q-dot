@@ -100,7 +100,7 @@ class ManagerAudit extends React.Component {
             </table>
           </div>
         </div>
-        <button type="button" className="btn btn-danger navbar-btn" data-toggle="modal" data-target="#clear-warning">clear history</button>
+        <button type="button" className="btn btn-danger navbar-btn" data-toggle="modal" data-target="#clear-warning"><i className="fa fa-trash fa-fw" aria-hidden="true"></i>clear history</button>
       </div>
     );
   }
