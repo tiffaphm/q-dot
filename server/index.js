@@ -106,7 +106,7 @@ app.post('/queues', (req, res) => {
       .then(response => {
         const result = {
           name: helpers.nameFormatter(req.body.name),
-          mobile: req.body.mobile
+          mobile: helpers.phoneNumberFormatter(req.body.mobile)
         };
         if (req.body.email) {
           result.email = req.body.email;

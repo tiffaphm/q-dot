@@ -44,7 +44,7 @@ const findOrAddCustomer = (params) => {
       if (customer === null) {
         const customer = {
           name: helpers.nameFormatter(params.name),
-          mobile: params.mobile
+          mobile: helpers.phoneNumberFormatter(params.mobile)
         };
 
         if (params.email) {
