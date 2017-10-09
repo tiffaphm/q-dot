@@ -4,6 +4,10 @@
  * MIT License (https://raw.githubusercontent.com/Dogfalo/materialize/master/LICENSE)
  */
 
+body {
+  background: #f4f7f9 !important;
+}
+
 .materialize-red {
   background-color: #e51c23 !important;
 }
@@ -9459,7 +9463,7 @@ button.picker__today:focus, button.picker__clear:focus, button.picker__close:foc
 
 /*
 
-THESE ARE CHANGES THAT ARE UNRELATED TO MATERIAL CSS
+THESE ARE CHANGES SPECIFIC TO CUSTOMERMAIN
 
 */
 
@@ -9490,7 +9494,7 @@ nav li a {
   position: relative !important;
   display: table !important;
   margin: 0 auto !important;
-  margin-top: 25px !important;
+  margin-top: 10px !important;
   margin-bottom: -20px;
   width: 100%;
 }
@@ -9535,7 +9539,20 @@ nav li a {
     margin-bottom: 0px !important;
     padding-top: 0px !important;
     padding-bottom: 0px !important;
-    margin-left: 20% !important;
+  }
+
+  .select-restaurant-container h4 { 
+    font-family: Roboto, Helvetica Neue, sans-serif !important;
+    color: #202020;
+    font-size: 30px !important;
+    line-height: 32px !important;
+    letter-spacing: -0.5px !important;
+    font-weight: 700 !important;
+    margin-bottom: 0px !important;
+    padding-top: 0px !important;
+    padding-bottom: 0px !important;
+    text-align: center !important;
+    margin-left: 0px !important;
   }
 }
 
@@ -9555,17 +9572,19 @@ nav li a {
   margin-left: 15%;
 }
 
-h4 {
-  font-family: Roboto, Helvetica Neue, sans-serif;
-  color: #202020;
-  font-size: 26px;
-  line-height: 32px;
-  letter-spacing: -0.6px;
-  font-weight: 700;
-  margin-bottom: 0px;
-  padding-top: 0px;
-  padding-bottom: 0px;
-  margin-left: 5%;
+@media only screen and (max-width: 500px) {
+  h4 {
+    font-family: Roboto, Helvetica Neue, sans-serif;
+    color: #202020;
+    font-size: 26px;
+    line-height: 32px;
+    letter-spacing: -0.6px;
+    font-weight: 700;
+    margin-bottom: 0px;
+    padding-top: 0px;
+    padding-bottom: 0px;
+    margin-left: 5%;
+  }
 }
 
 /*INDIVIDUAL RESTAURANT CARD STYLES*/
@@ -9817,3 +9836,61 @@ h4 {
 .ready-noti {
   text-align: center;
 }
+
+/*GRADIENT BANNER*/
+
+@media screen and (min-width: 451px) {
+  .gradient-banner-container {
+    height: 350px;
+    width: 100%;
+    position: relative;
+    background: #12788E; /* For browsers that do not support gradients */
+    background: -webkit-linear-gradient(left top, #62DBD5, #12788E); /* For Safari 5.1 to 6.0 */
+    background: -o-linear-gradient(bottom right, #62DBD5, #12788E); /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient(bottom right, #62DBD5, #12788E); /* For Firefox 3.6 to 15 */
+    background: linear-gradient(to bottom right, #62DBD5, #12788E); /* Standard syntax */
+  }
+
+  .banner-content {
+    display: block !important;
+    top: calc(50% - 20px) !important;
+    left: 50%;
+  }
+
+  .banner-title {
+    font-family: Roboto,Helvetica Neue,sans-serif !important;
+    font-size: 36px !important;
+    color: #fff !important;
+    font-weight: 700 !important;
+    margin: 0px !important;
+    letter-spacing: -0.5px !important;
+    line-height: 40px !important;
+    padding-top: 5px !important;
+    padding-bottom: 5px !important;
+  }
+
+  .date-container {
+    position: absolute !important;
+    bottom: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    height: 55px !important;
+    text-align: center !important;
+    background-color: #053C5E !important;
+  }
+}
+
+.banner-content {
+  display: none;
+  position: absolute;
+  top: calc(50% + 5px);
+  left: 50%;
+  -webkit-transform: translate(-50%,-50%);
+  transform: translate(-50%,-50%);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  color: #fff;
+}
+
+

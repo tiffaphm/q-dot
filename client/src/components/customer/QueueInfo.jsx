@@ -1,5 +1,7 @@
 import React from 'react';
 import $ from 'jquery';
+import CustomerNav from './CustomerNav.jsx';
+import CustomerBanner from './CustomerBanner.jsx';
 
 class QueueInfo extends React.Component {
   constructor(props) {
@@ -33,8 +35,8 @@ class QueueInfo extends React.Component {
   render() {
     return (
       <div className="customer-queue-info-container">
-        <div className="queue-divider"></div>
-        <h4>Hello, {this.state.currentCustomer.name}</h4>
+        <CustomerNav />
+        <CustomerBanner customer={this.state.currentCustomer}/>
         <h5>YOUR QUEUE POSITION IS</h5>
         <div className="queue-position-display">
           <span className="position-number">{this.state.currentCustomer.position}</span>
